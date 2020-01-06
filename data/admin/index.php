@@ -1,3 +1,17 @@
+<?php
+   $menu = "Dashboard";
+   $link_menu = "index.php";
+   $location = "Dashboard";
+
+   $data_onTime = [28, 48, 40, 19, 86, 27, 20, 30, 20, 50, 40, 30];
+   $data_lossTime = [65, 59, 80, 81, 56, 55, 40, 20, 30, 40, 50, 20];
+   $data_bulan = ['Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'];
+
+   $bulan = json_encode($data_bulan, JSON_NUMERIC_CHECK);
+   $onTime = json_encode($data_onTime, JSON_NUMERIC_CHECK);
+   $lossTime = json_encode($data_lossTime, JSON_NUMERIC_CHECK);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,124 +53,15 @@
    </nav>
    <!-- /.navbar -->
 
-   <!-- Main Sidebar Container -->
-   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
-         <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-               style="opacity: .8">
-         <span class="brand-text font-weight-light">AdminLTE 3</span>
-      </a>
-
-      <!-- Sidebar -->
-      <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-         <div class="image">
-            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-         </div>
-         <div class="info">
-            <a href="#" class="d-block">Administrator</a>
-         </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            
-            <li class="nav-header">MENU</li>
-            <li class="nav-item">
-            <a href="#" class="nav-link active">
-               <i class="nav-icon fas fa-tachometer-alt"></i>
-               <p>Dashboard</p>
-            </a>
-            </li>
-            <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-               <i class="nav-icon fas fa-circle"></i>
-               <p>
-                  Level 1
-                  <i class="right fas fa-angle-left"></i>
-               </p>
-            </a>
-            <ul class="nav nav-treeview">
-               <li class="nav-item">
-                  <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Level 2</p>
-                  </a>
-               </li>
-               <li class="nav-item has-treeview">
-                  <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                     Level 2
-                     <i class="right fas fa-angle-left"></i>
-                  </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                     <a href="#" class="nav-link">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>Level 3</p>
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a href="#" class="nav-link">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>Level 3</p>
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a href="#" class="nav-link">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>Level 3</p>
-                     </a>
-                  </li>
-                  </ul>
-               </li>
-               <li class="nav-item">
-                  <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Level 2</p>
-                  </a>
-               </li>
-            </ul>
-            </li>
-            <li class="nav-item">
-            <a href="#" class="nav-link">
-               <i class="fas fa-circle nav-icon"></i>
-               <p>Level 1</p>
-            </a>
-            </li>
-         </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-   </aside>
+   <!--  data Sidebar -->
+   <?php include_once "./template/sidebar.php" ?>
 
    <!-- Content Wrapper. Contains page content -->
    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-      <div class="container-fluid">
-         <div class="row mb-2">
-            <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-               <li class="breadcrumb-item"><a href="#">Home</a></li>
-               <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-            </div><!-- /.col -->
-         </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
+      <!-- Data Breadcrumb -->
+      <?php include_once "./template/breadcrumb.php"  ?>
 
-      <!-- Main content -->
+      <!-- Konten Utama -->
       <section class="content">
       <div class="container-fluid">
          <!-- Small boxes (Stat box) -->
@@ -220,27 +125,65 @@
                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
             </div>
-            <!-- ./col -->
          </div>
-         <!-- /.row -->
-         <!-- Main row -->
+         
          <div class="row">
-            
+            <div class="col-md-12">
+               <div class="card card-primary" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
+                  <div class="card-header">
+                     <h3 class="card-title" >Grafik Loss Time (2020)</h3>
+
+                     <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                     </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                     <div class="chart">
+                        <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                     </div>
+
+                     <!-- Tabel jumlah -->
+                     <table class="table table-bordered text-center">
+                        <thead>
+                           <tr>
+                              <th style="width: 10px">#</th>
+                              <th>On Time</th>
+                              <th>Loss Time</th>
+                              <th>Bulan</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <?php
+                              for ($i=0; $i < count($data_bulan); $i++) { 
+                           ?>
+
+                           <tr>
+                              <td><?=$i + 1?>. </td>
+                              <td><?=$data_onTime[$i]?></td>
+                              <td><?=$data_lossTime[$i]?></td>
+                              <td><?=$data_bulan[$i]?></td>
+                           </tr>
+
+                           <?php
+                              } 
+                           ?>
+                           
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
          </div>
-         <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
+
+      </div>
       </section>
       <!-- /.content -->
    </div>
-   <!-- /.content-wrapper -->
-   <footer class="main-footer">
-      <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.1
-      </div>
-   </footer>
-   <!-- /.control-sidebar -->
+
+   <!-- Data Footer -->
+   <?php include_once "./template/footer.php" ?>
+
 </div>
 <!-- ./wrapper -->
 
@@ -269,5 +212,55 @@
 <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
+
+<script>
+var areaChartData = {
+   labels  : <?=$bulan?>,
+   datasets: [
+      {
+         label               : 'ON TIME',
+         backgroundColor     : 'rgba(60,141,188,0.9)',
+         borderColor         : 'rgba(60,141,188,0.8)',
+         pointRadius          : true,
+         pointColor          : '#3b8bba',
+         pointStrokeColor    : 'rgba(60,141,188,1)',
+         pointHighlightFill  : '#fff',
+         pointHighlightStroke: 'rgba(60,141,188,1)',
+         data                : <?=$onTime?>,
+      },
+      {
+         label               : 'LOSS TIME',
+         backgroundColor     : 'rgba(210, 214, 222, 1)',
+         borderColor         : 'rgba(210, 214, 222, 1)',
+         pointRadius         : true,
+         pointColor          : 'rgba(210, 214, 222, 1)',
+         pointStrokeColor    : '#c1c7d1',
+         pointHighlightFill  : '#fff',
+         pointHighlightStroke: 'rgba(220,220,220,1)',
+         data                : <?=$lossTime?>,
+      },
+   ]
+}
+
+   var barChartCanvas = $('#barChart').get(0).getContext('2d')
+   var barChartData = jQuery.extend(true, {}, areaChartData)
+   var temp0 = areaChartData.datasets[0]
+   var temp1 = areaChartData.datasets[1]
+   barChartData.datasets[0] = temp1
+   barChartData.datasets[1] = temp0
+
+   var barChartOptions = {
+   responsive              : true,
+   maintainAspectRatio     : false,
+   datasetFill             : false
+   }
+
+   var barChart = new Chart(barChartCanvas, {
+   type: 'bar', 
+   data: barChartData,
+   options: barChartOptions
+   });
+</script>
+
 </body>
 </html>
