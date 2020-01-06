@@ -131,10 +131,10 @@
             <div class="col-md-12">
                <div class="card card-primary" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
                   <div class="card-header">
-                     <h3 class="card-title" >Grafik Loss Time (2020)</h3>
+                     <h3 class="card-title" >Grafik On Time & Loss Time (2020)</h3>
 
                      <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus "></i></button>
                      </div>
                   </div>
                   <!-- /.card-header -->
@@ -144,8 +144,11 @@
                      </div>
 
                      <!-- Tabel jumlah -->
-                     <table class="table table-bordered text-center">
+                     <table class="table table-bordered table-striped table-hover text-center mt-2">
                         <thead>
+                           <td colspan=4 style="font-size: 20px">
+                              Daftar Tabel On Time & Loss Time                              
+                           </td>
                            <tr>
                               <th style="width: 10px">#</th>
                               <th>On Time</th>
@@ -160,7 +163,7 @@
 
                            <tr>
                               <td><?=$i + 1?>. </td>
-                              <td><?=$data_onTime[$i]?></td>
+                              <td><?=$data_onTime[$i]?> </td>
                               <td><?=$data_lossTime[$i]?></td>
                               <td><?=$data_bulan[$i]?></td>
                            </tr>
