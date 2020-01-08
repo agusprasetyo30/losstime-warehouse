@@ -1,3 +1,9 @@
+<?php
+   // Tergantung penempatan
+   $file_location = "/var/www/html/warehouse_sai/data/admin";
+
+?>
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
    <!-- Brand Logo -->
@@ -25,10 +31,33 @@
          
          <li class="nav-header">MENU</li>
          <li class="nav-item">
-         <a href="#" class="nav-link active">
+         <a href="./" class="nav-link <?=$status_nav?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Dashboard</p>
          </a>
+         </li>
+         <li class="nav-item has-treeview <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' ? 'menu-open' : '' ?>">
+            <a href="#"class="nav-link <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-user-clock"></i>
+               <p>
+                  Loss Time
+                  <i class="right fas fa-angle-left"></i>
+               </p>
+            </a>
+            <ul class="nav nav-treeview">
+               <li class="nav-item">
+                  <a href="losstime.php?type=harian" class="nav-link <?= $_GET['type'] == 'harian' ? 'active' : '' ?>">
+                  <i class="far fa-calendar-check nav-icon"></i>
+                  <p>Harian</p>
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a href="losstime.php?type=bulanan" class="nav-link <?= $_GET['type'] == 'bulanan' ? 'active' : '' ?>">
+                  <i class="far fa-calendar-alt nav-icon"></i>
+                  <p>Bulanan</p>
+                  </a>
+               </li>
+            </ul>
          </li>
          <li class="nav-item has-treeview">
          <a href="#" class="nav-link">
