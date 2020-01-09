@@ -24,6 +24,17 @@
          <a href="#" class="d-block">Administrator</a>
       </div>
    </div>
+   <div class="user-panel mt-3 pb-3 mb-3 ">
+      <ul class="nav nav-pills nav-sidebar flex-column">
+         <li class="nav-header">INPUT DATA LOSS TIME</li>
+         <li class="nav-item">
+            <a href="./input_losstime.php" class="nav-link <?=$status_nav_input?>">
+               <i class="nav-icon fas fa-folder-plus"></i>
+               <p>Input Loss Time</p>
+            </a>
+         </li>
+      </ul>
+   </div>
 
    <!-- Sidebar Menu -->
    <nav class="mt-2">
@@ -65,63 +76,11 @@
                <p>Summary</p>
             </a>
          </li>
-         <li class="nav-item has-treeview">
-         <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-circle"></i>
-            <p>
-               Level 1
-               <i class="right fas fa-angle-left"></i>
-            </p>
-         </a>
-         <ul class="nav nav-treeview">
-            <li class="nav-item">
-               <a href="#" class="nav-link">
-               <i class="far fa-circle nav-icon"></i>
-               <p>Level 2</p>
-               </a>
-            </li>
-            <li class="nav-item has-treeview">
-               <a href="#" class="nav-link">
-               <i class="far fa-circle nav-icon"></i>
-               <p>
-                  Level 2
-                  <i class="right fas fa-angle-left"></i>
-               </p>
-               </a>
-               <ul class="nav nav-treeview">
-               <li class="nav-item">
-                  <a href="#" class="nav-link">
-                     <i class="far fa-dot-circle nav-icon"></i>
-                     <p>Level 3</p>
-                  </a>
-               </li>
-               <li class="nav-item">
-                  <a href="#" class="nav-link">
-                     <i class="far fa-dot-circle nav-icon"></i>
-                     <p>Level 3</p>
-                  </a>
-               </li>
-               <li class="nav-item">
-                  <a href="#" class="nav-link">
-                     <i class="far fa-dot-circle nav-icon"></i>
-                     <p>Level 3</p>
-                  </a>
-               </li>
-               </ul>
-            </li>
-            <li class="nav-item">
-               <a href="#" class="nav-link">
-               <i class="far fa-circle nav-icon"></i>
-               <p>Level 2</p>
-               </a>
-            </li>
-         </ul>
-         </li>
          <li class="nav-item">
-         <a href="#" class="nav-link">
-            <i class="fas fa-circle nav-icon"></i>
-            <p>Level 1</p>
-         </a>
+            <a href="#" class="nav-link <?=$status_nav_pengguna?>">
+               <i class="nav-icon fas fa-users"></i>
+               <p>Pengguna</p>
+            </a>
          </li>
       </ul>
    </nav>

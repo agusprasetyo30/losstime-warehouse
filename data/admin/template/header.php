@@ -29,12 +29,18 @@
    <!-- Navbar -->
    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" style="width: 100%">
       <li class="nav-item">
          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" style="width: 100%;">
          <div class="dashboard-nav-link">PT. SURABAYA AUTOCOMP INDONESIA</div>
+      </li>
+      <li class="nav-item" style="text-align: right; width: 120px; height: auto">
+         <a href="#" class="btn btn-danger">
+            <i class="nav-icon fas fa-door-open"></i>
+            Logout
+         </a>
       </li>
       </ul>
    </nav>

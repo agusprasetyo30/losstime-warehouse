@@ -1,3 +1,7 @@
+* {
+   font-family: Arial, Helvetica, sans-serif;
+}
+
 /* Dashboard */
 
 .dashboard-nav-link {
@@ -35,4 +39,24 @@
 .btn-cari {
    width: auto; 
    cursor: pointer;
+}
+
+/* Input Losstime */
+
+.h3-input-losstime {
+   font-weight: bolder;
+}
+
+.label-input-losstime {
+   font-size: 20px;
+}
+
+.select-input-losstime {
+   cursor: pointer;
+}
+
+.jumlah-input-losstime {
+   margin: 0px 10px;
+   text-align: center;
+   font-size: 20px;
 }

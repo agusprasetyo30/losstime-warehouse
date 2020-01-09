@@ -8,6 +8,7 @@
             <label>Cari Berdasarkan bulan & tahun : </label>
             
             <div class="input-group">
+               <!-- List View Bulan -->
                <div class="form-group">
                   <label for="bulan" class="label">Bulan : </label>
                   <select name="bulan" id="bulan" class="form-control btn-cari">
@@ -26,6 +27,7 @@
                   </select>
                </div>
 
+               <!-- List View Tahun -->
                <div class="form-group ml-2">
                   <label for="tahun">Tahun : </label>
                   <select name="tahun" id="tahun" class="form-control btn-cari">
@@ -37,6 +39,8 @@
                      <option value="2025" <?= $_GET['tahun'] == 2025 ? 'selected' : '' ?> >2025</option>
                   </select>
                </div>
+
+               <!-- Tombol Cari -->
                <div class="form-group ml-2">
                   <label>&nbsp;</label>
                   <button type="submit" id="cari" class="btn btn-success form-control">
@@ -44,6 +48,8 @@
                      Cari
                   </button>
                </div>
+
+               <!-- Tombol Clear -->
                <div class="form-group ml-1">
                   <label>&nbsp;</label>
                   <a href="./losstime.php?type=bulanan" class="btn btn-danger form-control">
