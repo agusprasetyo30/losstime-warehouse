@@ -10,7 +10,7 @@
             <div class="input-group">
                <!-- List View Bulan -->
                <div class="form-group">
-                  <label for="bulan" class="label">Bulan : </label>
+                  <label for="bulan" style="font-weight: normal">Bulan </label>
                   <select name="bulan" id="bulan" class="form-control btn-cari">
                      <option value="1" <?= $_GET['bulan'] == 1 ? 'selected' : '' ?> >Januari</option>
                      <option value="2" <?= $_GET['bulan'] == 2 ? 'selected' : '' ?>>Pebruari</option>
@@ -29,7 +29,7 @@
 
                <!-- List View Tahun -->
                <div class="form-group ml-2">
-                  <label for="tahun">Tahun : </label>
+                  <label for="tahun" style="font-weight: normal">Tahun</label>
                   <select name="tahun" id="tahun" class="form-control btn-cari">
                      <option value="2020" <?= $_GET['tahun'] == 2020 ? 'selected' : '' ?> >2020</option>
                      <option value="2021" <?= $_GET['tahun'] == 2021 ? 'selected' : '' ?> >2021</option>
@@ -53,8 +53,8 @@
                <div class="form-group ml-1">
                   <label>&nbsp;</label>
                   <a href="./losstime.php?type=bulanan" class="btn btn-danger form-control">
-                     <i class="fa fa-trash" aria-hidden="true"></i>
-                     Clear
+                     <i class="nav-icon fa fa-undo" aria-hidden="true"></i>
+                     Default
                   </a>
                </div>
             </div>
@@ -66,9 +66,9 @@
 <hr>
 
 <div class="container-fluid mb-3">
-      <div class="row">
-         <div class="col-md-12 col-sm-12">
-            <table id="example2" class="table table-bordered table-striped table-hover text-center">
+   <div class="row">
+      <div class="col-md-12 col-sm-12">
+         <table id="example2" class="table table-bordered table-striped table-hover text-center">
             <thead>
                <tr>
                   <th style="width: 30px">#</th>
@@ -85,7 +85,7 @@
                   <td>30</td>
                   <td><?= getBulan(date('m')) .' '. 2020 ?></td>
                   <td>
-                     <a href="#" class="btn btn-primary btn-sm">
+                     <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
                         <i class="fa fa-list" aria-hidden="true"></i>
                         Cek Detail
                      </a>
@@ -97,7 +97,7 @@
                   <td>30</td>
                   <td>Pebruari 2020</td>
                   <td>
-                     <a href="#" class="btn btn-primary btn-sm">
+                     <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
                         <i class="fa fa-list" aria-hidden="true"></i>
                         Cek Detail
                      </a>
@@ -109,7 +109,7 @@
                   <td>30</td>
                   <td>Maret 2020</td>
                   <td>
-                     <a href="#" class="btn btn-primary btn-sm">
+                     <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
                         <i class="fa fa-list" aria-hidden="true"></i>
                         Cek Detail
                      </a>

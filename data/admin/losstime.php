@@ -1,4 +1,7 @@
 <?php
+   // ini_set("display_errors", 1);
+   include "../function.php";
+
    if ($_GET['type'] == 'harian') {
       $title= "Losstime Harian";
       $menu = "Losstime Harian";
@@ -10,10 +13,15 @@
       $menu = "Losstime Bulanan";
       $link_menu = "losstime.php?type=bulanan";
       $location = "Index";
+   
+   } else if ($_GET['type'] == 'detail') {
+      $title= "Detail Losstime";
+      $menu = "Detail Losstime ( " . getBulan($_GET['bulan']) . " " . $_GET['tahun'] . "  )";
+      $link_menu = "losstime.php?type=bulanan";
+      $location = "Index";
    }
 
-   include_once "../function.php";
-   include_once "./template/header.php"
+   include_once "./template/header.php";
 ?>
 
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
@@ -25,7 +33,10 @@
 
    } else if ($_GET['type'] == 'bulanan') {
       include_once "./losstime/bulanan.php";
-   }   
+   
+   } else if ($_GET['type'] == 'detail') {
+      include_once "./losstime/detail_bulanan.php";
+   }
 ?>
 
 <?php include_once "./template/footer.php" ?>
@@ -46,6 +57,15 @@
       });
 
       $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      });
+
+      $('#example3').DataTable({
       "paging": true,
       "lengthChange": true,
       "searching": true,

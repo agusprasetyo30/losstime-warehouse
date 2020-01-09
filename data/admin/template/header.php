@@ -36,7 +36,17 @@
       <li class="nav-item" style="width: 100%;">
          <div class="dashboard-nav-link">PT. SURABAYA AUTOCOMP INDONESIA</div>
       </li>
-      <li class="nav-item" style="text-align: right; width: 120px; height: auto">
+      <li class="nav-item" style="text-align: right; width: 300px;">
+         
+      <?php 
+         if ($_GET['type'] == 'detail') {      
+      ?>
+         <a href="./losstime.php?type=bulanan" class="btn btn-warning">
+            <i class="nav-icon fas fa-undo"></i>
+            Kembali
+         </a>
+      <?php } ?>
+
          <a href="#" class="btn btn-danger">
             <i class="nav-icon fas fa-door-open"></i>
             Logout

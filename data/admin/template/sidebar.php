@@ -7,7 +7,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
    <!-- Brand Logo -->
-   <a href="index3.html" class="brand-link">
+   <a href="./" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
       <span class="brand-text font-weight-light">WAREHOUSE</span>
@@ -47,8 +47,8 @@
                <p>Dashboard</p>
             </a>
          </li>
-         <li class="nav-item has-treeview <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' ? 'menu-open' : '' ?>">
-            <a href="#"class="nav-link <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' ? 'active' : '' ?>">
+         <li class="nav-item has-treeview <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' || $_GET['type'] == 'detail' ? 'menu-open' : '' ?>">
+            <a href="#"class="nav-link <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' || $_GET['type'] == 'detail' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-user-clock"></i>
                <p>
                   Loss Time
@@ -63,7 +63,7 @@
                   </a>
                </li>
                <li class="nav-item">
-                  <a href="losstime.php?type=bulanan" class="nav-link <?= $_GET['type'] == 'bulanan' ? 'active' : '' ?>">
+                  <a href="losstime.php?type=bulanan" class="nav-link <?= $_GET['type'] == 'bulanan' || $_GET['type'] == 'detail' ? 'active' : '' ?>">
                   <i class="far fa-calendar-alt nav-icon"></i>
                   <p>Bulanan</p>
                   </a>
@@ -77,7 +77,7 @@
             </a>
          </li>
          <li class="nav-item">
-            <a href="#" class="nav-link <?=$status_nav_pengguna?>">
+            <a href="./pengguna.php" class="nav-link <?=$status_nav_pengguna?>">
                <i class="nav-icon fas fa-users"></i>
                <p>Pengguna</p>
             </a>

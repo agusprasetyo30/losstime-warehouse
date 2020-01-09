@@ -97,7 +97,7 @@
             </div>
 
             <div class="form-group mt-4" style="margin-left: 30px;">
-               <button type="submit" class="btn btn-success btn-block" style="height: 75px; font-size: 20px">
+               <button type="submit" name="simpan" class="btn btn-success btn-block" style="height: 75px; font-size: 20px">
                   <i class="nav-icon fas fa-save"></i>
                   Simpan
                </button>
@@ -110,6 +110,12 @@
 </div>
 
 <?php include_once "./template/footer.php" ?>
+
+<?php 
+   if (isset($_POST['simpan'])) {
+      print_r($_POST);
+   }
+?>
 
 <script>
    // Untuk menambahkan dan mengurangi jumlah losstime
@@ -148,3 +154,4 @@
       }
    }
 </script>
+
