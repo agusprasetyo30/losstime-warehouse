@@ -12,11 +12,11 @@
       $location = "Index";
    }
 
+   include_once "../function.php";
    include_once "./template/header.php"
 ?>
 
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-
 
 
 <?php
@@ -36,13 +36,21 @@
 
 <script>
    $(function () {
-      // $("#example1").DataTable();
       $('#example1').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
       "ordering": true,
       "info": false,
+      "autoWidth": false,
+      });
+
+      $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
       "autoWidth": false,
       });
    });

@@ -31,10 +31,10 @@
          
          <li class="nav-header">MENU</li>
          <li class="nav-item">
-         <a href="./" class="nav-link <?=$status_nav?>">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>Dashboard</p>
-         </a>
+            <a href="./" class="nav-link <?=$status_nav_dashboard?>">
+               <i class="nav-icon fas fa-tachometer-alt"></i>
+               <p>Dashboard</p>
+            </a>
          </li>
          <li class="nav-item has-treeview <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' ? 'menu-open' : '' ?>">
             <a href="#"class="nav-link <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' ? 'active' : '' ?>">
@@ -58,6 +58,12 @@
                   </a>
                </li>
             </ul>
+         </li>
+         <li class="nav-item">
+            <a href="./summary.php" class="nav-link <?=$status_nav_summary?>">
+               <i class="nav-icon fas fa-percent"></i>
+               <p>Summary</p>
+            </a>
          </li>
          <li class="nav-item has-treeview">
          <a href="#" class="nav-link">

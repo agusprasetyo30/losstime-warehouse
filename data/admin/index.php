@@ -12,7 +12,7 @@
    $onTime = json_encode($data_onTime, JSON_NUMERIC_CHECK);
    $lossTime = json_encode($data_lossTime, JSON_NUMERIC_CHECK);
 
-   $status_nav = 'active';
+   $status_nav_dashboard = 'active';
 ?>
    <?php include_once "./template/header.php" ?>
 

@@ -29,3 +29,10 @@
    border-radius: 8px;
    border: 2px black solid;
 }
+
+/* Bulanan */
+
+.btn-cari {
+   width: auto; 
+   cursor: pointer;
+}

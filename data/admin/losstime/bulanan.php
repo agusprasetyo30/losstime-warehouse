@@ -1,3 +1,116 @@
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-md-12">
+         <!-- Untuk pencarian data berdasarkan bulan dan tahun -->
+         <form action="" method="get">
+            <!-- Mengambil type melalui GET -->
+            <input type="hidden" name="type" value="<?=$_GET['type']?>">
+            <label>Cari Berdasarkan bulan & tahun : </label>
+            
+            <div class="input-group">
+               <div class="form-group">
+                  <label for="bulan" class="label">Bulan : </label>
+                  <select name="bulan" id="bulan" class="form-control btn-cari">
+                     <option value="1" <?= $_GET['bulan'] == 1 ? 'selected' : '' ?> >Januari</option>
+                     <option value="2" <?= $_GET['bulan'] == 2 ? 'selected' : '' ?>>Pebruari</option>
+                     <option value="3" <?= $_GET['bulan'] == 3 ? 'selected' : '' ?>>Maret</option>
+                     <option value="4" <?= $_GET['bulan'] == 4 ? 'selected' : '' ?>>April</option>
+                     <option value="5" <?= $_GET['bulan'] == 5 ? 'selected' : '' ?>>Mei</option>
+                     <option value="6" <?= $_GET['bulan'] == 6 ? 'selected' : '' ?>>Juni</option>
+                     <option value="7" <?= $_GET['bulan'] == 7 ? 'selected' : '' ?>>Juli</option>
+                     <option value="8" <?= $_GET['bulan'] == 8 ? 'selected' : '' ?>>Agustus</option>
+                     <option value="9" <?= $_GET['bulan'] == 9 ? 'selected' : '' ?>>September</option>
+                     <option value="10" <?= $_GET['bulan'] == 10 ? 'selected' : '' ?>>Oktober</option>
+                     <option value="11" <?= $_GET['bulan'] == 11 ? 'selected' : '' ?>>Nopember</option>
+                     <option value="12" <?= $_GET['bulan'] == 12 ? 'selected' : '' ?>>Desember</option>
+                  </select>
+               </div>
 
+               <div class="form-group ml-2">
+                  <label for="tahun">Tahun : </label>
+                  <select name="tahun" id="tahun" class="form-control btn-cari">
+                     <option value="2020" <?= $_GET['tahun'] == 2020 ? 'selected' : '' ?> >2020</option>
+                     <option value="2021" <?= $_GET['tahun'] == 2021 ? 'selected' : '' ?> >2021</option>
+                     <option value="2022" <?= $_GET['tahun'] == 2022 ? 'selected' : '' ?> >2022</option>
+                     <option value="2023" <?= $_GET['tahun'] == 2023 ? 'selected' : '' ?> >2023</option>
+                     <option value="2024" <?= $_GET['tahun'] == 2024 ? 'selected' : '' ?> >2024</option>
+                     <option value="2025" <?= $_GET['tahun'] == 2025 ? 'selected' : '' ?> >2025</option>
+                  </select>
+               </div>
+               <div class="form-group ml-2">
+                  <label>&nbsp;</label>
+                  <button type="submit" id="cari" class="btn btn-success form-control">
+                     <i class="fa fa-search" aria-hidden="true"></i>
+                     Cari
+                  </button>
+               </div>
+               <div class="form-group ml-1">
+                  <label>&nbsp;</label>
+                  <a href="./losstime.php?type=bulanan" class="btn btn-danger form-control">
+                     <i class="fa fa-trash" aria-hidden="true"></i>
+                     Clear
+                  </a>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
 
-<h2>Bulanan</h2>
+<hr>
+
+<div class="container-fluid mb-3">
+      <div class="row">
+         <div class="col-md-12 col-sm-12">
+            <table id="example2" class="table table-bordered table-striped table-hover text-center">
+            <thead>
+               <tr>
+                  <th style="width: 30px">#</th>
+                  <th>Total Line</th>
+                  <th>Jumlah Menit</th>
+                  <th>Periode</th>
+                  <th style="width: 90px">Aksi</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>1. </td>
+                  <td>20</td>
+                  <td>30</td>
+                  <td><?= getBulan(date('m')) .' '. 2020 ?></td>
+                  <td>
+                     <a href="#" class="btn btn-primary btn-sm">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        Cek Detail
+                     </a>
+                  </td>
+               </tr>
+               <tr>
+                  <td>2. </td>
+                  <td>20</td>
+                  <td>30</td>
+                  <td>Pebruari 2020</td>
+                  <td>
+                     <a href="#" class="btn btn-primary btn-sm">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        Cek Detail
+                     </a>
+                  </td>
+               </tr>
+               <tr>
+                  <td>3. </td>
+                  <td>20</td>
+                  <td>30</td>
+                  <td>Maret 2020</td>
+                  <td>
+                     <a href="#" class="btn btn-primary btn-sm">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        Cek Detail
+                     </a>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>

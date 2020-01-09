@@ -1,4 +1,6 @@
 <?php
+
+   // Menerjemahkan bulan menjadi bahasa indonesia
    function getBulan($data_bulan)
    {
       switch ($data_bulan) {
