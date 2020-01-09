@@ -18,7 +18,7 @@
             <!-- DAFTAR LINE -->
             <div class="form-group" style="margin-right: 30px">
                <label for="line" class="label-input-losstime">Line</label>
-               <select name="line" id="line" class="form-control select-input-losstime" autofocus=on required>
+               <select name="line" id="line" class="form-control select-input-losstime select2" autofocus=on required>
                   <option value="" selected disabled>Pilih Line</option>
                   <option value="A41">A41</option>
                   <option value="A42">A42</option>
@@ -31,7 +31,7 @@
             <!-- DAFTAR SHIFT -->
             <div class="form-group mt-4" style="margin-right: 30px">
                <label for="shift" class="label-input-losstime">Shift</label>
-               <select name="shift" id="shift" class="form-control select-input-losstime" 
+               <select name="shift" id="shift" class="form-control select-input-losstime select2" 
                   autofocus=on required>
                   
                   <option value="" selected disabled>Pilih Shift</option>
@@ -43,7 +43,7 @@
             <!-- DAFTAR JAM KERJA -->
             <div class="form-group mt-4" style="margin-right: 30px">
                <label for="jam_kerja" class="label-input-losstime">Jam Kerja</label>
-               <select name="jam_kerja" id="jam_kerja" class="form-control select-input-losstime" 
+               <select name="jam_kerja" id="jam_kerja" class="form-control select-input-losstime select2" 
                   autofocus=on required>
                   
                   <option value="" selected disabled>Pilih Jam Kerja</option>
@@ -63,7 +63,7 @@
             <!-- DAFTAR MASALAH -->
             <div class="form-group" style="margin-left: 30px">
                <label for="masalah" class="label-input-losstime">Masalah</label>
-               <select name="masalah" id="masalah" class="form-control select-input-losstime" 
+               <select name="masalah" id="masalah" class="form-control select-input-losstime select2" 
                   autofocus=on required>
                   
                   <option value="" selected disabled>Pilih Masalah Kerja</option>
@@ -120,6 +120,7 @@
 <script>
    // Untuk menambahkan dan mengurangi jumlah losstime
    $(function() {
+      // Tombol tambah
       $('#btn-tambah').click(function() {
          var jumlah = document.getElementById('jumlah-losstime').value
 
@@ -130,6 +131,7 @@
          document.getElementById('jumlah-losstime').value = hitung
       });
 
+      // Tombol kurang
       $('#btn-kurang').click(function() {
          var jumlah = document.getElementById('jumlah-losstime').value
 
@@ -139,6 +141,9 @@
 
          document.getElementById('jumlah-losstime').value = hitung
       })
+
+      // Untuk menginisialisasi select2
+      $('.select2').select2()
    });
 
    // Inputan hanya angka

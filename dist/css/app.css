@@ -22,6 +22,14 @@
    padding: 8px;
    border-radius: 8px;
    border: 2px black solid;
+   cursor: pointer;
+}
+
+.periode-losstime-harian:hover {
+   background: black;
+   transition: 0.3s all;
+   color: white;
+   border: 2px lightgrey solid;
 }
 
 .jumlah-losstime-harian {
@@ -32,6 +40,14 @@
    padding: 8px;
    border-radius: 8px;
    border: 2px black solid;
+   cursor: pointer;
+}
+
+.jumlah-losstime-harian:hover {
+   background: black;
+   transition: 0.3s all;
+   color: white;
+   border: 2px lightgrey solid;
 }
 
 /* Bulanan */
