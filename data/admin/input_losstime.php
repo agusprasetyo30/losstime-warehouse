@@ -18,7 +18,7 @@
             <!-- DAFTAR LINE -->
             <div class="form-group" style="margin-right: 30px">
                <label for="line" class="label-input-losstime">Line</label>
-               <select name="line" id="line" class="form-control select-input-losstime select2" autofocus=on required>
+               <select name="line" id="line" autofocus=on class="form-control select-input-losstime select2"  required>
                   <option value="" selected disabled>Pilih Line</option>
                   <option value="A41">A41</option>
                   <option value="A42">A42</option>

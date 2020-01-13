@@ -6,7 +6,6 @@
 
    $bulan = json_encode($data_bulan, JSON_NUMERIC_CHECK);
    $lossTime = json_encode($data_lossTime, JSON_NUMERIC_CHECK);
-   
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +16,12 @@
       <!-- Tell the browser to be responsive to screen width -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
+      <!-- Template bawaan dan bootstrap 4 -->
       <link rel="stylesheet" href="./dist/css/adminlte.min.css">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+      <!-- Custom CSS -->
+      <link rel="stylesheet" href="./dist/css/app.css">
 
       <style>
          .valign {
@@ -33,18 +37,34 @@
       </style>
    </head>
 
-   <body>
-      <div class="container-fluid valign">
+   <body class="main-content-dashboard" style="height: 100%; max-height: 100%">
+   <!-- Navbar atas -->
+   <nav class="navbar navbar-expand navbar-primary">
+      <div class="container mt-2 mb-2">
+         <ul class="nav navbar-nav" style="width: 100%">
+            <li class="nav-item" style="width: 90%">
+               <h4 class="judul">PT. Surabaya Autocomp Indonesia</h4>
+            </li>
+            <li class="nav-item" style="width: 10%">
+               <a href="#" class="btn btn-success">
+                  <i class="nav-icon fas fa-sign-in-alt"></i>
+                  Login
+               </a>
+            </li>
+         </ul>
+      </div>
+   </nav>
+
+   <div id="container">
+      <div class="container-fluid">
          <h3 class="text-center m-3">Loss time Warehouse PT. Surabaya Autocomp Indonesia</h3>
          <div class="row">
             <div class="col-md-12">
                <div class="card card-success" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
                   <div class="card-body">
                      <div class="chart">
-                        <canvas id="barChart" style="min-height: 400px; height: 400px; max-height: 400px; max-width: 100%;"></canvas>
+                        <canvas id="barChart" style="min-height: 300px; height: 500px; max-height: 500px; max-width: 100%;"></canvas>
                      </div>
-
-
                   </div>
                   <?php
                      $ambilBulan = getBulan(date("m"));
@@ -53,12 +73,31 @@
             </div>
          </div>
       </div>
-      <!-- jQuery -->
-      <script src="./plugins/jquery/jquery.min.js"></script>
-      <!-- ChartJS -->
-      <script src="./plugins/chart.js/Chart.min.js"></script>
+      <div >
+         <div class="mt-5">&nbsp;</div>
+      </div>
+         <footer class="footer ">
+            <div class="container-fluid">
+               <div class="row">
+                  <marquee scrolldelay=60 onmouseover="this.stop()" onmouseout="this.start()">
+                     <?php
+                     for ($i=0; $i < 2; $i++) { 
+                        echo 'Berita hari ini : ';
+                        echo "<span>Lorem ipsum dolor sit amet</span>";
+                        echo "<span style='margin-right:20px'></span>";
+                     }
+                     ?>
+               </marquee>
+            </div>
+         </div>   
+      </footer>
+   </div>
+   <!-- jQuery -->
+   <script src="./plugins/jquery/jquery.min.js"></script>
+   <!-- ChartJS -->
+   <script src="./plugins/chart.js/Chart.min.js"></script>
 
-      <script>
+   <script>
       var areaChartData = {
          labels  : <?=$bulan?>,
          datasets: [
@@ -76,22 +115,22 @@
          ]
       }
 
-         var barChartCanvas = $('#barChart').get(0).getContext('2d')
-         var barChartData = jQuery.extend(true, {}, areaChartData)
-         var temp0 = areaChartData.datasets[0]
-         barChartData.datasets[0] = temp0
+      var barChartCanvas = $('#barChart').get(0).getContext('2d')
+      var barChartData = jQuery.extend(true, {}, areaChartData)
+      var temp0 = areaChartData.datasets[0]
+      barChartData.datasets[0] = temp0
 
-         var barChartOptions = {
-            responsive              : true,
-            maintainAspectRatio     : false,
-            datasetFill             : true
-         }
+      var barChartOptions = {
+         responsive              : true,
+         maintainAspectRatio     : false,
+         datasetFill             : true
+      }
 
-         var barChart = new Chart(barChartCanvas, {
-            type: 'bar', 
-            data: barChartData,
-            options: barChartOptions
-         });
-      </script>
+      var barChart = new Chart(barChartCanvas, {
+         type: 'bar', 
+         data: barChartData,
+         options: barChartOptions
+      });
+   </script>
    </body>
 </html>
