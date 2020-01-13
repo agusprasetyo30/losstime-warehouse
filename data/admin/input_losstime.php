@@ -17,13 +17,13 @@
             <div class="card-header">
                <h3 class="card-title">
                   <i class="far fa-calendar-alt"></i>
-                  Tabel Losstime Bulanan
+                  Input Losstime
                </h3>
             </div>
             <div class="container-fluid">
                <div class="card-body">
                   <form action="" method="post">
-                  <div class="row justify-content-center mt-2">
+                     <div class="row justify-content-center mt-2">
                         <div class="col-md-6" style="border-right: 1px solid lightgrey">
                            <!-- DAFTAR LINE -->
                            

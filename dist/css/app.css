@@ -13,7 +13,7 @@ html, body {
    min-height: 80%;
 }
 
-/* Dashboard */
+/* Dashboard admin */
 
 .dashboard-nav-link {
    color: black;
@@ -29,6 +29,7 @@ html, body {
    color: white;
 }
 
+/* Dashboard admin */
 
 /* Losstime */
 
@@ -109,16 +110,6 @@ html, body {
    background: #f4f6f9;
 }
 
-/* .dashboard-footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: #007BFF;
-   color: white;
-   padding: 8px;
-} */
-
 .judul {
    font-size: 25px;
    color: white;
@@ -139,3 +130,11 @@ html, body {
 }
 
 /* Dashboard awal */
+.login-logo {
+   font-size: 30px;
+   margin-top:20px ;
+}
+
+.login-logo2 {
+   font-size: 20px;
+}

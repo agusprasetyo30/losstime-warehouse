@@ -46,8 +46,8 @@
                <h4 class="judul">PT. Surabaya Autocomp Indonesia</h4>
             </li>
             <li class="nav-item" style="width: 10%">
-               <a href="#" class="btn btn-success">
-                  <i class="nav-icon fas fa-sign-in-alt"></i>
+               <a href="./login.php" class="btn btn-success">
+                  <i class="nav-icon fas fa-sign-in-alt mr-2"></i>
                   Login
                </a>
             </li>

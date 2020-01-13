@@ -63,68 +63,68 @@
    </div>
 </div>
 
-<div class="card card-default mt-2">
-      <div class="card-header">
-         <h3 class="card-title">
-            <i class="far fa-calendar-alt"></i>
-            Tabel Losstime Bulanan
-         </h3>
-      </div>
-      <div class="card-body">
-         <div class="container-fluid mb-3">
-            <div class="row">
-               <div class="col-md-12 col-sm-12">
-                  <table id="example2" class="table table-bordered table-striped table-hover text-center">
-                     <thead>
-                        <tr>
-                           <th style="width: 30px">#</th>
-                           <th>Total Line</th>
-                           <th>Jumlah Menit</th>
-                           <th>Periode</th>
-                           <th style="width: 90px">Aksi</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <td>1. </td>
-                           <td>20</td>
-                           <td>30</td>
-                           <td><?= getBulan(date('m')) .' '. 2020 ?></td>
-                           <td>
-                              <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
-                                 <i class="fa fa-list" aria-hidden="true"></i>
-                                 Cek Detail
-                              </a>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>2. </td>
-                           <td>20</td>
-                           <td>30</td>
-                           <td>Pebruari 2020</td>
-                           <td>
-                              <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
-                                 <i class="fa fa-list" aria-hidden="true"></i>
-                                 Cek Detail
-                              </a>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>3. </td>
-                           <td>20</td>
-                           <td>30</td>
-                           <td>Maret 2020</td>
-                           <td>
-                              <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
-                                 <i class="fa fa-list" aria-hidden="true"></i>
-                                 Cek Detail
-                              </a>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
+<div class="container-fluid mb-3">
+   <div class="card card-default mt-2">
+   <div class="card-header">
+      <h3 class="card-title">
+         <i class="far fa-calendar-alt"></i>
+         Tabel Losstime Bulanan
+      </h3>
+   </div>
+   <div class="card-body">
+         <div class="row">
+            <div class="col-md-12 col-sm-12">
+               <table id="example2" class="table table-bordered table-striped table-hover text-center">
+                  <thead>
+                     <tr>
+                        <th style="width: 30px">#</th>
+                        <th>Total Line</th>
+                        <th>Jumlah Menit</th>
+                        <th>Periode</th>
+                        <th style="width: 90px">Aksi</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>1. </td>
+                        <td>20</td>
+                        <td>30</td>
+                        <td><?= getBulan(date('m')) .' '. 2020 ?></td>
+                        <td>
+                           <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
+                              <i class="fa fa-list" aria-hidden="true"></i>
+                              Cek Detail
+                           </a>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>2. </td>
+                        <td>20</td>
+                        <td>30</td>
+                        <td>Pebruari 2020</td>
+                        <td>
+                           <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
+                              <i class="fa fa-list" aria-hidden="true"></i>
+                              Cek Detail
+                           </a>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>3. </td>
+                        <td>20</td>
+                        <td>30</td>
+                        <td>Maret 2020</td>
+                        <td>
+                           <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
+                              <i class="fa fa-list" aria-hidden="true"></i>
+                              Cek Detail
+                           </a>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
             </div>
          </div>
       </div>
+   </div>
 </div>

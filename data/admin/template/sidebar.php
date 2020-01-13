@@ -24,21 +24,9 @@
          <a href="#" class="d-block">Administrator</a>
       </div>
    </div>
-   <div class="user-panel mt-3 pb-3 mb-3 ">
-      <ul class="nav nav-pills nav-sidebar flex-column">
-         <li class="nav-header">INPUT DATA LOSS TIME</li>
-         <li class="nav-item">
-            <a href="./input_losstime.php" class="nav-link <?=$status_nav_input?>">
-               <i class="nav-icon fas fa-folder-plus"></i>
-               <p>Input Loss Time</p>
-            </a>
-         </li>
-      </ul>
-   </div>
-
    <!-- Sidebar Menu -->
    <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column user-panel" data-widget="treeview" role="menu" data-accordion="false">
          
          <li class="nav-header">MENU</li>
          <li class="nav-item">
@@ -83,6 +71,29 @@
             </a>
          </li>
       </ul>
+      <div class="user-panel mt-3 pb-3 mb-3 ">
+      <ul class="nav nav-pills nav-sidebar flex-column">
+         <li class="nav-header">INPUT DATA LOSS TIME</li>
+         <li class="nav-item">
+            <a href="./input_losstime.php" class="nav-link <?=$status_nav_input?>">
+               <i class="nav-icon fas fa-folder-plus"></i>
+               <p>Input Loss Time</p>
+            </a>
+         </li>
+      </ul>
+   </div>
+   <div class="user-panel mt-3 pb-3 mb-3 ">
+      <ul class="nav nav-pills nav-sidebar flex-column">
+         <li class="nav-header">INPUT DATA</li>
+         <li class="nav-item">
+            <!-- Sementara menggunakan input type running text -->
+            <a href="./input_data.php?type=running-text" class="nav-link <?=$_GET['type'] == 'running-text' ? 'active' : '' ?>">
+               <i class="nav-icon fas fa-text-width"></i>
+               <p>Input Running Text</p>
+            </a>
+         </li>
+      </ul>
+   </div>
    </nav>
    <!-- /.sidebar-menu -->
    </div>
