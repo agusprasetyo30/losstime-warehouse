@@ -41,13 +41,20 @@
       <li class="nav-item" style="text-align: right; width: 300px;">
          
       <?php 
-         if ($_GET['type'] == 'detail') {      
+         if ($_GET['type'] == 'detail') { // Tombol kembali untuk detail bulanan      
       ?>
          <a href="./losstime.php?type=bulanan" class="btn btn-warning">
             <i class="nav-icon fas fa-undo"></i>
             Kembali
          </a>
-      <?php } ?>
+      <?php  
+         } else if ($_GET['type'] == 'tambah-pengguna') { // Tombol kembali untuk tambah pengguna
+      ?>
+         <a href="./pengguna.php" class="btn btn-warning">
+            <i class="nav-icon fas fa-undo"></i>
+            Kembali
+         </a>
+         <?php } ?>
 
          <a href="#" class="btn btn-danger">
             <i class="nav-icon fas fa-door-open"></i>

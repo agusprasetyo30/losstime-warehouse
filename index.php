@@ -63,7 +63,7 @@
                <div class="card card-success" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
                   <div class="card-body">
                      <div class="chart">
-                        <canvas id="barChart" style="min-height: 300px; height: 500px; max-height: 500px; max-width: 100%;"></canvas>
+                        <canvas id="barChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
                      </div>
                   </div>
                   <?php
@@ -73,11 +73,8 @@
             </div>
          </div>
       </div>
-      <div >
-         <div class="mt-5">&nbsp;</div>
-      </div>
          <footer class="footer ">
-            <div class="container-fluid">
+            <div class="container">
                <div class="row">
                   <marquee scrolldelay=60 onmouseover="this.stop()" onmouseout="this.start()">
                      <?php

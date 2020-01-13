@@ -22,7 +22,7 @@
                   Pengguna
                </h3>
                <div class="text-right">
-                  <a href="#" class="btn btn-success btn-sm">
+                  <a href="./tambah_pengguna.php?type=tambah-pengguna" class="btn btn-success btn-sm">
                      <i class="nav-icon fa fa-user-plus" aria-hidden="true"></i>
                      Tambah Pengguna
                   </a>
@@ -73,17 +73,13 @@
                <div class="row">
                   <div class="col-md-12 text-right">
                      <button type="submit" class="btn btn-success">
-                        <i class="fas fa-save    "></i>
+                        <i class="fas fa-save"></i>
                         Simpan
                      </button>
                   </div>
                </div>
-               
-
             </div>
          </div>
-
-
       </div>
    </div>
 </div>

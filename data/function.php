@@ -44,4 +44,38 @@
 
       return $bulan;
    }
+
+    
+   function getLine()
+   {
+      $line = [
+         "AB1",
+         "AB2",
+         "AB3",
+         "AB4",
+         "AB5",
+         "AB6",
+         "AB7",
+         "AB8",
+         "AB9",
+         "AB10",
+         "AB11",
+         "AB12",
+         "AB13",
+      ];
+
+      return $line;
+   }
+
+   function getMasalah()
+   {
+      $masalah = [
+         "Terlambat suplay",
+         "Ada yang salah saat pengiriman 01",
+         "Ada yang salah saat pengiriman 02",
+         "Ada yang salah saat pengiriman 03",
+      ];
+
+      return $masalah;
+   }
 ?>
