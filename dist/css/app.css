@@ -4,7 +4,7 @@
 
 html, body {
    margin:0;
-   padding:0;
+   /* padding:0; */
    height:100%;
 }
 
@@ -104,8 +104,6 @@ html, body {
 
 
 /* Dashboard awal */
-
-
 .main-content-dashboard {
    background: #f4f6f9;
 }
@@ -116,6 +114,25 @@ html, body {
    font-weight: bolder;
 }
 
+.bg-navbar-dashboard {
+   background: #344E5C;
+}
+
+.description-text h3 {
+   font-size: 35px;
+   font-weight: bolder;
+   color: white;
+}
+
+.description-text p {
+   font-size: 17px;
+   color: white;
+}
+
+.description-block>.description-text {
+   font-size: 15px;
+}
+
 /* Footer */
 
 .footer {
@@ -124,12 +141,15 @@ html, body {
    position: fixed;
    height:40px;
    line-height:40px;
-   background:#007BFF;
    color:#fff;
    padding-left: 5px;
 }
 
 /* Dashboard awal */
+
+
+/* Login Area */
+
 .login-logo {
    font-size: 30px;
    margin-top:20px ;
@@ -137,4 +157,23 @@ html, body {
 
 .login-logo2 {
    font-size: 20px;
+}
+
+/* Login Area */
+
+/* Warna flat */
+.red-flat {
+   background: #EF3D59;
+}
+
+.orange-flat {
+   background: #E17A47;
+}
+
+.yellow-flat {
+   background: #EFC958;
+}
+
+.green-flat {
+   background: #4AB19D;
 }

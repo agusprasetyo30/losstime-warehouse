@@ -46,7 +46,7 @@
             <ul class="nav nav-treeview">
                <li class="nav-item">
                   <a href="losstime.php?type=harian" class="nav-link <?= $_GET['type'] == 'harian' ? 'active' : '' ?>">
-                  <i class="far fa-calendar-check nav-icon"></i>
+                  <i class="fas fa-calendar-day nav-icon"></i>
                   <p>Harian</p>
                   </a>
                </li>

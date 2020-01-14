@@ -16,7 +16,7 @@
    <div class="card card-default mt-2">
       <div class="card-header">
          <h3 class="card-title">
-            <i class="far fa-calendar-check"></i>
+            <i class="fas fa-calendar-day"></i>
             Tabel Losstime Harian
          </h3>
       </div>

@@ -1,4 +1,6 @@
 <?php
+   // ini_set("display_errors", 1);
+
    include_once "./data/function.php";
 
    $data_lossTime = [65, 59, 80, 81, 56, 55, 40, 50, 30, 40, 50, 40];
@@ -20,33 +22,37 @@
       <link rel="stylesheet" href="./dist/css/adminlte.min.css">
       <!-- Font Awesome -->
       <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+      <!-- Ionicons -->
+      <link rel="stylesheet" href="./plugins/ion-icon/css/ionicons.min.css">
       <!-- Custom CSS -->
       <link rel="stylesheet" href="./dist/css/app.css">
 
       <style>
-         .valign {
+         /* body, html {
+            height: 100%;
+            margin: 0;
+         } */
+         /* .valign {
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-         },
-         body, html {
-            height: 100%;
-            margin: 0;
-         }
+         } */
       </style>
    </head>
 
    <body class="main-content-dashboard" style="height: 100%; max-height: 100%">
    <!-- Navbar atas -->
-   <nav class="navbar navbar-expand navbar-primary">
-      <div class="container mt-2 mb-2">
+   <nav class="navbar navbar-expand bg-navbar-dashboard">
+      <div class="container mt-3 mb-3">
          <ul class="nav navbar-nav" style="width: 100%">
-            <li class="nav-item" style="width: 90%">
-               <h4 class="judul">PT. Surabaya Autocomp Indonesia</h4>
+            <li class="nav-item" style="width: 50%">
+               <div class="d-inline">
+                  <img src="./dist/img/logo/logo-yazaki.png" class="img-fluid img-responsive" width="250px" height="100%">   
+               </div>
             </li>
-            <li class="nav-item" style="width: 10%">
-               <a href="./login.php" class="btn btn-success">
+            <li class="nav-item" style="width: 50%; text-align: right">
+               <a href="./login.php" class="btn btn-success btn-lg">
                   <i class="nav-icon fas fa-sign-in-alt mr-2"></i>
                   Login
                </a>
@@ -56,24 +62,66 @@
    </nav>
 
    <div id="container">
-      <div class="container-fluid">
-         <h3 class="text-center m-3">Loss time Warehouse PT. Surabaya Autocomp Indonesia</h3>
-         <div class="row">
-            <div class="col-md-12">
-               <div class="card card-success" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
-                  <div class="card-body">
+      <div class="container-fluid p-3 mt-2 mb-3">
+         <div class="card" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
+            <div class="card-body">
+            <h3 class="text-center m-3">Loss time Warehouse periode Januari - Desember <?= date('Y') ?></h3>
+               <div class="row">
+                  <div class="col-md-12">
                      <div class="chart">
                         <canvas id="barChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
                      </div>
+                     <?php
+                        $ambilBulan = getBulan(date("m"));
+                     ?>
                   </div>
-                  <?php
-                     $ambilBulan = getBulan(date("m"));
-                  ?>
+               </div>
+            </div>
+            <div class="card-footer">
+               <div class="container-fluid mt-3">
+                  <div class="row justify-content-center">
+                     <div class="col-4">
+                        <div class="small-box red-flat">
+                           <div class="inner description-text ml-3">
+                              <h3 style="margin-top: 0.5rem">53<sup style="font-size: 20px"> Menit</sup></h3>
+
+                              <p>Losstime Harian (<?= date("d/M/Y") ?>)</p>
+                           </div>
+                           <div class="icon text-white">
+                              <i class="fas fa-calendar-day mr-3"></i>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-4">
+                        <div class="small-box orange-flat">
+                           <div class="inner description-text ml-3">
+                              <h3 style="margin-top: 0.5rem">53<sup style="font-size: 20px"> Menit</sup></h3>
+
+                              <p>Losstime Bulan (<?= getBulan(date("m")) ?>)</p>
+                           </div>
+                           <div class="icon text-white">
+                              <i class="far fa-calendar-alt mr-3"></i>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-4 ">
+                        <div class="small-box green-flat">
+                           <div class="inner description-text ml-3">
+                              <h3 style="margin-top: 0.5rem">53<sup style="font-size: 20px"> Menit</sup></h3>
+
+                              <p>Losstime Tahun (<?= date("Y") ?>)</p>
+                           </div>
+                           <div class="icon text-white">
+                              <i class="far fa-calendar-check mr-3"></i>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
       </div>
-         <footer class="footer ">
+         <footer class="footer bg-navbar-dashboard">
             <div class="container">
                <div class="row">
                   <marquee scrolldelay=60 onmouseover="this.stop()" onmouseout="this.start()">
@@ -100,7 +148,7 @@
          datasets: [
             {
                label               : 'LOSS TIME',
-               backgroundColor     : '#007efc',
+               backgroundColor     : '#3498DB',
                borderColor         : '#000000',
                pointRadius         : true,
                pointColor          : '#000000',
