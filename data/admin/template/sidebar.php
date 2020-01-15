@@ -37,9 +37,9 @@
          </li>
          <li class="nav-item has-treeview <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' || $_GET['type'] == 'detail' ? 'menu-open' : '' ?>">
             <a href="#"class="nav-link <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' || $_GET['type'] == 'detail' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-user-clock"></i>
+            <i class="nav-icon fas fa-percent"></i>
                <p>
-                  Loss Time
+                  Summary
                   <i class="right fas fa-angle-left"></i>
                </p>
             </a>
@@ -57,12 +57,6 @@
                   </a>
                </li>
             </ul>
-         </li>
-         <li class="nav-item">
-            <a href="./summary.php" class="nav-link <?=$status_nav_summary?>">
-               <i class="nav-icon fas fa-percent"></i>
-               <p>Summary</p>
-            </a>
          </li>
          <li class="nav-item">
             <a href="./pengguna.php" class="nav-link <?=$status_nav_pengguna?>">
