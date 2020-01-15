@@ -143,39 +143,40 @@
    <script src="./plugins/chart.js/Chart.min.js"></script>
 
    <script>
-      var areaChartData = {
-         labels  : <?=$bulan?>,
-         datasets: [
-            {
-               label               : 'LOSS TIME',
-               backgroundColor     : '#3498DB',
-               borderColor         : '#000000',
-               pointRadius         : true,
-               pointColor          : '#000000',
-               pointStrokeColor    : '#c1c7d1',
-               pointHighlightFill  : '#fff',
-               pointHighlightStroke: 'rgba(220,220,220,1)',
-               data                : <?=$lossTime?>,
-            },
-         ]
-      }
-
-      var barChartCanvas = $('#barChart').get(0).getContext('2d')
-      var barChartData = jQuery.extend(true, {}, areaChartData)
-      var temp0 = areaChartData.datasets[0]
-      barChartData.datasets[0] = temp0
-
-      var barChartOptions = {
-         responsive              : true,
-         maintainAspectRatio     : false,
-         datasetFill             : true
-      }
-
-      var barChart = new Chart(barChartCanvas, {
-         type: 'bar', 
-         data: barChartData,
-         options: barChartOptions
+      var ctx = document.getElementById("barChart");
+      var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+         labels: <?=$bulan?>,
+         datasets: [{
+            label: 'Losstime',
+            data: <?=$lossTime?>,
+            backgroundColor: '#3498DB',
+            borderColor: '#e3e5ea',
+            borderWidth: 1
+         }]
+      },
+      options: {
+            responsive              : true,
+            maintainAspectRatio     : false,
+            datasetFill             : true,
+            
+            scales: {
+               xAxes: [{
+                  ticks: {
+                     maxRotation: 100,
+                     minRotation: 0
+                  }
+               }],
+               yAxes: [{
+                  ticks: {
+                     beginAtZero: true
+                  }
+               }]
+            }
+         }
       });
    </script>
+   
    </body>
 </html>

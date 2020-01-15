@@ -12,7 +12,7 @@
                <div class="card-body">
                   <form action="" method="post">
                      <div class="row justify-content-center mt-2">
-                        <div class="col-md-6" style="border-right: 1px solid lightgrey">
+                        <div class="col-md-5" style="border-right: 1px solid lightgrey">
                            <!-- DAFTAR LINE -->
                            
                            <div class="form-group" style="margin-right: 20px">
@@ -25,25 +25,44 @@
                               </button>
                            </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                            <div class="form-group" style="margin-left: 20px">
                               <label for="running" class="label-input-losstime">Tabel data Running Text</label>
 
-                              <table id="running_text" class="table table-bordered table-striped table-hover">
+                              <table id="running_text" class="table table-responsive table-bordered table-striped table-hover">
                                  <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                        <th style="width: 30px">#</th>
                                        <th>Data Running Text</th>
+                                       <th>Aksi</th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                     <tr>
                                        <td>1</td>
                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad inventore, quo fuga ullam culpa vitae.</td>
+                                       <td class="table-align-middle">
+                                          <div class="btn-group">
+                                             <a href="#" class="btn btn-warning btn-sm">
+                                                <i class="fas fa-pen"></i>
+                                                Ubah
+                                             </a>
+                                             <a href="#" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                                Hapus
+                                             </a>
+                                          </div>  
+                                       </td>
                                     </tr>
                                     <tr>
                                        <td>2</td>
                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad inventore, quo fuga ullam culpa vitae.</td>
+                                       <td class="table-align-middle">
+                                          <div class="btn-group btn-group-sm">
+                                             <a href="#" class="btn btn-warning btn-sm">Ubah</a>
+                                             <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                                          </div>  
+                                       </td>
                                     </tr>
                                  </tbody>
                               </table>

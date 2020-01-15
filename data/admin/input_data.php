@@ -29,13 +29,13 @@
 
 <script>
    $(function () {
-      $('#running_text').DataTable({
-         "paging": false,
-         "lengthChange": false,
-         "searching": false,
-         "ordering": false,
-         "info": false,
-         "autoWidth": false,
-      });
+      // $('#running_text').DataTable({
+      //    "paging": false,
+      //    "lengthChange": false,
+      //    "searching": false,
+      //    "ordering": false,
+      //    "info": false,
+      //    "autoWidth": false,
+      // });
    });
 </script>

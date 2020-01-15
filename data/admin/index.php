@@ -5,7 +5,6 @@
    $link_menu = "index.php";
    $location = "Dashboard";
 
-   $data_onTime = [28, 48, 40, 19, 86, 27, 20, 30, 20, 50, 40, 1];
    $data_lossTime = [65, 59, 80, 81, 56, 55, 40, 20, 30, 40, 50, 20];
    $data_bulan = ['Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'];
 
@@ -103,7 +102,6 @@
                               </td>
                               <tr>
                                  <th style="width: 10px">#</th>
-                                 <th>On Time</th>
                                  <th>Loss Time</th>
                                  <th>Bulan</th>
                               </tr>
@@ -115,7 +113,6 @@
 
                               <tr>
                                  <td><?=$i + 1?>. </td>
-                                 <td><?=$data_onTime[$i]?> </td>
                                  <td><?=$data_lossTime[$i]?></td>
                                  <td><?=$data_bulan[$i]?></td>
                               </tr>
@@ -137,51 +134,39 @@
    <?php include_once "./template/footer.php" ?>
 
 <script>
-var areaChartData = {
-   labels  : <?=$bulan?>,
-   datasets: [
-      {
-         label               : 'ON TIME',
-         backgroundColor     : 'rgba(60,141,188,0.9)',
-         borderColor         : 'rgba(60,141,188,0.8)',
-         pointRadius         : false,
-         pointColor          : '#3b8bba',
-         pointStrokeColor    : 'rgba(60,141,188,1)',
-         pointHighlightFill  : '#fff',
-         pointHighlightStroke: 'rgba(60,141,188,1)',
-         data                : <?=$onTime?>,
-      },
-      {
-         label               : 'LOSS TIME',
-         backgroundColor     : 'rgba(210, 214, 222, 1)',
-         borderColor         : 'rgba(210, 214, 222, 1)',
-         pointRadius         : false,
-         pointColor          : 'rgba(210, 214, 222, 1)',
-         pointStrokeColor    : '#c1c7d1',
-         pointHighlightFill  : '#fff',
-         pointHighlightStroke: 'rgba(220,220,220,1)',
-         data                : <?=$lossTime?>,
-      },
-   ]
-}
-
-   var barChartCanvas = $('#barChart').get(0).getContext('2d')
-   var barChartData = jQuery.extend(true, {}, areaChartData)
-   var temp0 = areaChartData.datasets[0]
-   var temp1 = areaChartData.datasets[1]
-   barChartData.datasets[0] = temp0
-   barChartData.datasets[1] = temp1
-
-   var barChartOptions = {
-      responsive              : true,
-      maintainAspectRatio     : false,
-      datasetFill             : true
-   }
-
-   var barChart = new Chart(barChartCanvas, {
-      type: 'bar', 
-      data: barChartData,
-      options: barChartOptions
+   var ctx = document.getElementById("barChart");
+   var myChart = new Chart(ctx, {
+   type: 'bar',
+   data: {
+      labels: <?=$bulan?>,
+      datasets: [{
+         label: '# of Tomatoes',
+         data: <?=$lossTime?>,
+         backgroundColor: '#3498DB',
+         borderColor: '#e3e5ea',
+         borderWidth: 1
+      }]
+   },
+   options: {
+         responsive              : true,
+         maintainAspectRatio     : false,
+         datasetFill             : true,
+         
+         scales: {
+            xAxes: [{
+               ticks: {
+                  maxRotation: 100,
+                  minRotation: 0
+               }
+            }],
+            yAxes: [{
+               ticks: {
+                  beginAtZero: true
+               }
+            }]
+         }
+      }
    });
+
 </script>
 
