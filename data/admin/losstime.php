@@ -1,5 +1,6 @@
 <?php
-   include "../function.php";
+   include "../class/dataDB.php";
+   $data = new DataDB();
 
    if ($_GET['type'] == 'harian') {
       $title= "Losstime Harian";
@@ -15,7 +16,7 @@
    
    } else if ($_GET['type'] == 'detail') {
       $title= "Detail Losstime";
-      $menu = "Detail Losstime ( " . getBulan($_GET['bulan']) . " " . $_GET['tahun'] . "  )";
+      $menu = "Detail Losstime ( " . $data->getBulan($_GET['bulan']) . " " . $_GET['tahun'] . "  )";
       $link_menu = "losstime.php?type=bulanan";
       $location = "Index";
    }
@@ -47,30 +48,30 @@
 <script>
    $(function () {
       $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": false,
-      "autoWidth": false,
+         "paging": true,
+         "lengthChange": false,
+         "searching": false,
+         "ordering": true,
+         "info": false,
+         "autoWidth": false,
       });
 
       $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
+         "paging": true,
+         "lengthChange": true,
+         "searching": true,
+         "ordering": true,
+         "info": true,
+         "autoWidth": false,
       });
 
       $('#example3').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
+         "paging": true,
+         "lengthChange": true,
+         "searching": true,
+         "ordering": true,
+         "info": true,
+         "autoWidth": false,
       });
    });
 </script>

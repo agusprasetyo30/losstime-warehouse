@@ -5,10 +5,13 @@
    $location = "Index";
    $status_nav_pengguna = 'active';
 
-   include_once "../function.php";
-   include_once "./template/header.php";
+   include_once "../class/dataDB.php";
+   $data = new dataDB();
 
+   include_once "./template/header.php";
 ?>
+
+<link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
 
 <hr>
 
@@ -28,11 +31,11 @@
                      <div class="col-md-6">
                         <div class="form-group mr-2">
                            <label for="nama">Nama</label>
-                           <input type="text" class="form-control" id="nama" autofocus=on placeholder="Masukan nama" autocomplete="off" required>
+                           <input name="nama" type="text" class="form-control" id="nama" autofocus=on placeholder="Masukan nama" autocomplete="off" required>
                         </div>
                         <div class="form-group mr-2">
                            <label for="id_kar">ID Karyawan</label>
-                           <input type="text" class="form-control" maxlength="6" id="id_kar" autofocus=on placeholder="Masukan ID Karyawan" autocomplete="off" required>
+                           <input name="id_karyawan" type="text" name="id_karyawan" class="form-control" maxlength="6" id="id_kar" autofocus=on placeholder="Masukan ID Karyawan" autocomplete="off" required>
                         </div>
                      </div>
                      <div class="col-md-6">
@@ -40,15 +43,18 @@
                            <label for="password">Password</label>
                            <input type="password" name="password" class="form-control" id="password" autofocus=on placeholder="Masukan password" required>
                         </div>
-                        <div class="form-group ml-2">
+                        <div class="form-group ml-2" >
                            <label for="confirm">Konfirmasi Password</label>
                            <input type="password" name="confirm_password" class="form-control" id="confirm" autofocus=on placeholder="Masukan konfirmasi password" required>
                         </div>
-
-                        <button type="submit" class="btn btn-success float-right">
+                        <button type="submit" name="simpan" class="btn btn-success float-right">
                            <i class="fas fa-save"></i>
                            Simpan
                         </button>
+                        <?php
+                           
+                        ?>
+                        
                      </div>
                   </div>
                </div>
@@ -58,4 +64,52 @@
    </div>
 </div>
 
-<?php include_once "./template/footer.php" ?>
+<?php 
+   include_once "./template/footer.php"; 
+
+   $inputNama = $_POST["nama"];
+?>
+
+<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+
+<script>
+   function berhasil() {
+      Swal.fire({
+         type: 'success',
+         html: 'Pengguna <b> <?= $inputNama ?> </b> berhasil ditambahkan',
+         allowOutsideClick: false,
+         allowEscapeKey: false,
+         focusConfirm: true,
+         showConfirmButton: true
+         
+      }).then(function() {
+         window.location.href = "pengguna.php"
+         console.log("The OK Button was clicked");
+      })
+   }
+</script>
+
+<?php
+   
+
+   if (isset($_POST['simpan'])) {
+      if ($data->addUser($_POST) > 0) {
+         echo "<script>berhasil()</script>";
+      
+      } else {
+         echo "
+            <script>
+               alert('Gagal');
+            </script>
+         ";
+         
+         echo("<br>");
+         echo mysqli_error($data->koneksi);
+      }
+   }
+?>
+
+
+
+
+

@@ -13,8 +13,12 @@
    $lossTime = json_encode($data_lossTime, JSON_NUMERIC_CHECK);
 
    $status_nav_dashboard = 'active';
+
+   // Memanggil class dan membuat object baru berdasarkan class yang dibuat pada folder class
+   include_once "../class/dataDB.php";
+   $data = new DataDB();
 ?>
-   <?php include_once "../function.php" ?>
+   
    <?php include_once "./template/header.php" ?>
 
    <!-- Konten Utama -->
@@ -49,7 +53,7 @@
 
                         <h3>50 <sup style="font-size: 20px">Menit</sup></h3>
                         
-                        <p>Losstime Bulan (<?= getBulan(date('m')) ?>)</p>
+                        <p>Losstime Bulan (<?= $data->getBulan(date('m')) ?>)</p>
                      </a>
                   </div>
                   <div class="icon">

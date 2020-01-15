@@ -1,7 +1,7 @@
 <?php
    // ini_set("display_errors", 1);
 
-   include_once "./data/function.php";
+   include_once "./data/class/dataDB.php";
 
    $data_lossTime = [65, 59, 80, 81, 56, 55, 40, 50, 30, 40, 50, 40];
    $data_bulan = ['Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'];
@@ -72,7 +72,8 @@
                         <canvas id="barChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
                      </div>
                      <?php
-                        $ambilBulan = getBulan(date("m"));
+                        $data = new dataDB();
+                        $ambilBulan = $data->getBulan(date("m"));
                      ?>
                   </div>
                </div>
@@ -97,7 +98,7 @@
                            <div class="inner description-text ml-3">
                               <h3 style="margin-top: 0.5rem">53<sup style="font-size: 20px"> Menit</sup></h3>
 
-                              <p>Losstime Bulan (<?= getBulan(date("m")) ?>)</p>
+                              <p>Losstime Bulan (<?= $data->getBulan(date("m")) ?>)</p>
                            </div>
                            <div class="icon text-white">
                               <i class="far fa-calendar-alt mr-3"></i>

@@ -2,7 +2,7 @@
       <div class="card-header">
          <h3 class="card-title">
             <i class="far fa-calendar-alt"></i>
-            Tabel detail losstime <?= "( " . getBulan($_GET['bulan']) . " " . $_GET['tahun'] . "  )" ?>
+            Tabel detail losstime <?= "( " . $data->getBulan($_GET['bulan']) . " " . $_GET['tahun'] . "  )" ?>
          </h3>
       </div>
       <div class="card-body">

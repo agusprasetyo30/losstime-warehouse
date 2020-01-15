@@ -5,10 +5,13 @@
    $location = "Index";
    $status_nav_input = 'active';
 
-   include_once "../function.php";
+   include_once "../class/dataDB.php";
+   $data = new DataDB();
+
    include_once "./template/header.php";
 
 ?>
+<link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
 
 <div class="container">
    <div class="row justify-content-center">
@@ -32,8 +35,8 @@
                               <select name="line" id="line" autofocus=on class="form-control select-input-losstime select2"  required>
                                  <option value="" selected disabled>Pilih Line</option>
                                  <?php 
-                                    for ($i=0; $i < count(getLine()); $i++) { 
-                                       echo "<option value='" . getLine()[$i] . "' >" . getLine()[$i] ."</option>";      
+                                    for ($i=0; $i < count($data->getLine()); $i++) { 
+                                       echo "<option value='" . $data->getLine()[$i] . "' >" . $data->getLine()[$i] ."</option>";      
                                     }
                                  ?>      
                               </select>
@@ -79,8 +82,8 @@
                                  
                                  <option value="" selected disabled>Pilih Masalah Kerja</option>
                                  <?php 
-                                    for ($i=0; $i < count(getMasalah()); $i++) { 
-                                       echo "<option value='" . getMasalah()[$i] . "' >" . getMasalah()[$i] ."</option>";      
+                                    for ($i=0; $i < count($data->getMasalah()); $i++) { 
+                                       echo "<option value='" . $data->getMasalah()[$i] . "' >" . $data->getMasalah()[$i] ."</option>";      
                                     }
                                  ?>
                               </select>
@@ -106,7 +109,7 @@
                                  </div>
                               </div>
                            </div>
-
+                           <input type="text" name="id_user" value="1">
                            <div class="form-group mt-4" style="margin-left: 30px;">
                               <button type="submit" name="simpan" class="btn btn-success btn-block" style="height: 75px; font-size: 20px">
                                  <i class="nav-icon fas fa-save"></i>
@@ -125,9 +128,38 @@
 
 <?php include_once "./template/footer.php" ?>
 
+<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+
+<script>
+   function berhasil() {
+      Swal.fire({
+         type: 'success',
+         html: 'Losstime berhasil ditambahkan',
+         allowOutsideClick: false,
+         allowEscapeKey: false,
+         focusConfirm: true,
+         showConfirmButton: true
+      }).then(function() {
+         window.location.href = "input_losstime.php"
+      })
+   }
+</script>
+
 <?php 
    if (isset($_POST['simpan'])) {
-      print_r($_POST);
+      if ($data->addLosstime($_POST) > 0) {
+         echo "<script>berhasil()</script>";
+      
+      } else {
+         echo "
+            <script>
+               alert('Gagal');
+            </script>
+         ";
+         
+         echo("<br>");
+         echo mysqli_error($data->koneksi);
+      }
    }
 ?>
 

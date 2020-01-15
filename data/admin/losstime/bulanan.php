@@ -89,7 +89,7 @@
                         <td>1. </td>
                         <td>20</td>
                         <td>30</td>
-                        <td><?= getBulan(date('m')) .' '. 2020 ?></td>
+                        <td><?= $data->getBulan(date('m')) .' '. 2020 ?></td>
                         <td>
                            <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
                               <i class="fa fa-list" aria-hidden="true"></i>
