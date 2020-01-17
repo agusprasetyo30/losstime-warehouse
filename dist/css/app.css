@@ -133,6 +133,29 @@ html, body {
    font-size: 15px;
 }
 
+/* Label Custom */
+
+.label {
+   display: inline;
+   padding: 3px 12px;
+   font-size: 80%;
+   font-weight: 700;
+   line-height: 1;
+   text-align: center;
+   white-space: nowrap;
+   vertical-align: baseline;
+   border-radius: 3px;
+   color: white;
+}
+
+.label-danger {
+   background: #DC3545;
+}
+
+.label-primary {
+   background: #007BFF;
+}
+
 /* Footer */
 
 .footer {

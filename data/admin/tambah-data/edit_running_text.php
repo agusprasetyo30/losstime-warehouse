@@ -3,11 +3,11 @@
       <div class="col-md-7">
          <div class="card card-default mt-2">
             <div class="card-header">
-               <h3 class="card-title">
+               <h3 class="card-title mt-2">
                   <i class="fas fa-text-width mr-2"></i>
                   Edit Running Text
                </h3>
-               <a href="./input_data.php?type=running-text" class="btn btn-warning btn-sm float-right">
+               <a href="./input_data.php?type=running-text" class="btn btn-warning float-right">
                   <i class="fas fa-undo mr-2"></i>
                   Kembali
                </a>

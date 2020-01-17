@@ -22,7 +22,7 @@
                   Pengguna
                </h3>
                <div class="text-right">
-                  <a href="./tambah_pengguna.php?type=tambah-pengguna" class="btn btn-success btn-sm">
+                  <a href="./tambah_pengguna.php" class="btn btn-success btn-sm">
                      <i class="nav-icon fa fa-user-plus" aria-hidden="true"></i>
                      Tambah Pengguna
                   </a>

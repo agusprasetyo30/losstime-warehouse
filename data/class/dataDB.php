@@ -15,7 +15,7 @@
       }
 
       // fungsi untuk menampilkan data select dengan cara memasukan query ke dalam parameter
-      function query($query){
+      private function query($query){
          $result = mysqli_query($this->koneksi, $query);
          $rows = [];
          while ($data = mysqli_fetch_assoc($result)) {
@@ -23,6 +23,10 @@
          }
          return $rows;
       }
+
+      /**
+       * Pengguna
+       */
 
       // fungsi untuk menambahkan pengguna
       function addUser($post) 
@@ -37,24 +41,12 @@
          $query = mysqli_query($this->koneksi, "SELECT id_karyawan FROM user WHERE id_karyawan='$id_karyawan' ");
          
          if (mysqli_fetch_assoc($query)) {
-            echo "
-               <script>
-                  alert('ID Anggota sudah terdaftar');
-                  window.location = 'tambah_pengguna.php?type=tambah-pengguna';
-               </script>
-            ";
-            return false;
+            return 'id_kar';
          }
 
          //cek informasi password
          if ($password !== $password2) {
-            echo "
-               <script>
-                  alert('Tidak dapat menambahkan pengguna');
-               </script>
-            ";
-            die();
-            return false;
+            return 'pass';
          }
 
          //enkripsi password
@@ -69,6 +61,10 @@
 
          return mysqli_affected_rows($this->koneksi);
       }
+
+      /**
+       * Losstime
+       */
 
       // Menambahkan data losstime
       function addLosstime($post)
@@ -89,6 +85,53 @@
 
          return mysqli_affected_rows($this->koneksi);
       }      
+
+      // menampilkan losstime berdasarkan tanggal hari ini
+      function showLosstimeByDay($dayDate) 
+      {
+         $query = "SELECT * FROM losstime WHERE DATE(created_at) = '$dayDate' ";
+         
+         return $this->query($query);
+      }
+
+      // menghitung total losstime berdasarkan tanggal hari ini
+      function countLosstimeByDay($dayDate) 
+      {
+         $query = "SELECT sum(jml_losstime) as jumlah FROM losstime WHERE DATE(created_at) = '$dayDate' GROUP BY DATE(created_at) ";
+         
+         return $this->query($query)[0]['jumlah'];
+      }
+      
+      // menampilkan losstime berdasarkan bulan
+      function showLosstimeByMonth() 
+      {
+         $query = "SELECT count(line) as jumlah_line, sum(jml_losstime) AS jumlah_menit, MONTH(created_at) as month, YEAR(created_at) as year FROM losstime 
+            GROUP BY MONTH(created_at), YEAR(created_at)";
+         
+         return $this->query($query);
+      }
+
+      // menampilkan dan sorting losstime berdasarkan bulan dan tahun
+      function showLosstimeByMonthYear($month, $year)
+      {
+         $query = "SELECT count(line) as jumlah_line, sum(jml_losstime) AS jumlah_menit, MONTH(created_at) as month, YEAR(created_at) as year FROM losstime 
+            WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' GROUP BY MONTH(created_at), YEAR(created_at)";
+      
+         return $this->query($query)[0];
+      }
+
+      // menampilkan seua losstime dalam bulan dan tahun tertentu
+      function showAllLostimeByMonthYear($month, $year)
+      {
+         $query = "SELECT * FROM losstime WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' ";
+
+         return $this->query($query);
+      }
+      
+
+      /**
+       * Running Text
+       */
 
       // menginputkan running text
       function addRunningText($post) 

@@ -3,7 +3,7 @@
       <div class="col-md-6">
          <div>Jumlah menit : </div>
          <div class="jumlah-losstime-harian">
-            <?= 10 ?> Menit
+            <?= $data->countLosstimeByDay(date('Y-m-d')) ?> Menit
          </div>
       </div>
       <div class="col-md-6 text-right">
@@ -20,6 +20,11 @@
             Tabel Losstime Harian
          </h3>
       </div>
+      <?php
+         // $tgl = date('Y-m-d');
+         // echo $tgl;
+         // print_r();
+      ?>
       <div class="card-body">
          <div class="row">
             <div class="col-md-12 col-sm-12 mb-3">
@@ -30,52 +35,25 @@
                         <th>Nomer Line</th>
                         <th>Shift</th>
                         <th style="width: 500px">Masalah</th>
-                        <th>Jumlah Menit</th>
+                        <th style="width: 100px">Jumlah Menit</th>
                      </tr>
                   </thead>
                   <tbody>
+                     <?php
+                        $nomer = 1;
+                        foreach ($data->showLosstimeByDay(date('Y-m-d')) as $file) {
+                     ?>
                      <tr>
-                        <td>1. </td>
-                        <td>A42</td>
-                        <td>Pagi</td>
-                        <td>Supplay Terlambat Datang</td>
-                        <td>3</td>
+                        <td ><?= $nomer++ ?>. </td>
+                        <td ><?= $file['line'] ?></td>
+                        <td>  
+                           <?= $file['shift'] == 'PAGI' ? "<span class='label bg-success'>$file[shift]</span>" : "<span class='label bg-primary'>$file[shift]</span>"  ?>
+                        </td>
+                        <td style="text-align: left"><?= $file['masalah'] ?></td>
+                        <td ><?= $file['jml_losstime'] ?></td>
                      </tr>
-                     <tr>
-                        <td>2. </td>
-                        <td>A42</td>
-                        <td>Malam</td>
-                        <td>Terlambat Datang</td>
-                        <td>10</td>
-                     </tr>
-                     <tr>
-                        <td>3. </td>
-                        <td>A42</td>
-                        <td>Pagi</td>
-                        <td>Terlambat Datang</td>
-                        <td>10</td>
-                     </tr>
-                     <tr>
-                        <td>4. </td>
-                        <td>A42</td>
-                        <td>Pagi</td>
-                        <td>Terlambat Datang</td>
-                        <td>10</td>
-                     </tr>
-                     <tr>
-                        <td>5. </td>
-                        <td>A42</td>
-                        <td>Malam</td>
-                        <td>Terlambat Datang</td>
-                        <td>10</td>
-                     </tr>
-                     <tr>
-                        <td>6. </td>
-                        <td>A42</td>
-                        <td>Pagi</td>
-                        <td>Terlambat Datang</td>
-                        <td>10</td>
-                     </tr>
+
+                     <?php } ?>
                   </tbody>
                </table>
             </div>

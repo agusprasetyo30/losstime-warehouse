@@ -62,6 +62,9 @@
       </div>
    </div>
 </div>
+<?php
+   
+?>
 
 <div class="container-fluid mb-3">
    <div class="card card-default mt-2">
@@ -78,49 +81,57 @@
                   <thead>
                      <tr>
                         <th style="width: 30px">#</th>
-                        <th>Total Line</th>
+                        <th>Jumlah Line</th>
                         <th>Jumlah Menit</th>
                         <th>Periode</th>
                         <th style="width: 90px">Aksi</th>
                      </tr>
                   </thead>
                   <tbody>
+                     <?php
+                        if ($_GET['bulan'] != null && $_GET['tahun'] != null) {
+                        
+                        $file = $data->showLosstimeByMonthYear($_GET['bulan'], $_GET['tahun']);
+
+                           if ($file != null) {
+                     ?>
+
                      <tr>
-                        <td>1. </td>
-                        <td>20</td>
-                        <td>30</td>
-                        <td><?= $data->getBulan(date('m')) .' '. 2020 ?></td>
+                        <td>1.</td>
+                        <td><?= $file['jumlah_line'] ?></td>
+                        <td><?= $file['jumlah_menit'] ?></td>
+                        <td><span class="label bg-primary"><?=  $data->getBulan($file['month']) .' '. $file['year'] ?></span></td>
                         <td>
-                           <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
+                           <a href="losstime.php?type=detail&bulan=<?=$file['month']?>&tahun=<?=$file['year']?>" class="btn btn-primary btn-sm">
                               <i class="fa fa-list" aria-hidden="true"></i>
                               Cek Detail
                            </a>
                         </td>
                      </tr>
+                        <?php } ?>
+
+                     <?php } else { ?>
+
+                     <?php
+                        $nomer = 1;
+                        foreach ($data->showLosstimeByMonth() as $file) {
+                     ?>
                      <tr>
-                        <td>2. </td>
-                        <td>20</td>
-                        <td>30</td>
-                        <td>Pebruari 2020</td>
+                        <td><?= $nomer++ ?>. </td>
+                        <td><?= $file['jumlah_line'] ?></td>
+                        <td><?= $file['jumlah_menit'] ?></td>
+                        <td><span class="label bg-primary"><?=  $data->getBulan($file['month']) .' '. $file['year'] ?></span></td>
                         <td>
-                           <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
+                           <a href="losstime.php?type=detail&bulan=<?=$file['month']?>&tahun=<?=$file['year']?>" class="btn btn-primary btn-sm">
                               <i class="fa fa-list" aria-hidden="true"></i>
                               Cek Detail
                            </a>
                         </td>
                      </tr>
-                     <tr>
-                        <td>3. </td>
-                        <td>20</td>
-                        <td>30</td>
-                        <td>Maret 2020</td>
-                        <td>
-                           <a href="losstime.php?type=detail&bulan=1&tahun=2020" class="btn btn-primary btn-sm">
-                              <i class="fa fa-list" aria-hidden="true"></i>
-                              Cek Detail
-                           </a>
-                        </td>
-                     </tr>
+                     <?php 
+                        } 
+                     }
+                     ?>
                   </tbody>
                </table>
             </div>

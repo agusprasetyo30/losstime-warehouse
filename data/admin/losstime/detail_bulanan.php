@@ -1,9 +1,14 @@
 <div class="card card-default mt-2">
       <div class="card-header">
-         <h3 class="card-title">
+         <h3 class="card-title mt-2">
             <i class="far fa-calendar-alt"></i>
             Tabel detail losstime <?= "( " . $data->getBulan($_GET['bulan']) . " " . $_GET['tahun'] . "  )" ?>
          </h3>
+
+         <a href="./losstime.php?type=bulanan" class="btn btn-warning float-right">
+            <i class="nav-icon fas fa-undo"></i>
+            Kembali
+         </a>
       </div>
       <div class="card-body">
          <div class="container-fluid">
@@ -21,54 +26,19 @@
                         </tr>
                      </thead>
                      <tbody>
+                        <?php
+                           $nomer = 1;
+                           foreach ($data->showAllLostimeByMonthYear($_GET['bulan'], $_GET['tahun']) as $file) {
+                        ?>
                         <tr>
-                           <td>1. </td>
-                           <td>A42</td>
-                           <td>Pagi</td>
-                           <td>Supplay Terlambat Datang</td>
-                           <td>3</td>
-                           <td>3 Januari 2020</td>
+                           <td><?= $nomer++ ?></td>
+                           <td><?= $file['line'] ?></td>
+                           <td><?= $file['shift'] ?></td>
+                           <td><?= $file['masalah'] ?></td>
+                           <td><?= $file['jml_losstime'] ?></td>
+                           <!-- <td><?= date_format($file['created_at'], "d-M-Y") ?></td> -->
                         </tr>
-                        <tr>
-                           <td>2. </td>
-                           <td>A42</td>
-                           <td>Malam</td>
-                           <td>Terlambat Datang</td>
-                           <td>10</td>
-                           <td>4 Januari 2020</td>
-                        </tr>
-                        <tr>
-                           <td>3. </td>
-                           <td>A42</td>
-                           <td>Pagi</td>
-                           <td>Terlambat Datang</td>
-                           <td>10</td>
-                           <td>4 Januari 2020</td>
-                        </tr>
-                        <tr>
-                           <td>4. </td>
-                           <td>A42</td>
-                           <td>Pagi</td>
-                           <td>Terlambat Datang</td>
-                           <td>10</td>
-                           <td>6 Januari 2020</td>
-                        </tr>
-                        <tr>
-                           <td>5. </td>
-                           <td>A42</td>
-                           <td>Malam</td>
-                           <td>Terlambat Datang</td>
-                           <td>10</td>
-                           <td>7 Januari 2020</td>
-                        </tr>
-                        <tr>
-                           <td>6. </td>
-                           <td>A42</td>
-                           <td>Pagi</td>
-                           <td>Terlambat Datang</td>
-                           <td>10</td>
-                           <td>8 Januari 2020</td>
-                        </tr>
+                        <?php } ?>
                      </tbody>
                   </table>
                </div>

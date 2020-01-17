@@ -24,6 +24,11 @@
                   <i class="fa fa-user-plus" aria-hidden="true"></i>
                   Tambah Pengguna
                </h3>
+
+               <a href="./pengguna.php" class="btn btn-warning float-right">
+                  <i class="nav-icon fas fa-undo"></i>
+                  Kembali
+               </a>
             </div>
             <form action="" method="post">
                <div class="card-body">
@@ -87,6 +92,36 @@
          console.log("The OK Button was clicked");
       })
    }
+
+   function idKaryawanInfo() {
+      Swal.fire({
+         title: 'Peringatan!',
+         type: 'warning',
+         text: 'ID Karyawan sudah terdaftar',
+         allowOutsideClick: false,
+         allowEscapeKey: false,
+         focusConfirm: true,
+         showConfirmButton: true
+         
+      }).then(function() {
+         window.location.href = "tambah_pengguna.php"
+      })
+   }
+
+   function passwordInfo() {
+      Swal.fire({
+         title: 'Peringatan!',
+         type: 'warning',
+         text: 'Tidak dapat menambahkan pengguna',
+         allowOutsideClick: false,
+         allowEscapeKey: false,
+         focusConfirm: true,
+         showConfirmButton: true
+         
+      }).then(function() {
+         window.location.href = "tambah_pengguna.php"
+      })
+   }
 </script>
 
 <?php
@@ -95,13 +130,19 @@
    if (isset($_POST['simpan'])) {
       if ($data->addUser($_POST) > 0) {
          echo "<script>berhasil()</script>";
-      
-      } else {
-         echo "
-            <script>
-               alert('Gagal');
-            </script>
-         ";
+
+      } else if ($data->addUser($_POST) == 'id_kar') { // jika terdapat id karyawan yang sama, mereturn String 'id_kar'
+         echo "<script>idKaryawanInfo()</script>";
+
+      } else if ($data->addUser($_POST) == 'pass') { // jika password & konfirmasi password tidak sama, mereturn String 'pass'
+         echo "<script>passwordInfo()</script>";
+
+      } else  {
+         // echo "
+         //    <script>
+         //       alert('Gagal');
+         //    </script>
+         // ";
          
          echo("<br>");
          echo mysqli_error($data->koneksi);
