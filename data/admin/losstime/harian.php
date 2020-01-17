@@ -20,11 +20,6 @@
             Tabel Losstime Harian
          </h3>
       </div>
-      <?php
-         // $tgl = date('Y-m-d');
-         // echo $tgl;
-         // print_r();
-      ?>
       <div class="card-body">
          <div class="row">
             <div class="col-md-12 col-sm-12 mb-3">
@@ -44,8 +39,8 @@
                         foreach ($data->showLosstimeByDay(date('Y-m-d')) as $file) {
                      ?>
                      <tr>
-                        <td ><?= $nomer++ ?>. </td>
-                        <td ><?= $file['line'] ?></td>
+                        <td><?= $nomer++ ?>. </td>
+                        <td><b><?= $file['line'] ?></b></td>
                         <td>  
                            <?= $file['shift'] == 'PAGI' ? "<span class='label bg-success'>$file[shift]</span>" : "<span class='label bg-primary'>$file[shift]</span>"  ?>
                         </td>

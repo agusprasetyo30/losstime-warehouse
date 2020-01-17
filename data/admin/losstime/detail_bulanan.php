@@ -32,11 +32,11 @@
                         ?>
                         <tr>
                            <td><?= $nomer++ ?></td>
-                           <td><?= $file['line'] ?></td>
-                           <td><?= $file['shift'] ?></td>
-                           <td><?= $file['masalah'] ?></td>
+                           <td><b><?= $file['line'] ?></b></td>
+                           <td><?= $file['shift'] == 'PAGI' ? "<span class='label bg-success'>$file[shift]</span>" : "<span class='label bg-primary'>$file[shift]</span>" ?></td>
+                           <td style="text-align: left"><?= $file['masalah'] ?></td>
                            <td><?= $file['jml_losstime'] ?></td>
-                           <!-- <td><?= date_format($file['created_at'], "d-M-Y") ?></td> -->
+                           <td><?= date("d", strtotime($file['created_at'])) .'/'. $data->getBulan(date("m", strtotime($file['created_at']))) .'/'. date("Y", strtotime($file['created_at'])) ?></td>
                         </tr>
                         <?php } ?>
                      </tbody>
