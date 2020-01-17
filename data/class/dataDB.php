@@ -150,21 +150,24 @@
       {
          $data_arr = [];
          $bulan = 1;
-         
-         for ($i=0; $i < 12; $i++) {
+         $indexBulan = 0;
+         $i=0;
+
+         while($i < 12) {
 
             if ($this->showLosstimeCountByYear($year)[$i] == NULL) {
-               $data_arr[$i] = 0;
-            
+               array_push($data_arr, 0);
             } else { 
-               if ($this->showLosstimeCountByYear($year)[$i]['month'] == $bulan) {
-                  $data_arr[$i] = $this->showLosstimeCountByYear(date($year))[$i]['jumlah_menit'];
+               
+               if ($bulan == $this->showLosstimeCountByYear($year)[$indexBulan]['month']) {
+                  array_push($data_arr, $this->showLosstimeCountByYear($year)[$indexBulan]['jumlah_menit']);
+                  $indexBulan++;
                }
             }
 
+            $i++;
             $bulan++;
          }
-
          return $data_arr;
       }
 

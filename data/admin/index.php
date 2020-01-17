@@ -1,4 +1,5 @@
 <?php
+   // TODO: NANTINYA BISA MENGINPUTKAN DATA TIDAK JANUARI, MUNGKIN
    include_once "../class/dataDB.php";
    $data = new DataDB();
 
@@ -10,7 +11,11 @@
    // memasukan data ke dalam array
    $data_lossTime = $data->getDataGrafikLosstime(date('Y'));
    $data_bulan = ['Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'];
-
+   
+   // print_r($data->showLosstimeCountByYear('2020'));
+   print_r($data->getDataGrafikLosstime(date('Y')));
+   die();
+   // die();
    $bulan = json_encode($data_bulan, JSON_NUMERIC_CHECK);
    $lossTime = json_encode($data_lossTime, JSON_NUMERIC_CHECK);
 
@@ -100,7 +105,7 @@
                         <table class="table table-bordered table-striped table-hover text-center mt-2">
                            <thead>
                               <td colspan=4 style="font-size: 20px">
-                                 Daftar Tabel On Time & Loss Time                              
+                                 Daftar Tabel Loss Time                              
                               </td>
                               <tr>
                                  <th style="width: 10px">#</th>
@@ -116,7 +121,7 @@
                               <tr>
                                  <td><?=$i + 1?>. </td>
                                  <td><?=$data_lossTime[$i]?></td>
-                                 <td><?=$data_bulan[$i]?></td>
+                                 <td><?=$data_bulan[$i] ." ". date('Y')?></td>
                               </tr>
 
                               <?php
