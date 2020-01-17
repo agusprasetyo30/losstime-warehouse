@@ -15,7 +15,8 @@
       }
 
       // fungsi untuk menampilkan data select dengan cara memasukan query ke dalam parameter
-      private function query($query){
+      private function query($query)
+      {
          $result = mysqli_query($this->koneksi, $query);
          $rows = [];
          while ($data = mysqli_fetch_assoc($result)) {
@@ -123,11 +124,51 @@
       // menampilkan seua losstime dalam bulan dan tahun tertentu
       function showAllLostimeByMonthYear($month, $year)
       {
-         $query = "SELECT * FROM losstime WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' ";
+         $query = "SELECT * FROM losstime WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' ORDER BY created_at ASC ";
 
          return $this->query($query);
       }
-      
+
+      // Menghitung jumlah losstime pada tahun tertentu
+      function countLosstimeByYear($year)
+      {
+         $query = "SELECT sum(jml_losstime) as jumlah_menit FROM losstime WHERE YEAR(created_at) = '$year' GROUP BY YEAR(created_at) ";
+
+         return $this->query($query)[0]['jumlah_menit'];
+      }
+
+      // menampilkan jumlah menit berdasarkan tahun
+      function showLosstimeCountByYear($year)
+      {
+         $query = "SELECT sum(jml_losstime) as jumlah_menit, MONTH(created_at) as month, YEAR(created_at) as year FROM losstime WHERE YEAR(created_at) = '$year' GROUP BY MONTH(created_at) ";
+
+         return $this->query($query);
+      }
+
+      // data array losstime yang terdapat pada grafik
+      function getDataGrafikLosstime($year)
+      {
+         $data_arr = [];
+         $bulan = 1;
+         
+         for ($i=0; $i < 12; $i++) {
+
+            if ($this->showLosstimeCountByYear($year)[$i] == NULL) {
+               $data_arr[$i] = 0;
+            
+            } else { 
+               if ($this->showLosstimeCountByYear($year)[$i]['month'] == $bulan) {
+                  $data_arr[$i] = $this->showLosstimeCountByYear(date($year))[$i]['jumlah_menit'];
+               }
+            }
+
+            $bulan++;
+         }
+
+         return $data_arr;
+      }
+
+
 
       /**
        * Running Text

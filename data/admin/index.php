@@ -1,31 +1,29 @@
 <?php
-   // ini_set("display_errors", 1);
+   include_once "../class/dataDB.php";
+   $data = new DataDB();
+
    $title= "Dashboard";
    $menu = "Dashboard";
    $link_menu = "index.php";
    $location = "Dashboard";
 
-   $data_lossTime = [65, 59, 80, 81, 56, 55, 40, 20, 30, 40, 50, 20];
+   // memasukan data ke dalam array
+   $data_lossTime = $data->getDataGrafikLosstime(date('Y'));
    $data_bulan = ['Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'];
 
    $bulan = json_encode($data_bulan, JSON_NUMERIC_CHECK);
-   $onTime = json_encode($data_onTime, JSON_NUMERIC_CHECK);
    $lossTime = json_encode($data_lossTime, JSON_NUMERIC_CHECK);
 
    $status_nav_dashboard = 'active';
 
    // Memanggil class dan membuat object baru berdasarkan class yang dibuat pada folder class
-   include_once "../class/dataDB.php";
-   $data = new DataDB();
+   
 ?>
    
    <?php include_once "./template/header.php" ?>
-
+   
    <!-- Konten Utama -->
          <div class="container-fluid">
-            <?php // Mencoba cek lokasi 
-
-            ?>
             <!-- Small boxes (Stat box) -->
             <div class="row">
                <div class="col-lg-4 col-12">
@@ -33,7 +31,7 @@
                <div class="small-box bg-info">
                   <div class="inner">
                      <a href="./losstime.php?type=harian" class="box-link">
-                        <h3>15 <sup style="font-size: 20px">Menit</sup></h3>
+                        <h3><?= $data->countLosstimeByDay(date('Y-m-d')) ?> <sup style="font-size: 20px">Menit</sup></h3>
                         
                         <p>Losstime Hari Ini (<?= date('d/m/Y') ?>)</p>
                      </a>
@@ -51,7 +49,7 @@
                   <div class="inner">
                      <a class="box-link" href="./losstime.php?type=bulanan&bulan=<?=date('m')?>&tahun=<?=date('Y')?>">
 
-                        <h3>50 <sup style="font-size: 20px">Menit</sup></h3>
+                        <h3><?= $data->showLosstimeByMonthYear(date('m'), date('Y'))['jumlah_menit'] ?> <sup style="font-size: 20px">Menit</sup></h3>
                         
                         <p>Losstime Bulan (<?= $data->getBulan(date('m')) ?>)</p>
                      </a>
@@ -68,7 +66,7 @@
                <div class="small-box bg-danger">
                   <div class="inner">
                      <a class="box-link" href="./losstime.php?type=bulanan">
-                        <h3>100 <sup style="font-size: 20px">Menit</sup></h3>
+                        <h3><?= $data->countLosstimeByYear(date('Y')) ?> <sup style="font-size: 20px">Menit</sup></h3>
                         
                         <p>Losstime Tahun (<?=date('Y')?>)</p>
                      </a>
@@ -85,7 +83,7 @@
                <div class="col-md-12">
                   <div class="card card-primary" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
                      <div class="card-header">
-                        <h3 class="card-title" >Grafik On Time & Loss Time (2020)</h3>
+                        <h3 class="card-title" >Grafik Loss Time (2020)</h3>
 
                         <div class="card-tools">
                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus "></i></button>
@@ -144,7 +142,7 @@
    data: {
       labels: <?=$bulan?>,
       datasets: [{
-         label: '# of Tomatoes',
+         label: '# Losstime',
          data: <?=$lossTime?>,
          backgroundColor: '#3498DB',
          borderColor: '#e3e5ea',
