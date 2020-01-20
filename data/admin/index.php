@@ -12,6 +12,7 @@
    $data_lossTime = $data->getDataGrafikLosstime(date('Y'));
    $data_bulan = ['Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'];
    
+   // merubah data array menjadi JSON
    $bulan = json_encode($data_bulan, JSON_NUMERIC_CHECK);
    $lossTime = json_encode($data_lossTime, JSON_NUMERIC_CHECK);
 
@@ -109,6 +110,7 @@
                            </thead>
                            <tbody>
                               <?php
+                                 // Melakukan perulangan untuk menampilkan ke tabel
                                  for ($i=0; $i < count($data_bulan); $i++) {
                               ?>
 
@@ -132,7 +134,7 @@
          </div>
 
    <!-- Data Footer -->
-   <?php include_once "./template/footer.php" ?>
+<?php include_once "./template/footer.php" ?>
 
 <script>
    var ctx = document.getElementById("barChart");
@@ -181,9 +183,9 @@
                bottom: 0
             },
          },
-         animation: { // Menampilkan data di atas chart
-            duration : 5,
-
+         animation: { // Menampilkan data di atas chart/label chart
+            // duration : 5,
+            
             onComplete : function() {
                var chartInstance = this.chart,
                ctx = chartInstance.ctx;
@@ -196,7 +198,7 @@
                   var meta = chartInstance.controller.getDatasetMeta(i);
                   meta.data.forEach(function(bar, index) {
                         if (dataset.data[index] > 0) {
-                           var data = dataset.data[index];
+                           var data = dataset.data[index]; //menampilkan data, bisa dicustom
                            ctx.fillText(data, bar._model.x, bar._model.y);
                         }
                   });

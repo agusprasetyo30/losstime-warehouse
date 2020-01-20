@@ -197,10 +197,10 @@
          $data_query = $this->showLosstimeByWeek($month, $year); // mengambil data dari fungsi
 
          for ($i=0; $i < count($data_query); $i++) {
-            array_push($data_minggu, 'Minggu ' .$data_query[$i]['week']);
+            array_push($data_minggu, 'Minggu ' .$data_query[$i]['week']); // memasukan data minggu ke array $data_minggu
          }
 
-         // merubah array menjadi JSON dan 
+         // merubah array menjadi JSON dan mereturn data array tersebut
          return json_encode($data_minggu, JSON_NUMERIC_CHECK);
       }
       
@@ -211,10 +211,10 @@
          $data_query = $this->showLosstimeByWeek($month, $year); // mengambil data dari fungsi
 
          for ($i=0; $i < count($data_query); $i++) {
-            array_push($data_losstime, $data_query[$i]['jumlah_menit']);
+            array_push($data_losstime, $data_query[$i]['jumlah_menit']);// memasukan data minggu ke array $data_losstime
          }
 
-         // merubah array menjadi JSON dan 
+         // merubah array menjadi JSON dan mereturn data array tersebut
          return json_encode($data_losstime, JSON_NUMERIC_CHECK);
       }
 

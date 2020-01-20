@@ -132,7 +132,7 @@
             },
          },
          animation: { // Menampilkan data di atas chart
-            duration : 2,
+            // duration : 2,
 
             onComplete : function() {
                var chartInstance = this.chart,

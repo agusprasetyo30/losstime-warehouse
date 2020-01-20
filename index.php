@@ -3,9 +3,14 @@
 
    include_once "./data/class/dataDB.php";
 
-   $data_lossTime = [65, 59, 80, 81, 56, 55, 40, 50, 30, 40, 50, 40];
+   // Membuat object baru
+   $data = new dataDB();
+
+   // memasukan data ke dalam array
+   $data_lossTime = $data->getDataGrafikLosstime(date('Y'));
    $data_bulan = ['Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'];
 
+   // merubah data array menjadi JSON
    $bulan = json_encode($data_bulan, JSON_NUMERIC_CHECK);
    $lossTime = json_encode($data_lossTime, JSON_NUMERIC_CHECK);
 ?>
@@ -17,6 +22,7 @@
       <title>Warehouse | PT. SAI</title>
       <!-- Tell the browser to be responsive to screen width -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" href="./dist/img/logo/logo-title.png">
 
       <!-- Template bawaan dan bootstrap 4 -->
       <link rel="stylesheet" href="./dist/css/adminlte.min.css">
@@ -26,19 +32,6 @@
       <link rel="stylesheet" href="./plugins/ion-icon/css/ionicons.min.css">
       <!-- Custom CSS -->
       <link rel="stylesheet" href="./dist/css/app.css">
-
-      <style>
-         /* body, html {
-            height: 100%;
-            margin: 0;
-         } */
-         /* .valign {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-         } */
-      </style>
    </head>
 
    <body class="main-content-dashboard" style="height: 100%; max-height: 100%">
@@ -60,7 +53,6 @@
          </ul>
       </div>
    </nav>
-
    <div id="container">
       <div class="container-fluid p-3 mt-2 mb-3">
          <div class="card" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
@@ -72,8 +64,7 @@
                         <canvas id="barChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
                      </div>
                      <?php
-                        $data = new dataDB();
-                        $ambilBulan = $data->getBulan(date("m"));
+                           $ambilBulan = $data->getBulan(date("m"));
                      ?>
                   </div>
                </div>
@@ -84,7 +75,7 @@
                      <div class="col-4">
                         <div class="small-box red-flat">
                            <div class="inner description-text ml-3">
-                              <h3 style="margin-top: 0.5rem">53<sup style="font-size: 20px"> Menit</sup></h3>
+                              <h3 style="margin-top: 0.5rem"><?= $data->countLosstimeByDay(date('Y-m-d')) ?><sup style="font-size: 20px"> Menit</sup></h3>
 
                               <p>Losstime Harian (<?= date("d/M/Y") ?>)</p>
                            </div>
@@ -96,7 +87,10 @@
                      <div class="col-4">
                         <div class="small-box orange-flat">
                            <div class="inner description-text ml-3">
-                              <h3 style="margin-top: 0.5rem">53<sup style="font-size: 20px"> Menit</sup></h3>
+                              <h3 style="margin-top: 0.5rem">
+                                 <?= $data->showLosstimeByMonthYear(date('m'), date('Y'))['jumlah_menit'] == NULL ? 0 : $data->showLosstimeByMonthYear(date('m'), date('Y'))['jumlah_menit'] ?>
+                                 <sup style="font-size: 20px"> Menit</sup>
+                              </h3>
 
                               <p>Losstime Bulan (<?= $data->getBulan(date("m")) ?>)</p>
                            </div>
@@ -108,7 +102,10 @@
                      <div class="col-4 ">
                         <div class="small-box green-flat">
                            <div class="inner description-text ml-3">
-                              <h3 style="margin-top: 0.5rem">53<sup style="font-size: 20px"> Menit</sup></h3>
+                              <h3 style="margin-top: 0.5rem">
+                                 <?= $data->countLosstimeByYear(date('Y')) ?>
+                                 <sup style="font-size: 20px"> Menit</sup>
+                              </h3>
 
                               <p>Losstime Tahun (<?= date("Y") ?>)</p>
                            </div>
@@ -125,14 +122,17 @@
          <footer class="footer bg-navbar-dashboard">
             <div class="container">
                <div class="row">
+
+                  <?php $running_text = $data->showListRunningText(); ?>
+                  
                   <marquee scrolldelay=60 onmouseover="this.stop()" onmouseout="this.start()">
                      <?php
-                     for ($i=0; $i < 2; $i++) { 
-                        echo 'Berita hari ini : ';
-                        echo "<span>Lorem ipsum dolor sit amet</span>";
-                        echo "<span style='margin-right:20px'></span>";
-                     }
-                     ?>
+                        for ($i=0; $i < count($running_text); $i++) {
+                     ?> 
+                        <img src="./dist/img/logo/logo-title.png" width=50>
+                        <span style='margin-right:30px'><?= $running_text[$i]['text'] ?></span>
+                                                   
+                     <?php } ?>
                </marquee>
             </div>
          </div>   
@@ -146,34 +146,71 @@
    <script>
       var ctx = document.getElementById("barChart");
       var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-         labels: <?=$bulan?>,
-         datasets: [{
-            label: 'Losstime',
-            data: <?=$lossTime?>,
-            backgroundColor: '#3498DB',
-            borderColor: '#e3e5ea',
-            borderWidth: 1
-         }]
-      },
-      options: {
-            responsive              : true,
-            maintainAspectRatio     : false,
-            datasetFill             : true,
-            
-            scales: {
-               xAxes: [{
-                  ticks: {
-                     maxRotation: 100,
-                     minRotation: 0
-                  }
-               }],
-               yAxes: [{
-                  ticks: {
-                     beginAtZero: true
-                  }
-               }]
+         type: 'bar',
+         data: {
+            labels: <?=$bulan?>,
+            datasets: [{
+               label: 'Losstime',
+               data: <?=$lossTime?>,
+               backgroundColor: '#3498DB',
+               borderColor: '#e3e5ea',
+               borderWidth: 1
+            }]
+         },
+         options: {
+               responsive              : true,
+               maintainAspectRatio     : false,
+               datasetFill             : true,
+               
+               scales: {
+                  xAxes: [{
+                     ticks: {
+                        maxRotation: 100,
+                        minRotation: 0
+                     }
+                  }],
+                  yAxes: [{
+                     ticks: {
+                        beginAtZero: true
+                     },
+                     scaleLabel: {
+                        display: true,
+                        labelString: 'Jumlah Losstime Perbulan (dalam menit)'
+                     }
+                  }]
+               },
+            legend: {
+               display: false
+            },
+            layout: {
+               padding: {
+                  left: 0,
+                  right: 0,
+                  top: 15,
+                  bottom: 0
+               },
+            },
+            animation: { // Menampilkan data di atas chart/label chart
+               // duration : 5,
+               
+               onComplete : function() {
+                  var chartInstance = this.chart,
+                  ctx = chartInstance.ctx;
+
+                  ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                  ctx.textAlign = 'center';
+                  ctx.textBaseline = 'bottom';
+
+                  this.data.datasets.forEach(function(dataset, i) {
+                     var meta = chartInstance.controller.getDatasetMeta(i);
+                     meta.data.forEach(function(bar, index) {
+                           if (dataset.data[index] > 0) {
+                              var data = dataset.data[index]; //menampilkan data, bisa dicustom
+                              ctx.fillText(data, bar._model.x, bar._model.y);
+                           }
+                     });
+                  });
+               }
             }
          }
       });
