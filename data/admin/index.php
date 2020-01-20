@@ -16,7 +16,6 @@
    $lossTime = json_encode($data_lossTime, JSON_NUMERIC_CHECK);
 
    $status_nav_dashboard = 'active';
-
    
 ?>
    
@@ -183,7 +182,7 @@
             },
          },
          animation: { // Menampilkan data di atas chart
-            duration : 2,
+            duration : 5,
 
             onComplete : function() {
                var chartInstance = this.chart,

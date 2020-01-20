@@ -78,7 +78,7 @@
          $id_user = $post['id_user'];
 
          // waktu dan tanggal hari ini
-         $waktu = date('Y-m-d H:i:s');
+         $waktu = $post['waktu'];
 
          // Query tambah data
          $query = "INSERT INTO losstime VALUES(NULL, '$line', '$shift', '$jam_kerja', '$masalah', '$jml_losstime', '$id_user', '$waktu')";
@@ -90,7 +90,7 @@
       // menampilkan losstime berdasarkan tanggal hari ini
       function showLosstimeByDay($dayDate) 
       {
-         $query = "SELECT * FROM losstime WHERE DATE(created_at) = '$dayDate' ";
+         $query = "SELECT * FROM losstime WHERE DATE(created_at) = '$dayDate' ORDER BY created_at DESC ";
          
          return $this->query($query);
       }
@@ -108,7 +108,7 @@
       function showLosstimeByMonth() 
       {
          $query = "SELECT count(line) as jumlah_line, sum(jml_losstime) AS jumlah_menit, MONTH(created_at) as month, YEAR(created_at) as year FROM losstime 
-            GROUP BY MONTH(created_at), YEAR(created_at)";
+            GROUP BY MONTH(created_at), YEAR(created_at) ORDER BY created_at DESC";
          
          return $this->query($query);
       }
@@ -125,7 +125,7 @@
       // menampilkan seua losstime dalam bulan dan tahun tertentu
       function showAllLostimeByMonthYear($month, $year)
       {
-         $query = "SELECT * FROM losstime WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' ORDER BY created_at ASC ";
+         $query = "SELECT * FROM losstime WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' ORDER BY created_at DESC ";
 
          return $this->query($query);
       }
@@ -179,6 +179,44 @@
          return $data_arr;
       }
 
+      // menghitung dan menampilkan jumlah losstime per minggu dalam periode bulan tertentu
+      function showLosstimeByWeek($month, $year)
+      {
+         $query = "SELECT WEEK(created_at, 1) - WEEK(created_at - INTERVAL DAY(created_at) - 1 DAY, 1) + 1 as week, sum(jml_losstime) as jumlah_menit FROM losstime 
+            WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' 
+            GROUP BY WEEK(created_at, 1) - WEEK(created_at - INTERVAL DAY(created_at) - 1 DAY, 1) + 1
+            ORDER BY jumlah_menit DESC";
+         
+         return $this->query($query);
+      }
+
+      // mengambil data minggu pada data query yang akan digunakan pada grafik
+      function getWeekLosstimeByMonthYear($month, $year)
+      {
+         $data_minggu = [];
+         $data_query = $this->showLosstimeByWeek($month, $year); // mengambil data dari fungsi
+
+         for ($i=0; $i < count($data_query); $i++) {
+            array_push($data_minggu, 'Minggu ' .$data_query[$i]['week']);
+         }
+
+         // merubah array menjadi JSON dan 
+         return json_encode($data_minggu, JSON_NUMERIC_CHECK);
+      }
+      
+      // mengambil data jumlah losstime minggu pada data query yang akan digunakan pada grafik
+      function getJumlahLosstimeByMonthYear($month, $year)
+      {
+         $data_losstime = [];
+         $data_query = $this->showLosstimeByWeek($month, $year); // mengambil data dari fungsi
+
+         for ($i=0; $i < count($data_query); $i++) {
+            array_push($data_losstime, $data_query[$i]['jumlah_menit']);
+         }
+
+         // merubah array menjadi JSON dan 
+         return json_encode($data_losstime, JSON_NUMERIC_CHECK);
+      }
 
 
       /**

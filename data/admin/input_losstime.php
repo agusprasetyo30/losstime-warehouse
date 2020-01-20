@@ -88,7 +88,6 @@
                                  ?>
                               </select>
                            </div>
-
                            <!-- INPUT LOSSTIME -->
                            <div class="form-group mt-4" style="margin-left: 30px">
                               <label for="jumlah_losstime" class="label-input-losstime">Jumlah Losstime (Dalam Menit)</label>
@@ -109,6 +108,7 @@
                                  </div>
                               </div>
                            </div>
+                           <input type="hidden" name="waktu" value="<?= date('Y-m-d H:i:s'); ?>">
                            <input type="text" name="id_user" value="1">
                            <div class="form-group mt-4" style="margin-left: 30px;">
                               <button type="submit" name="simpan" class="btn btn-success btn-block" style="height: 75px; font-size: 20px">
@@ -131,6 +131,7 @@
 <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script>
+   // Tampilan sweetalert ketika berhasil
    function berhasil() {
       Swal.fire({
          type: 'success',
@@ -146,7 +147,7 @@
 </script>
 
 <?php 
-   if (isset($_POST['simpan'])) {
+   if (isset($_POST['simpan'])) { // ketika tombol simpan di tekan
       if ($data->addLosstime($_POST) > 0) {
          echo "<script>berhasil()</script>";
       
