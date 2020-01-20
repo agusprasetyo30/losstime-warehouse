@@ -1,5 +1,5 @@
 <?php
-   // TODO: NANTINYA BISA MENGINPUTKAN DATA TIDAK JANUARI, MUNGKIN
+   // Memanggil class dan membuat object baru berdasarkan class yang dibuat pada folder class
    include_once "../class/dataDB.php";
    $data = new DataDB();
 
@@ -12,16 +12,11 @@
    $data_lossTime = $data->getDataGrafikLosstime(date('Y'));
    $data_bulan = ['Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'];
    
-   // print_r($data->showLosstimeCountByYear('2020'));
-   print_r($data->getDataGrafikLosstime(date('Y')));
-   die();
-   // die();
    $bulan = json_encode($data_bulan, JSON_NUMERIC_CHECK);
    $lossTime = json_encode($data_lossTime, JSON_NUMERIC_CHECK);
 
    $status_nav_dashboard = 'active';
 
-   // Memanggil class dan membuat object baru berdasarkan class yang dibuat pada folder class
    
 ?>
    
@@ -54,7 +49,7 @@
                   <div class="inner">
                      <a class="box-link" href="./losstime.php?type=bulanan&bulan=<?=date('m')?>&tahun=<?=date('Y')?>">
 
-                        <h3><?= $data->showLosstimeByMonthYear(date('m'), date('Y'))['jumlah_menit'] ?> <sup style="font-size: 20px">Menit</sup></h3>
+                        <h3><?= $data->showLosstimeByMonthYear(date('m'), date('Y'))['jumlah_menit'] == NULL ? 0 : $data->showLosstimeByMonthYear(date('m'), date('Y'))['jumlah_menit'] ?> <sup style="font-size: 20px">Menit</sup></h3>
                         
                         <p>Losstime Bulan (<?= $data->getBulan(date('m')) ?>)</p>
                      </a>
@@ -169,11 +164,46 @@
             yAxes: [{
                ticks: {
                   beginAtZero: true
+               },
+               scaleLabel: {
+                  display: true,
+                  labelString: 'Jumlah Losstime Perbulan (dalam menit)'
                }
             }]
+         },
+         legend: {
+            display: false
+         },
+         layout: {
+            padding: {
+               left: 0,
+               right: 0,
+               top: 15,
+               bottom: 0
+            },
+         },
+         animation: { // Menampilkan data di atas chart
+            duration : 2,
+
+            onComplete : function() {
+               var chartInstance = this.chart,
+               ctx = chartInstance.ctx;
+
+               ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+               ctx.textAlign = 'center';
+               ctx.textBaseline = 'bottom';
+
+               this.data.datasets.forEach(function(dataset, i) {
+                  var meta = chartInstance.controller.getDatasetMeta(i);
+                  meta.data.forEach(function(bar, index) {
+                        if (dataset.data[index] > 0) {
+                           var data = dataset.data[index];
+                           ctx.fillText(data, bar._model.x, bar._model.y);
+                        }
+                  });
+               });
+            }
          }
-      }
+      },
    });
-
 </script>
-

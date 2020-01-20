@@ -3,7 +3,7 @@
 
    class dataDB extends dataArray {
 
-      // Constructor
+      // Constructor koneksi
       function __construct()
       {
          $hostname = "localhost";
@@ -100,7 +100,8 @@
       {
          $query = "SELECT sum(jml_losstime) as jumlah FROM losstime WHERE DATE(created_at) = '$dayDate' GROUP BY DATE(created_at) ";
          
-         return $this->query($query)[0]['jumlah'];
+         // Jika data didalam database masih kosong/NULL maka akan mereturn nilai 0
+         return $this->query($query)[0]['jumlah'] == NULL ? 0 : $this->query($query)[0]['jumlah'];
       }
       
       // menampilkan losstime berdasarkan bulan
@@ -134,7 +135,8 @@
       {
          $query = "SELECT sum(jml_losstime) as jumlah_menit FROM losstime WHERE YEAR(created_at) = '$year' GROUP BY YEAR(created_at) ";
 
-         return $this->query($query)[0]['jumlah_menit'];
+         // Jika data didalam database masih kosong/NULL maka akan mereturn nilai 0
+         return $this->query($query)[0]['jumlah_menit'] == NULL ? 0 : $this->query($query)[0]['jumlah_menit'];
       }
 
       // menampilkan jumlah menit berdasarkan tahun
@@ -145,7 +147,7 @@
          return $this->query($query);
       }
 
-      // data array losstime yang terdapat pada grafik
+      // data array losstime yang terdapat pada grafik dimana ditampilkan berdasarkan tahun sekarang
       function getDataGrafikLosstime($year)
       {
          $data_arr = [];
@@ -153,21 +155,27 @@
          $indexBulan = 0;
          $i=0;
 
-         while($i < 12) {
+         for ($i=0; $i < 12 ; $i++) { 
 
-            if ($this->showLosstimeCountByYear($year)[$i] == NULL) {
+            // Jika data bulan masih kosong/belum diisi
+            if ($this->showLosstimeCountByYear($year)[$indexBulan] == NULL) {
                array_push($data_arr, 0);
-            } else { 
-               
-               if ($bulan == $this->showLosstimeCountByYear($year)[$indexBulan]['month']) {
-                  array_push($data_arr, $this->showLosstimeCountByYear($year)[$indexBulan]['jumlah_menit']);
+            } 
+            
+            // jika sudah terdapat data pada bulan tersebut
+            if ($this->showLosstimeCountByYear($year)[$indexBulan] != NULL) {
+               if ($this->showLosstimeCountByYear($year)[$indexBulan]['month'] == $bulan) { // jika data di database sesuai dengan bulan
+                  array_push($data_arr, $this->showLosstimeCountByYear($year)[$indexBulan]['jumlah_menit']); // memasukan data ke array untuk menampilkan ke grafik
                   $indexBulan++;
+
+               } else {
+                  array_push($data_arr, 0);
                }
             }
 
-            $i++;
             $bulan++;
          }
+
          return $data_arr;
       }
 
