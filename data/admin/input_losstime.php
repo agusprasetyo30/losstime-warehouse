@@ -98,8 +98,8 @@
                                     </button>
                                  </div>
 
-                                 <input type="text" name="jumlah_losstime" onkeypress="return isNumberKey(event)" placeholder="Tambahkan jumlah losstime" required
-                                    id="jumlah-losstime" class="form-control jumlah-input-losstime" value="0" min="0" maxlength="3">
+                                 <input type="number" name="jumlah_losstime" onkeypress="return isNumberKey(event)" placeholder="Tambahkan jumlah losstime" required
+                                    id="jumlah-losstime" class="form-control jumlah-input-losstime" min="0" maxlength="3">
                                  
                                  <div class="input-group-prevend">
                                     <button type="button" class="btn btn-success" id="btn-tambah">

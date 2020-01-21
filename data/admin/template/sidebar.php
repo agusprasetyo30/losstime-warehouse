@@ -25,8 +25,8 @@
             <b>
                <?php 
                // Jika jumlah dari nama lebih dari 20 karakter
-               if (strlen($_SESSION['nama']) > 20) {
-                  $potong = substr($_SESSION['nama'], 0, 20) .'...'; // ditambahkan titik2 untuk efisiensi 
+               if (strlen($_SESSION['nama']) > 16) {
+                  $potong = substr($_SESSION['nama'], 0, 16) .'...'; // ditambahkan titik2 untuk efisiensi 
                   
                   echo $potong;
                

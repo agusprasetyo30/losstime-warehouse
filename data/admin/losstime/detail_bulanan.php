@@ -38,6 +38,7 @@
                         <th style="width: 400px">Masalah</th>
                         <th>Jumlah Menit</th>
                         <th>Periode</th>
+                        <th>User Input</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -52,6 +53,7 @@
                         <td style="text-align: left"><?= $file['masalah'] ?></td>
                         <td><?= $file['jml_losstime'] ?></td>
                         <td><?= date("d", strtotime($file['created_at'])) .'/'. $data->getBulan(date("m", strtotime($file['created_at']))) .'/'. date("Y", strtotime($file['created_at'])) ?></td>
+                        <td><?= explode(' ', $file['nama'])[0] .' '. explode(' ', $file['nama'])[1] .' '. explode(' ', $file['nama'])[2] ?></td>
                      </tr>
                      <?php } ?>
                   </tbody>

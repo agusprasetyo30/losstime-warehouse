@@ -178,7 +178,9 @@
       // menampilkan seua losstime dalam bulan dan tahun tertentu
       function showAllLostimeByMonthYear($month, $year)
       {
-         $query = "SELECT * FROM losstime WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' ORDER BY created_at DESC ";
+         $query = "SELECT * FROM losstime l INNER JOIN user u ON l.id_user = u.id 
+            WHERE MONTH(l.created_at) = '$month' AND YEAR(l.created_at) = '$year' 
+            ORDER BY l.created_at DESC ";
 
          return $this->query($query);
       }

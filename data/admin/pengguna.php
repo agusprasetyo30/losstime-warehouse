@@ -33,11 +33,11 @@
             <div class="card-body">
                <div class="form-group">
                   <label for="nama">Nama</label>
-                  <input type="text" class="form-control" id="nama" value="Agus Prasetyo" readonly>
+                  <input type="text" class="form-control" id="nama" value="<?= $_SESSION['nama'] ?>" readonly>
                </div>
                <div class="form-group">
                   <label for="id_kar">ID Karyawan</label>
-                  <input type="text" class="form-control" id="id_kar" value="800832" readonly>
+                  <input type="text" class="form-control" id="id_kar" value="<?= $_SESSION['id_karyawan'] ?>" readonly>
                </div>
 
             </div>

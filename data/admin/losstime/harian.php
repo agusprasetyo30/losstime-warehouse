@@ -48,7 +48,7 @@
                         <td style="text-align: left; vertical-align: middle"><?= $file['masalah'] ?></td>
                         <td style="vertical-align: middle"><?= $file['jml_losstime'] ?></td>
                         <td style="vertical-align: middle">
-                           <b><?= $file['nama'] ?></b> <br>
+                           <b><?= explode(' ', $file['nama'])[0] .' '. explode(' ', $file['nama'])[1] .' '. explode(' ', $file['nama'])[2] ?></b> <br>
                            <small>( <?= $file['id_karyawan'] ?> )</small>
                         </td>
                      </tr>
