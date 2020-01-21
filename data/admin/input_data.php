@@ -22,8 +22,6 @@
 
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 
-<link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
-
 <?php
    if ($_GET['type'] == 'running-text') {
       include_once "./tambah-data/running_text.php";
@@ -53,8 +51,6 @@
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-
-<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script>
    function berhasilSimpan() {

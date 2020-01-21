@@ -37,9 +37,39 @@
 <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- Sweetalert2 -->
+<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.js"></script>
 
+<script>
+  // Sweetalert untuk logout
+  function logout() {
+      Swal.fire({
+            type: 'success',
+            html: 'Logout Sukses!',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            focusConfirm: true,
+            showConfirmButton: true
+            
+      }).then(function() {
+            window.location.href = "../../",
+            console.log("The OK Button was clicked");
+      })
+  }
+</script>
+
+<!-- PROSES LOGOUT -->
+<?php
+  if (isset($_POST['logout'])) {
+      if ($data->logout($_SESSION['id_karyawan'])) {
+        echo "<script>logout()</script>";
+      } else {
+        echo '<script>alert("gagal")</script>';
+      }
+  }
+?>
 
 </body>
 </html>

@@ -8,20 +8,35 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
    <!-- Brand Logo -->
    <a href="./" class="brand-link">
-      <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-            style="opacity: .8">
-      <span class="brand-text font-weight-light">WAREHOUSE</span>
+      <img src="../../dist/img/logo/logo-yazaki.png" alt="AdminLTE Logo" width="100%"
+            style="opacity: .8;">
+      <!-- <span class="brand-text font-weight-light">WAREHOUSE</span> -->
    </a>
 
    <!-- Sidebar -->
    <div class="sidebar">
    <!-- Sidebar user panel (optional) -->
-   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+   <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="width: 100%;">
       <div class="image">
-         <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+         <i class="fas fa-user-circle text-white" style="font-size: 55px"></i>
       </div>
-      <div class="info">
-         <a href="#" class="d-block">Administrator</a>
+      <div class="info" >
+         <a href="#" class="d-block text-white" style="width: 100%; font-size: 15px">
+            <b>
+               <?php 
+               // Jika jumlah dari nama lebih dari 20 karakter
+               if (strlen($_SESSION['nama']) > 20) {
+                  $potong = substr($_SESSION['nama'], 0, 20) .'...'; // ditambahkan titik2 untuk efisiensi 
+                  
+                  echo $potong;
+               
+               } else { // jika kurang maka yang ditampilkan adalah nama full
+                  echo $_SESSION['nama']; 
+               }
+               ?> 
+            </b>
+         </a>
+         <small class="text-white"><?= $_SESSION['id_karyawan'] ?></small>
       </div>
    </div>
    <!-- Sidebar Menu -->

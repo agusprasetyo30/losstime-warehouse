@@ -10,7 +10,7 @@
 
    include_once "./template/header.php";
 ?>
-
+<!-- CSS Sweetalert2 -->
 <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
 
 <hr>
@@ -75,7 +75,6 @@
    $inputNama = $_POST["nama"];
 ?>
 
-<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script>
    function berhasil() {
@@ -138,12 +137,6 @@
          echo "<script>passwordInfo()</script>";
 
       } else  {
-         // echo "
-         //    <script>
-         //       alert('Gagal');
-         //    </script>
-         // ";
-         
          echo("<br>");
          echo mysqli_error($data->koneksi);
       }

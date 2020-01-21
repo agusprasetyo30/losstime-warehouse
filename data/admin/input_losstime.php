@@ -11,8 +11,8 @@
    include_once "./template/header.php";
 
 ?>
-<link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
 
+<hr>
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-md-10">
@@ -109,7 +109,7 @@
                               </div>
                            </div>
                            <input type="hidden" name="waktu" value="<?= date('Y-m-d H:i:s'); ?>">
-                           <input type="text" name="id_user" value="1">
+                           <input type="hidden" name="id_user" value="<?= $_SESSION['id'] ?>">
                            <div class="form-group mt-4" style="margin-left: 30px;">
                               <button type="submit" name="simpan" class="btn btn-success btn-block" style="height: 75px; font-size: 20px">
                                  <i class="nav-icon fas fa-save"></i>
@@ -127,8 +127,6 @@
 </div>
 
 <?php include_once "./template/footer.php" ?>
-
-<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script>
    // Tampilan sweetalert ketika berhasil

@@ -19,7 +19,7 @@
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>Warehouse | PT. SAI</title>
+      <title>WAREHOUSE | PT. SAI</title>
       <!-- Tell the browser to be responsive to screen width -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="icon" href="./dist/img/logo/logo-title.png">
@@ -75,8 +75,9 @@
                      <div class="col-4">
                         <div class="small-box red-flat">
                            <div class="inner description-text ml-3">
-                              <h3 style="margin-top: 0.5rem"><?= $data->countLosstimeByDay(date('Y-m-d')) ?><sup style="font-size: 20px"> Menit</sup></h3>
-
+                              <h3 style="margin-top: 0.5rem"><?= $data->countLosstimeByDay(date('Y-m-d')) ?>
+                                 <sup style="font-size: 20px"> Menit</sup>
+                              </h3>
                               <p>Losstime Harian (<?= date("d/M/Y") ?>)</p>
                            </div>
                            <div class="icon text-white">

@@ -1,11 +1,13 @@
 <?php
+   // ini_set("display_errors", 1);
+
    $title= "Pengguna";
    $menu = "Pengguna";
    $link_menu = "pengguna.php";
    $location = "Index";
    $status_nav_pengguna = 'active';
 
-   include_once "../function.php";
+   include_once "../class/dataDB.php";
    include_once "./template/header.php";
 
 ?>

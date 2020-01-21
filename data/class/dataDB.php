@@ -27,8 +27,58 @@
 
       /**
        * Pengguna
+       * 
        */
 
+      // Login pengguna
+      function login($post)
+      {
+         $id_karyawan = htmlspecialchars($post['id_anggota']);
+         $password = mysqli_real_escape_string($this->koneksi, $post['password']);
+
+         $query_id = "SELECT * FROM user WHERE id_karyawan = '$id_karyawan' ";
+
+         $cek_id = mysqli_query($this->koneksi, $query_id);
+
+         // mengecek apakah username ada atau tidak
+         if (mysqli_num_rows($cek_id) == 1) {
+            $data = mysqli_fetch_assoc($cek_id);
+            
+            // mencocokan password input dengan password yang ada di DB
+            if (password_verify($password, $data['password'])) {
+               // Menginisialisasi SESSION
+               $_SESSION['id'] = $data['id'];
+               $_SESSION['nama'] = $data['nama'];
+               $_SESSION['id_karyawan'] = $data['id_karyawan'];
+               $_SESSION['password'] = $data['password'];
+               
+               return true; // jika benar maka akan mereturn nilai true
+
+            } else { // jika password salah
+               return false;
+            }
+
+         } else { // jika username & password salah
+            return false;
+         }
+      }
+
+      // logout pengguna
+      function logout($session)
+      {
+         if ($session != NULL) {
+            session_start();
+            session_destroy();
+            session_unset();
+            
+            return true;
+
+         } else {
+            return false;
+         }
+      }
+      
+      
       // fungsi untuk menambahkan pengguna
       function addUser($post) 
       {
@@ -65,6 +115,7 @@
 
       /**
        * Losstime
+       * 
        */
 
       // Menambahkan data losstime
@@ -90,8 +141,10 @@
       // menampilkan losstime berdasarkan tanggal hari ini
       function showLosstimeByDay($dayDate) 
       {
-         $query = "SELECT * FROM losstime WHERE DATE(created_at) = '$dayDate' ORDER BY created_at DESC ";
-         
+         $query = "SELECT * FROM losstime l INNER JOIN user u ON l.id_user = u.id 
+            WHERE DATE(l.created_at) = '$dayDate' 
+            ORDER BY l.created_at DESC ";
+                  
          return $this->query($query);
       }
 
@@ -218,9 +271,9 @@
          return json_encode($data_losstime, JSON_NUMERIC_CHECK);
       }
 
-
       /**
        * Running Text
+       * 
        */
 
       // menginputkan running text

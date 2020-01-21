@@ -1,3 +1,9 @@
+<?php
+   session_start();
+   include "../../class/dataDB.php";
+
+   $data = new dataDB();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +27,8 @@
    <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
    <!-- summernote -->
    <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
+   <!-- Sweetalert2 -->
+   <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
    <!-- Custom CSS -->
    <link rel="stylesheet" href="../../dist/css/app.css">
 
@@ -36,36 +44,18 @@
          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item" style="width: 100%;">
-         <div class="dashboard-nav-link">PT. SURABAYA AUTOCOMP INDONESIA</div>
+         <div class="dashboard-nav-link">WAREHOUSE SECTION PT. SURABAYA AUTOCOMP INDONESIA</div>
       </li>
       <li class="nav-item" style="text-align: right; width: 300px;">
-         
-      <?php 
-         // if ($_GET['type'] == 'detail') { // Tombol kembali untuk detail bulanan      
-      ?>
-         <!-- <a href="./losstime.php?type=bulanan" class="btn btn-warning">
-            <i class="nav-icon fas fa-undo"></i>
-            Kembali
-         </a> -->
-      <?php  
-         // } else if ($_GET['type'] == 'tambah-pengguna') { // Tombol kembali untuk tambah pengguna
-      ?>
-         <!-- <a href="./pengguna.php" class="btn btn-warning">
-            <i class="nav-icon fas fa-undo"></i>
-            Kembali
-         </a> -->
-         <?php 
-         // } 
-         ?>
-
-         <a href="#" class="btn btn-danger">
-            <i class="nav-icon fas fa-door-open"></i>
-            Logout
-         </a>
+         <form action="" method="post">
+            <button type="submit" class="btn btn-danger" name="logout">
+               <i class="nav-icon fas fa-door-open"></i>
+               Logout
+            </button>
+         </form>
       </li>
       </ul>
    </nav>
-   <!-- /.navbar -->
 
    <!--  data Sidebar -->
    <?php include_once "./template/sidebar.php" ?>

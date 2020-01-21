@@ -82,7 +82,7 @@
                      <tr>
                         <th style="width: 30px">#</th>
                         <th>Jumlah Line</th>
-                        <th>Jumlah Menit</th>
+                        <th>Total Losstime (Menit)</th>
                         <th>Periode</th>
                         <th style="width: 90px">Aksi</th>
                      </tr>
