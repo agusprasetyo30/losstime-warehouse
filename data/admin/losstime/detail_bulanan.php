@@ -32,13 +32,13 @@
                <table id="example3" class="table table-bordered table-striped table-hover text-center">
                   <thead>
                      <tr>
-                        <th style="width: 30px">#</th>
-                        <th>Nomer Line</th>
-                        <th>Shift</th>
-                        <th style="width: 400px">Masalah</th>
-                        <th>Jumlah Menit</th>
-                        <th>Periode</th>
-                        <th>User Input</th>
+                        <th style="width: 30px; vertical-align: middle">#</th>
+                        <th style="vertical-align: middle">Nomer Line</th>
+                        <th style="vertical-align: middle">Shift</th>
+                        <th style="width: 400px; vertical-align: middle">Masalah</th>
+                        <th style="vertical-align: middle">Jumlah Menit</th>
+                        <th style="vertical-align: middle">Periode</th>
+                        <th style="vertical-align: middle">User Input</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -47,13 +47,13 @@
                         foreach ($data->showAllLostimeByMonthYear($_GET['bulan'], $_GET['tahun']) as $file) {
                      ?>
                      <tr>
-                        <td><?= $nomer++ ?>.</td>
-                        <td><b><?= $file['line'] ?></b></td>
-                        <td><?= $file['shift'] == 'PAGI' ? "<span class='label bg-success'>$file[shift]</span>" : "<span class='label bg-primary'>$file[shift]</span>" ?></td>
-                        <td style="text-align: left"><?= $file['masalah'] ?></td>
-                        <td><?= $file['jml_losstime'] ?></td>
-                        <td><?= date("d", strtotime($file['created_at'])) .'/'. $data->getBulan(date("m", strtotime($file['created_at']))) .'/'. date("Y", strtotime($file['created_at'])) ?></td>
-                        <td><?= explode(' ', $file['nama'])[0] .' '. explode(' ', $file['nama'])[1] .' '. explode(' ', $file['nama'])[2] ?></td>
+                        <td style="vertical-align: middle"><?= $nomer++ ?>.</td>
+                        <td style="vertical-align: middle"><b><?= $file['line'] ?></b></td>
+                        <td style="vertical-align: middle"><?= $file['shift'] == 'PAGI' ? "<span class='label bg-success'>$file[shift]</span>" : "<span class='label bg-primary'>$file[shift]</span>" ?></td>
+                        <td style="text-align: left; vertical-align: middle"><?= $file['masalah'] ?></td>
+                        <td style="vertical-align: middle"><?= $file['jml_losstime'] ?></td>
+                        <td style="vertical-align: middle"><?= date("d", strtotime($file['created_at'])) .'/'. $data->getBulan(date("m", strtotime($file['created_at']))) .'/'. date("Y", strtotime($file['created_at'])) ?></td>
+                        <td style="vertical-align: middle"><?= explode(' ', $file['nama'])[0] .' '. explode(' ', $file['nama'])[1] .' '. explode(' ', $file['nama'])[2] ?></td>
                      </tr>
                      <?php } ?>
                   </tbody>

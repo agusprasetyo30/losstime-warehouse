@@ -47,7 +47,7 @@
                <!-- small box -->
                <div class="small-box bg-success">
                   <div class="inner">
-                     <a class="box-link" href="./losstime.php?type=bulanan&bulan=<?=date('m')?>&tahun=<?=date('Y')?>">
+                     <a class="box-link" href="./losstime.php?type=detail&bulan=<?=date('m')?>&tahun=<?=date('Y')?>">
 
                         <h3><?= $data->showLosstimeByMonthYear(date('m'), date('Y'))['jumlah_menit'] == NULL ? 0 : $data->showLosstimeByMonthYear(date('m'), date('Y'))['jumlah_menit'] ?> <sup style="font-size: 20px">Menit</sup></h3>
                         
@@ -57,7 +57,7 @@
                   <div class="icon">
                      <i class="ion ion-stats-bars"></i>
                   </div>
-                  <a href="./losstime.php?type=bulanan&bulan=<?=date('m')?>&tahun=<?=date('Y')?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                  <a href="./losstime.php?type=detail&bulan=<?=date('m')?>&tahun=<?=date('Y')?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                </div>
                </div>
                <!-- ./col -->

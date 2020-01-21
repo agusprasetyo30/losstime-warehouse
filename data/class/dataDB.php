@@ -78,6 +78,40 @@
          }
       }
       
+      // ubah password pengguna berdasakan inputan dan + ID Peggunaa
+      function changePassword($post, $id)
+      {
+         $password_lama = $post['password_lama'];
+         $password_baru = $post['password_baru'];
+         $konfirmasi_password = $post['konfirmasi_password'];
+
+         // query mencari data berdasarkan ID user
+         $query_cek = "SELECT * FROM user WHERE id = '$id' ";
+
+         $cek_id = mysqli_query($this->koneksi, $query_cek);
+
+         // jika ID ditemukan/sesuai
+         if (mysqli_num_rows($cek_id) > 0) {
+            $data = mysqli_fetch_assoc($cek_id);
+
+            // mengecek apakah password lama sesuai dengan password yang ada di DB
+            if (password_verify($password_lama, $data['password'])) {
+               
+               if ($password_baru == $konfirmasi_password) {
+                  $password_baru = password_hash($post['password_baru'], PASSWORD_DEFAULT);
+                  
+                  echo $password_baru;
+                  return true;
+               }
+
+            } else { // jika tidak sesuai
+               return false;
+            }
+
+         } else { // jika ID tidak ditemukan
+            return false;
+         }
+      }
       
       // fungsi untuk menambahkan pengguna
       function addUser($post) 

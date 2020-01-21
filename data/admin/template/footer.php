@@ -40,7 +40,7 @@
 <!-- Sweetalert2 -->
 <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
 
 <script>
   // Sweetalert untuk logout

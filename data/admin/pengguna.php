@@ -8,8 +8,9 @@
    $status_nav_pengguna = 'active';
 
    include_once "../class/dataDB.php";
-   include_once "./template/header.php";
+   $data = new dataDB();
 
+   include_once "./template/header.php";
 ?>
 
 <hr>
@@ -50,40 +51,88 @@
                   Ubah Password
                </h3>
             </div>
-            <div class="card-body">
-               <div class="row">
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label for="password-lama">Password Lama</label>
-                        <input type="password" class="form-control" name="password-lama" id="password-lama" placeholder="Masukan password lama" required>
+            <form action="" method="post">
+               <div class="card-body">
+                  <div class="row">
+                     <div class="col-md-4">
+                        <div class="form-group">
+                           <label for="password-lama">Password Lama</label>
+                           <input type="password" class="form-control" name="password_lama" id="password-lama" placeholder="Masukan password lama" required>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group">
+                           <label for="password-baru">Password Baru</label>
+                           <input type="password" class="form-control" name="password_baru" id="password-baru" placeholder="Masukan password baru" required>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="form-group">
+                           <label for="konfirmasi_password">Konfirmasi Password Baru</label>
+                           <input type="password" class="form-control" id="konfirmasi_password" name="konfirmasi_password" placeholder="Masukan password baru" required>
+                        </div>
                      </div>
                   </div>
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label for="password-baru">Password Baru</label>
-                        <input type="password" class="form-control" name="password-baru" id="password-baru" placeholder="Masukan password baru" required>
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="form-group">
-                        <label for="konfirmasi-password">Konfirmasi Password Baru</label>
-                        <input type="password" class="form-control" id="konfirmasi-password" name="konfirmasi-password" placeholder="Masukan password baru" required>
+                  <input type="hidden" name="id_user" value="<?= $_SESSION['id'] ?>">
+                  <div class="row">
+                     <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-success" name="ubah">
+                           <i class="fas fa-save"></i>
+                           Simpan
+                        </button>
                      </div>
                   </div>
                </div>
-               
-               <div class="row">
-                  <div class="col-md-12 text-right">
-                     <button type="submit" class="btn btn-success">
-                        <i class="fas fa-save"></i>
-                        Simpan
-                     </button>
-                  </div>
-               </div>
-            </div>
+            </form>
          </div>
       </div>
    </div>
 </div>
 
 <?php include_once "./template/footer.php" ?>
+
+<script>
+   function berhasil() {
+      Swal.fire({
+         type: 'success',
+         html: 'Ubah Password Berhasil',
+         allowOutsideClick: false,
+         allowEscapeKey: false,
+         focusConfirm: true,
+         showConfirmButton: true
+         
+      }).then(function() {
+         window.location.href = "./pengguna.php"
+         console.log("The OK Button was clicked");
+      })
+   }
+
+   function passwordGagal() {
+      Swal.fire({
+         title: 'Peringatan!',
+         type: 'warning',
+         text: 'Tidak dapat mengubah password baru',
+         allowOutsideClick: false,
+         allowEscapeKey: false,
+         focusConfirm: true,
+         showConfirmButton: true
+         
+      }).then(function() {
+         window.location.href = "./pengguna.php"
+      })
+   }
+</script>
+
+<?php
+   if (isset($_POST['ubah'])) {
+      // memanggil fungsi changePassword yang mempunyai fungsi untuk merubah password pengguna
+      if ($data->changePassword($_POST, $_POST['id_user']) != false) {
+         echo "<script>berhasil()</script>";
+         
+      } else {
+         echo "<script>passwordGagal()</script>";
+         echo mysqli_error($this->koneksi);
+      }
+
+   }
+?>

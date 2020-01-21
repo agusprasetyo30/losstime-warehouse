@@ -18,10 +18,10 @@
    <!-- Sidebar user panel (optional) -->
    <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="width: 100%;">
       <div class="image">
-         <i class="fas fa-user-circle text-white" style="font-size: 55px"></i>
+         <i class="fas fa-user-circle text-white" style="font-size: 55px;"></i>
       </div>
       <div class="info" >
-         <a href="#" class="d-block text-white" style="width: 100%; font-size: 15px">
+         <a href="./pengguna.php" class="d-block text-white" style="width: 100%; font-size: 15px">
             <b>
                <?php 
                // Jika jumlah dari nama lebih dari 20 karakter
@@ -35,8 +35,10 @@
                }
                ?> 
             </b>
+            <div>
+               <small class="text-white"><?= $_SESSION['id_karyawan'] ?></small>
+            </div>
          </a>
-         <small class="text-white"><?= $_SESSION['id_karyawan'] ?></small>
       </div>
    </div>
    <!-- Sidebar Menu -->
