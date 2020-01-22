@@ -32,13 +32,14 @@
                <table id="example3" class="table table-bordered table-striped table-hover text-center">
                   <thead>
                      <tr>
-                        <th style="width: 30px; vertical-align: middle">#</th>
+                        <th style="width: 10px; vertical-align: middle">#</th>
                         <th style="vertical-align: middle">Nomer Line</th>
                         <th style="vertical-align: middle">Shift</th>
-                        <th style="width: 400px; vertical-align: middle">Masalah</th>
+                        <th style="width: 380px; vertical-align: middle">Masalah</th>
                         <th style="vertical-align: middle">Jumlah Menit</th>
                         <th style="vertical-align: middle">Periode</th>
                         <th style="vertical-align: middle">User Input</th>
+                        <th style="vertical-align: middle">Aksi</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -54,6 +55,18 @@
                         <td style="vertical-align: middle"><?= $file['jml_losstime'] ?></td>
                         <td style="vertical-align: middle"><?= date("d", strtotime($file['created_at'])) .'/'. $data->getBulan(date("m", strtotime($file['created_at']))) .'/'. date("Y", strtotime($file['created_at'])) ?></td>
                         <td style="vertical-align: middle"><?= explode(' ', $file['nama'])[0] .' '. explode(' ', $file['nama'])[1] .' '. explode(' ', $file['nama'])[2] ?></td>
+                        <td>
+                           <div class="btn-group ">
+                              <a href="?type=edit-losstime-bulanan&id=<?= $file['id'] ?>" class="btn btn-warning btn-sm">
+                                 <i class="fas fa-pencil-alt"></i>
+                                 Edit
+                              </a>
+                              <a onclick="return hapusRunning(<?= $file['id'] ?>, 'losstime.php?id=<?=$file['id']?>&type=delete-losstime-bulanan')" href="#" class="btn btn-danger btn-sm" name="hapus">
+                                 <i class="fas fa-trash-alt"></i>
+                                 Hapus
+                              </a>
+                           </div>
+                        </td>
                      </tr>
                      <?php } ?>
                   </tbody>

@@ -30,7 +30,6 @@
       include_once "./tambah-data/edit_running_text.php";
 
    } else if ($_GET['type'] == 'delete-running-text') {
-      // echo '<h1>Berhasil ambil '. $_GET['id'] .'</h1>';
       
       if ($data->deleteRunningText($_GET['id']) > 0) {
          echo '

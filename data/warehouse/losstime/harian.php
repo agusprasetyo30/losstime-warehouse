@@ -61,12 +61,10 @@
                                     <i class="fas fa-pencil-alt"></i>
                                     Edit
                                  </a>
-                                 <form action="" method="post">
-                                    <button type="submit" class="btn btn-danger btn-sm" name="hapus">
-                                       <i class="fas fa-trash-alt"></i>
-                                       Hapus
-                                    </button>
-                                 </form>
+                                 <a onclick="return hapusRunning(<?= $file['id'] ?>, 'losstime.php?id=<?=$file['id']?>&type=delete-losstime-harian')" href="#" class="btn btn-danger btn-sm" name="hapus">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Hapus
+                                 </a>
                               </div>
                            </td>
                         <?php } ?>

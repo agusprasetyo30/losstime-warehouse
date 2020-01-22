@@ -183,16 +183,51 @@
          return mysqli_affected_rows($this->koneksi);
       }
 
-      // mengedit data losstime
-      function editLosstime($id)
+      // menampilkan losstime berdasarkan ID
+      function getLosstimeByID($id)
       {
-         // TODO : MENGEDIT DATA LOSSTIME
+         $query = "SELECT l.*, u.nama, u.id_karyawan FROM losstime l INNER JOIN users u ON l.created_by = u.id WHERE l.id = '$id'";
+
+         return $this->query($query)[0];
+      }
+
+      // mengedit data losstime
+      function updateLosstime($post ,$id)
+      {
+         $line = $post['line'];
+         $shift = $post['shift'];
+         $jam_kerja = $post['jam_kerja'];
+         $masalah = $post['masalah'];
+         $jml_losstime = $post['jumlah_losstime'];
+         $updated_by = $post['updated_by'];
+         $updated_at = $post['updated_at'];
+
+         $query = "UPDATE losstime SET 
+            line         = '$line',
+            shift        = '$shift',
+            jam_kerja    = '$jam_kerja',
+            masalah      = '$masalah',
+            jml_losstime = '$jml_losstime',
+            updated_by   = '$updated_by',
+            updated_at   = '$updated_at'
+         WHERE id = '$id'";
+
+         // echo $query;
+
+         // return 1;
+         mysqli_query($this->koneksi, $query);
+
+         return mysqli_affected_rows($this->koneksi);
       }
 
       // Menghapus data losstime
       function deleteLosstime($id)
       {
-         // TODO : MENGHAPUS DATA LOSSTIME
+         $query = "DELETE from losstime WHERE id = '$id'";
+
+         mysqli_query($this->koneksi, $query);
+
+         return mysqli_affected_rows($this->koneksi);
       }
 
       // menampilkan losstime berdasarkan tanggal hari ini
@@ -235,7 +270,7 @@
       // menampilkan seua losstime dalam bulan dan tahun tertentu
       function showAllLostimeByMonthYear($month, $year)
       {
-         $query = "SELECT l.*, u.id, u.nama, u.id_karyawan FROM losstime l INNER JOIN users u ON l.created_by = u.id 
+         $query = "SELECT l.*, u.nama, u.id_karyawan FROM losstime l INNER JOIN users u ON l.created_by = u.id 
             WHERE MONTH(l.created_at) = '$month' AND YEAR(l.created_at) = '$year' 
             ORDER BY l.created_at DESC ";
 

@@ -30,6 +30,13 @@
       $menu = "Edit Losstime Harian";
       $link_menu = "losstime.php?type=edit-losstime-harian";
       $location = "Index";
+   
+   } else if ($_GET['type'] == 'edit-losstime-bulanan') {
+      $title= "Edit Losstime Bulanan";
+      $menu = "Edit Losstime Bulanan";
+      $link_menu = "losstime.php?type=edit-losstime-Bulanan";
+      $location = "Index";
+   
    }
 
    include_once "./template/header.php";
@@ -50,6 +57,36 @@
    
    } else if ($_GET['type'] == 'edit-losstime-harian' || $_GET['type'] == 'edit-losstime-bulanan') {
       include_once "./losstime/edit_losstime.php";
+   
+   } else if ($_GET['type'] == 'delete-losstime-harian' || $_GET['type'] == 'delete-losstime-bulanan') {
+      if ($_GET['type'] == 'delete-losstime-harian') {
+         if ($data->deleteLosstime($_GET['id']) > 0) {
+            echo '
+               <script>
+                  window.location.href = "losstime.php?type=harian";
+               </script>
+            ';
+   
+         } else {
+            echo("<br>");
+            echo mysqli_error($data->koneksi);
+         }   
+      
+      } else if ($_GET['type'] == 'delete-losstime-bulanan') {
+         if ($data->deleteLosstime($_GET['id']) > 0) {
+            echo '
+               <script>
+                  window.location.href = "losstime.php?type=bulanan";
+               </script>
+            ';
+   
+         } else {
+            echo("<br>");
+            echo mysqli_error($data->koneksi);
+         }
+      }
+      
+      
    }
 ?>
 
@@ -61,11 +98,9 @@
 
 <!-- Custom Javascript -->
 
+<!-- Data Table -->
 <script>
-   /** Untuk DataTable
-    * 
-    */
-    $(function () {
+   $(function () {
       $('#example1').DataTable({
          "paging": true,
          "lengthChange": false,
@@ -95,11 +130,8 @@
    });
 </script>
 
+<!-- Untuk chart laporan per minggu -->
 <script>
-
-   /** Untuk Chart
-    *
-    */
    var ctx = document.getElementById("barChart");
    var myChart = new Chart(ctx, {
    type: 'bar',
@@ -172,10 +204,8 @@
    });
 </script>
 
+<!-- Untuk menambahkan dan mengurangi jumlah losstime    -->
 <script>
-   /** Untuk menambahkan dan mengurangi jumlah losstime
-    * 
-    */
    $(function() {
       var hitung = 0;
       
@@ -206,4 +236,63 @@
    });
 </script>
 
+<!-- Untuk sweetalert edit dan hapus data -->
+<script>
+   function berhasilUbah(link) {
+      Swal.fire({
+         type: 'success',
+         html: 'Losstime berhasil diubah',
+         allowOutsideClick: false,
+         allowEscapeKey: false,
+         focusConfirm: true,
+         showConfirmButton: true,
+         
+      }).then(function() {
+         window.location.href = link;
+      });
+   };
+
+   function hapusRunning(parameter, link) {
+      Swal.fire({
+         title: 'Apakah anda yakin?',
+         html: "Penghapusan data akan menyebabkan perubahan data pada database",
+         type: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         cancelButtonText: 'Batal',
+         confirmButtonText: 'Hapus data',
+         allowOutsideClick: false,
+         allowEscapeKey: false,
+      }).then((result) => {
+         // console.log('input_data.php?id='+ parameter +'&type=delete-running-text');
+         if (result.value) {
+            Swal.fire({
+               title: 'Terhapus!',
+               text: 'Losstime berhasil dihapus.',
+               type: 'success',
+               allowOutsideClick: false,
+               allowEscapeKey: false,
+            }).then(function() {
+               window.location.href = link;
+            })
+         }
+      })
+   };
 </script>
+
+<?php
+   if (isset($_POST['simpan'])) {
+      if ($data->updateLosstime($_POST, $_GET['id']) > 0) { // mengambil inputan dan GET ID
+         // print_r($_POST);
+         if ($_GET['type'] == 'edit-losstime-harian') { // mengecek type edit
+            echo '<script>berhasilUbah("losstime.php?type=harian")</script>';
+
+         } else if ($_GET['type'] == 'edit-losstime-bulanan') {
+            echo '<script>berhasilUbah("losstime.php?type=detail&bulan='.$_POST['bulan'].'&tahun='.$_POST['tahun'].' ")</script>';
+         }
+      } else {
+         echo mysqli_error($this->koneksi);
+      }
+   } 
+?>
