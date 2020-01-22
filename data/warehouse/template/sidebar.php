@@ -52,8 +52,11 @@
                <p>Dashboard</p>
             </a>
          </li>
-         <li class="nav-item has-treeview <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' || $_GET['type'] == 'detail' ? 'menu-open' : '' ?>">
-            <a href="#"class="nav-link <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' || $_GET['type'] == 'detail' ? 'active' : '' ?>">
+         <li class="nav-item has-treeview <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' || 
+            $_GET['type'] == 'detail' || $_GET['type'] == 'edit-losstime-harian' || $_GET['type'] == 'edit-losstime-bulanan' ? 'menu-open' : '' ?>">
+            
+            <a href="#"class="nav-link <?= $_GET['type'] == 'harian' || $_GET['type'] == 'bulanan' || 
+               $_GET['type'] == 'detail' || $_GET['type'] == 'edit-losstime-harian' || $_GET['type'] == 'edit-losstime-bulanan' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-percent"></i>
                <p>
                   Summary
@@ -62,13 +65,13 @@
             </a>
             <ul class="nav nav-treeview">
                <li class="nav-item">
-                  <a href="losstime.php?type=harian" class="nav-link <?= $_GET['type'] == 'harian' ? 'active' : '' ?>">
+                  <a href="losstime.php?type=harian" class="nav-link <?= $_GET['type'] == 'harian' || $_GET['type'] == 'edit-losstime-harian' ? 'active' : '' ?>">
                   <i class="fas fa-calendar-day nav-icon"></i>
                   <p>Harian</p>
                   </a>
                </li>
                <li class="nav-item">
-                  <a href="losstime.php?type=bulanan" class="nav-link <?= $_GET['type'] == 'bulanan' || $_GET['type'] == 'detail' ? 'active' : '' ?>">
+                  <a href="losstime.php?type=bulanan" class="nav-link <?= $_GET['type'] == 'bulanan' || $_GET['type'] == 'detail' || $_GET['type'] == 'edit-losstime-bulanan' ? 'active' : '' ?>">
                   <i class="far fa-calendar-alt nav-icon"></i>
                   <p>Bulanan</p>
                   </a>

@@ -98,7 +98,7 @@
          showConfirmButton: true
          
       }).then(function() {
-         window.location.href = "./data/admin/";
+         window.location.href = "./data/warehouse/";
          console.log("The OK Button was clicked");
       })
    }
@@ -117,15 +117,34 @@
          window.location.href = "login.php"
       })
    }
+
+   function userNonaktif() {
+      Swal.fire({
+         title: 'Peringatan!',
+         type: 'error',
+         text: 'Pengguna di Nonaktifkan!',
+         allowOutsideClick: false,
+         allowEscapeKey: false,
+         focusConfirm: true,
+         showConfirmButton: true
+         
+      }).then(function() {
+         window.location.href = "login.php"
+      })
+   }
 </script>
 
 
 <?php
    if (isset($_POST['login'])) {
-      if ($data->login($_POST)) {
+      
+      if ($data->login($_POST) == 'success') {
          echo "<script>loginBerhasil()</script>";
          
-      } else {
+      } else if ($data->login($_POST) == 'non') {
+         echo "<script>userNonaktif()</script>";
+
+      } else if ($data->login($_POST) == 'fail') {
          echo "<script>loginGagal()</script>";
       }
    }

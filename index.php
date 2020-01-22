@@ -1,4 +1,10 @@
 <?php
+   /**
+       * Github        : agusprasetyo30
+       * Github Link   : https://github.com/agusprasetyo30
+       * Email        : agusprasetyo1889@gmail.com
+    */
+
    // ini_set("display_errors", 1);
 
    include_once "./data/class/dataDB.php";

@@ -32,6 +32,9 @@
                         <th style="width: 500px; vertical-align: middle">Masalah</th>
                         <th style="width: 100px; vertical-align: middle">Jumlah Menit</th>
                         <th style="width: 100px; vertical-align: middle">User Input</th>
+                        <?php if ($_SESSION['akses'] == 'ADMIN') { ?>
+                           <th style="width: 50px; vertical-align: middle">Aksi</th>
+                        <?php } ?>
                      </tr>
                   </thead>
                   <tbody>
@@ -51,6 +54,22 @@
                            <b><?= explode(' ', $file['nama'])[0] .' '. explode(' ', $file['nama'])[1] .' '. explode(' ', $file['nama'])[2] ?></b> <br>
                            <small>( <?= $file['id_karyawan'] ?> )</small>
                         </td>
+                        <?php if ($_SESSION['akses'] == 'ADMIN') { ?>
+                           <td>
+                              <div class="btn-group btn-group-sm">
+                                 <a href="?type=edit-losstime-harian&id=<?= $file['id'] ?>" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-pencil-alt"></i>
+                                    Edit
+                                 </a>
+                                 <form action="" method="post">
+                                    <button type="submit" class="btn btn-danger btn-sm" name="hapus">
+                                       <i class="fas fa-trash-alt"></i>
+                                       Hapus
+                                    </button>
+                                 </form>
+                              </div>
+                           </td>
+                        <?php } ?>
                      </tr>
 
                      <?php } ?>

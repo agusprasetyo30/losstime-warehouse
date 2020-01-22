@@ -165,6 +165,8 @@
 <script>
    // Untuk menambahkan dan mengurangi jumlah losstime
    $(function() {
+      var hitung = 0;
+      
       // Tombol tambah
       $('#btn-tambah').click(function() {
          var jumlah = document.getElementById('jumlah-losstime').value

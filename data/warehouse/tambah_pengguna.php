@@ -9,6 +9,12 @@
    $data = new dataDB();
 
    include_once "./template/header.php";
+
+   if ($_SESSION['akses'] == 'OPERATOR') {
+      echo '<script>
+         window.location.href = "./pengguna.php";
+      </script>';
+   }
 ?>
 <!-- CSS Sweetalert2 -->
 <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">

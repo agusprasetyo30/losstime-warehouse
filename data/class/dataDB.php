@@ -36,7 +36,7 @@
          $id_karyawan = htmlspecialchars($post['id_anggota']);
          $password = mysqli_real_escape_string($this->koneksi, $post['password']);
 
-         $query_id = "SELECT * FROM user WHERE id_karyawan = '$id_karyawan' ";
+         $query_id = "SELECT * FROM users WHERE id_karyawan = '$id_karyawan' ";
 
          $cek_id = mysqli_query($this->koneksi, $query_id);
 
@@ -44,22 +44,31 @@
          if (mysqli_num_rows($cek_id) == 1) {
             $data = mysqli_fetch_assoc($cek_id);
             
+            
             // mencocokan password input dengan password yang ada di DB
             if (password_verify($password, $data['password'])) {
-               // Menginisialisasi SESSION
-               $_SESSION['id'] = $data['id'];
-               $_SESSION['nama'] = $data['nama'];
-               $_SESSION['id_karyawan'] = $data['id_karyawan'];
-               $_SESSION['password'] = $data['password'];
                
-               return true; // jika benar maka akan mereturn nilai true
+               // jika status penggunannya aktif
+               if ($data['status'] == 'AKTIF') {
+                  // Menginisialisasi SESSION
+                  $_SESSION['id'] = $data['id'];
+                  $_SESSION['nama'] = $data['nama'];
+                  $_SESSION['id_karyawan'] = $data['id_karyawan'];
+                  $_SESSION['password'] = $data['password'];
+                  $_SESSION['akses'] = $data['akses'];
+               
+                  return "success"; // jika benar maka akan mereturn nilai true
+
+               } else { // jika statusnya TIDAK AKTIF
+                  return "non";
+               }
 
             } else { // jika password salah
-               return false;
+               return "fail";
             }
 
          } else { // jika username & password salah
-            return false;
+            return "fail";
          }
       }
 
@@ -85,8 +94,8 @@
          $password_baru = $post['password_baru'];
          $konfirmasi_password = $post['konfirmasi_password'];
 
-         // query mencari data berdasarkan ID user
-         $query_cek = "SELECT * FROM user WHERE id = '$id' ";
+         // query mencari data berdasarkan ID users
+         $query_cek = "SELECT * FROM users WHERE id = '$id' ";
 
          $cek_id = mysqli_query($this->koneksi, $query_cek);
 
@@ -100,7 +109,9 @@
                if ($password_baru == $konfirmasi_password) {
                   $password_baru = password_hash($post['password_baru'], PASSWORD_DEFAULT);
                   
-                  echo $password_baru;
+                  $query_update = "UPDATE users SET password = '$password_baru' WHERE id = '$id'";
+                  mysqli_query($this->koneksi, $query_update);
+                  
                   return true;
                }
 
@@ -123,7 +134,7 @@
          $password2 = mysqli_real_escape_string($this->koneksi, $post['confirm_password']);
 
          //mengecek ID Karyawan
-         $query = mysqli_query($this->koneksi, "SELECT id_karyawan FROM user WHERE id_karyawan='$id_karyawan' ");
+         $query = mysqli_query($this->koneksi, "SELECT id_karyawan FROM users WHERE id_karyawan='$id_karyawan' ");
          
          if (mysqli_fetch_assoc($query)) {
             return 'id_kar';
@@ -141,7 +152,7 @@
          $waktu = date('Y-m-d H:i:s');
          
          // Query tambah data
-         $query = "INSERT INTO user VALUES(NULL, '$nama', '$id_karyawan', '$password', '$waktu')";
+         $query = "INSERT INTO users VALUES(NULL, '$nama', '$id_karyawan', '$password', '$waktu')";
          mysqli_query($this->koneksi, $query);
 
          return mysqli_affected_rows($this->koneksi);
@@ -163,19 +174,31 @@
          $id_user = $post['id_user'];
 
          // waktu dan tanggal hari ini
-         $waktu = $post['waktu'];
+         $waktu_buat = $post['waktu'];
 
          // Query tambah data
-         $query = "INSERT INTO losstime VALUES(NULL, '$line', '$shift', '$jam_kerja', '$masalah', '$jml_losstime', '$id_user', '$waktu')";
+         $query = "INSERT INTO losstime VALUES(NULL, '$line', '$shift', '$jam_kerja', '$masalah', '$jml_losstime', '$id_user', NULL, '$waktu_buat', NULL)";
          mysqli_query($this->koneksi, $query);
 
          return mysqli_affected_rows($this->koneksi);
-      }      
+      }
+
+      // mengedit data losstime
+      function editLosstime($id)
+      {
+         // TODO : MENGEDIT DATA LOSSTIME
+      }
+
+      // Menghapus data losstime
+      function deleteLosstime($id)
+      {
+         // TODO : MENGHAPUS DATA LOSSTIME
+      }
 
       // menampilkan losstime berdasarkan tanggal hari ini
       function showLosstimeByDay($dayDate) 
       {
-         $query = "SELECT * FROM losstime l INNER JOIN user u ON l.id_user = u.id 
+         $query = "SELECT l.*, u.nama, u.id_karyawan FROM losstime l INNER JOIN users u ON l.created_by = u.id 
             WHERE DATE(l.created_at) = '$dayDate' 
             ORDER BY l.created_at DESC ";
                   
@@ -212,7 +235,7 @@
       // menampilkan seua losstime dalam bulan dan tahun tertentu
       function showAllLostimeByMonthYear($month, $year)
       {
-         $query = "SELECT * FROM losstime l INNER JOIN user u ON l.id_user = u.id 
+         $query = "SELECT l.*, u.id, u.nama, u.id_karyawan FROM losstime l INNER JOIN users u ON l.created_by = u.id 
             WHERE MONTH(l.created_at) = '$month' AND YEAR(l.created_at) = '$year' 
             ORDER BY l.created_at DESC ";
 

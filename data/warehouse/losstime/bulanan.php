@@ -1,5 +1,6 @@
-<div class="container-fluid">
-   <div class="row">
+
+<div class="container-fluid" style="border-top: 1px solid lightgrey">
+   <div class="row mt-2">
       <div class="col-md-12">
          <!-- Untuk pencarian data berdasarkan bulan dan tahun -->
          <form action="" method="get">

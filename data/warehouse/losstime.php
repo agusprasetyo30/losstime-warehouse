@@ -25,6 +25,11 @@
       $link_menu = "losstime.php?type=bulanan";
       $location = "Index";
       
+   } else if ($_GET['type'] == 'edit-losstime-harian') {
+      $title= "Edit Losstime Harian";
+      $menu = "Edit Losstime Harian";
+      $link_menu = "losstime.php?type=edit-losstime-harian";
+      $location = "Index";
    }
 
    include_once "./template/header.php";
@@ -42,18 +47,25 @@
    
    } else if ($_GET['type'] == 'detail') {
       include_once "./losstime/detail_bulanan.php";
+   
+   } else if ($_GET['type'] == 'edit-losstime-harian' || $_GET['type'] == 'edit-losstime-bulanan') {
+      include_once "./losstime/edit_losstime.php";
    }
 ?>
 
 <?php include_once "./template/footer.php" ?>
 
-<!-- DataTables -->
+<!-- DataTablesLibrary -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
-<!-- UNtuk Datatable -->
+<!-- Custom Javascript -->
+
 <script>
-   $(function () {
+   /** Untuk DataTable
+    * 
+    */
+    $(function () {
       $('#example1').DataTable({
          "paging": true,
          "lengthChange": false,
@@ -83,8 +95,11 @@
    });
 </script>
 
-<!-- Untuk Chart -->
 <script>
+
+   /** Untuk Chart
+    *
+    */
    var ctx = document.getElementById("barChart");
    var myChart = new Chart(ctx, {
    type: 'bar',
@@ -155,4 +170,40 @@
          }
       },
    });
+</script>
+
+<script>
+   /** Untuk menambahkan dan mengurangi jumlah losstime
+    * 
+    */
+   $(function() {
+      var hitung = 0;
+      
+      // Tombol tambah
+      $('#btn-tambah').click(function() {
+         var jumlah = document.getElementById('jumlah-losstime').value
+
+         if (parseInt(jumlah) >= 0) {
+            hitung = parseInt(jumlah) + 1
+         }
+
+         document.getElementById('jumlah-losstime').value = hitung
+      });
+
+      // Tombol kurang
+      $('#btn-kurang').click(function() {
+         var jumlah = document.getElementById('jumlah-losstime').value
+
+         if (parseInt(jumlah) > 0) {
+            hitung = parseInt(jumlah) - 1
+         }
+
+         document.getElementById('jumlah-losstime').value = hitung
+      })
+
+      // Untuk menginisialisasi select2
+      $('.select2').select2()
+   });
+</script>
+
 </script>

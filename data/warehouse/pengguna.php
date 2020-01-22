@@ -24,12 +24,14 @@
                   <i class="fa fa-user" aria-hidden="true"></i>
                   Pengguna
                </h3>
-               <div class="text-right">
-                  <a href="./tambah_pengguna.php" class="btn btn-success btn-sm">
-                     <i class="nav-icon fa fa-user-plus" aria-hidden="true"></i>
-                     Tambah Pengguna
-                  </a>
-               </div>
+               <?php if ($_SESSION['akses'] == 'ADMIN') { ?>
+                  <div class="text-right">
+                     <a href="./tambah_pengguna.php" class="btn btn-success btn-sm">
+                        <i class="nav-icon fa fa-user-plus" aria-hidden="true"></i>
+                        Tambah Pengguna
+                     </a>
+                  </div>
+               <?php } ?>
             </div>
             <div class="card-body">
                <div class="form-group">
@@ -126,7 +128,7 @@
 <?php
    if (isset($_POST['ubah'])) {
       // memanggil fungsi changePassword yang mempunyai fungsi untuk merubah password pengguna
-      if ($data->changePassword($_POST, $_POST['id_user']) != false) {
+      if ($data->changePassword($_POST, $_POST['id_user'])) {
          echo "<script>berhasil()</script>";
          
       } else {
