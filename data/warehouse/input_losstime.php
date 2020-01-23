@@ -160,11 +160,12 @@
          echo mysqli_error($data->koneksi);
       }
    }
+   
 ?>
 
 <script>
    // Untuk menambahkan dan mengurangi jumlah losstime
-   $(function() {
+$(function() {
       var hitung = 0;
       
       // Tombol tambah

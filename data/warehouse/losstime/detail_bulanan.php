@@ -16,11 +16,6 @@
       </a>
    </div>
    <div class="card-body">
-   <?php
-
-      // print_r($data->getJumlahLosstimeByMonthYear(date('m'), date('Y')));
-      // die();
-   ?>
       <div class="chart">
          <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
       </div>
@@ -39,7 +34,11 @@
                         <th style="vertical-align: middle">Jumlah Menit</th>
                         <th style="vertical-align: middle">Periode</th>
                         <th style="vertical-align: middle">User Input</th>
-                        <th style="vertical-align: middle">Aksi</th>
+
+                        <!-- Menampilkan menu tabel AKSI jika aksesnya berupa ADMIN -->
+                        <?php if ($_SESSION['akses'] == "ADMIN") { ?>
+                           <th style="vertical-align: middle">Aksi</th>
+                        <?php } ?>
                      </tr>
                   </thead>
                   <tbody>
@@ -55,18 +54,20 @@
                         <td style="vertical-align: middle"><?= $file['jml_losstime'] ?></td>
                         <td style="vertical-align: middle"><?= date("d", strtotime($file['created_at'])) .'/'. $data->getBulan(date("m", strtotime($file['created_at']))) .'/'. date("Y", strtotime($file['created_at'])) ?></td>
                         <td style="vertical-align: middle"><?= explode(' ', $file['nama'])[0] .' '. explode(' ', $file['nama'])[1] .' '. explode(' ', $file['nama'])[2] ?></td>
-                        <td>
-                           <div class="btn-group ">
-                              <a href="?type=edit-losstime-bulanan&id=<?= $file['id'] ?>" class="btn btn-warning btn-sm">
-                                 <i class="fas fa-pencil-alt"></i>
-                                 Edit
-                              </a>
-                              <a onclick="return hapusRunning(<?= $file['id'] ?>, 'losstime.php?id=<?=$file['id']?>&type=delete-losstime-bulanan')" href="#" class="btn btn-danger btn-sm" name="hapus">
-                                 <i class="fas fa-trash-alt"></i>
-                                 Hapus
-                              </a>
-                           </div>
-                        </td>
+                        <?php if ($_SESSION['akses'] == "ADMIN") { ?>
+                           <td>
+                              <div class="btn-group ">
+                                 <a href="?type=edit-losstime-bulanan&id=<?= $file['id'] ?>" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-pencil-alt"></i>
+                                    Edit
+                                 </a>
+                                 <a onclick="return hapusRunning(<?= $file['id'] ?>, 'losstime.php?id=<?=$file['id']?>&type=delete-losstime-bulanan')" href="#" class="btn btn-danger btn-sm" name="hapus">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Hapus
+                                 </a>
+                              </div>
+                           </td>
+                        <?php } ?>
                      </tr>
                      <?php } ?>
                   </tbody>

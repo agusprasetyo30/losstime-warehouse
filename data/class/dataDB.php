@@ -129,6 +129,8 @@
       {
          $nama = htmlspecialchars($post['nama']);
          $id_karyawan = htmlspecialchars($post['id_karyawan']);
+         $akses = $post['akses'];
+         $status = 'AKTIF';
 
          $password = mysqli_real_escape_string($this->koneksi, $post['password']);
          $password2 = mysqli_real_escape_string($this->koneksi, $post['confirm_password']);
@@ -152,10 +154,73 @@
          $waktu = date('Y-m-d H:i:s');
          
          // Query tambah data
-         $query = "INSERT INTO users VALUES(NULL, '$nama', '$id_karyawan', '$password', '$waktu')";
+         $query = "INSERT INTO users VALUES(NULL, '$nama', '$id_karyawan', '$password', '$status', '$akses', '$waktu')";
          mysqli_query($this->koneksi, $query);
 
          return mysqli_affected_rows($this->koneksi);
+      }
+
+      // menampilkan data pada tabel users
+      function getUsersData($akses = null)
+      {
+         // query untuk menampilkan data keseluruhan
+         $query = "SELECT * FROM users ORDER BY status ASC";
+
+         // query untuk menampilkan data sesuai dengan akses
+         $query_akses = "SELECT * FROM users WHERE akses = '$akses' ORDER BY status ASC";
+         
+         if ($akses == null) {
+            return $this->query($query);
+         
+         } else {
+            return $this->query($query_akses);
+         }
+      }
+
+      // menampilkan data user sesuai dengan ID
+      function getUsersDataByID($id)
+      {
+         $query = "SELECT * FROM users WHERE id = '$id'";
+
+         return $this->query($query)[0];
+      }
+
+      // fungsi untuk mengubah data pengguna
+      function updateUsers($post, $id)
+      {
+         $nama = $post['nama'];
+         $id_karyawan = $post['id_karyawan'];
+         $akses = $post['akses'];
+         $status = $post['status'];
+
+         // Query Update
+         $query = "UPDATE users SET nama = '$nama', id_karyawan = '$id_karyawan', 
+            akses = '$akses', status = '$status' WHERE id = '$id' ";
+         
+         // mencari data sesuai dengan ID KARYAWAN
+         $query_get_all_user = "SELECT * FROM users WHERE id_karyawan = '$id_karyawan' "; 
+         $data_all_user = mysqli_query($this->koneksi, $query_get_all_user);
+
+         // mencari data sesuai dengan ID
+         $getDataUser = $this->getUsersDataByID($id);
+         
+         // Untuk mengecek apakah ada ID karyawan yang sama atau tidak
+         if (mysqli_num_rows($data_all_user) > 0) { // jika ID KARYAWAN SAMA
+
+            if ($getDataUser['id_karyawan'] == $id_karyawan) { // di cek apakah id karyawan milik sendiri atau tidak, kalau iya bisa digunakan kembali
+               mysqli_query($this->koneksi, $query); // Query update
+               return true;
+
+            } else { // jika menginputkan ID KARYAWAN karyawan lain
+               return false;
+            }   
+
+         } else { // jika tidak ada ID Karyawan yang sama
+            mysqli_query($this->koneksi, $query); // Query update
+            return true;
+         }
+
+         
       }
 
       /**

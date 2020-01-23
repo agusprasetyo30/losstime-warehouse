@@ -5,7 +5,7 @@
    $menu = "Pengguna";
    $link_menu = "pengguna.php";
    $location = "Index";
-   $status_nav_pengguna = 'active';
+   $status_nav_pengguna = $_GET['type'] == 'pengguna' ? '' : 'active';
 
    include_once "../class/dataDB.php";
    $data = new dataDB();
@@ -13,10 +13,8 @@
    include_once "./template/header.php";
 ?>
 
-<hr>
-
-<div class="container-fluid">
-   <div class="row justify-content-center">
+<div class="container-fluid" style="border-top: 1px solid lightgrey">
+   <div class="row justify-content-center mt-3">
       <div class="col-md-8">
          <div class="card card-default">
             <div class="card-header">
@@ -24,14 +22,6 @@
                   <i class="fa fa-user" aria-hidden="true"></i>
                   Pengguna
                </h3>
-               <?php if ($_SESSION['akses'] == 'ADMIN') { ?>
-                  <div class="text-right">
-                     <a href="./tambah_pengguna.php" class="btn btn-success">
-                        <i class="nav-icon fa fa-user-plus" aria-hidden="true"></i>
-                        Tambah Pengguna
-                     </a>
-                  </div>
-               <?php } ?>
             </div>
             <div class="card-body">
                <div class="form-group">
@@ -94,7 +84,7 @@
 <?php include_once "./template/footer.php" ?>
 
 <script>
-   function berhasil() {
+   function berhasil(link) {
       Swal.fire({
          type: 'success',
          html: 'Ubah Password Berhasil',
@@ -104,12 +94,13 @@
          showConfirmButton: true
          
       }).then(function() {
-         window.location.href = "./pengguna.php"
+         // window.location.href = "./pengguna.php"
+         window.location.href = link;
          console.log("The OK Button was clicked");
       })
    }
 
-   function passwordGagal() {
+   function passwordGagal(link) {
       Swal.fire({
          title: 'Peringatan!',
          type: 'warning',
@@ -120,7 +111,8 @@
          showConfirmButton: true
          
       }).then(function() {
-         window.location.href = "./pengguna.php"
+         // window.location.href = "./pengguna.php"
+         // window.location.href = link;
       })
    }
 </script>
@@ -129,10 +121,20 @@
    if (isset($_POST['ubah'])) {
       // memanggil fungsi changePassword yang mempunyai fungsi untuk merubah password pengguna
       if ($data->changePassword($_POST, $_POST['id_user'])) {
-         echo "<script>berhasil()</script>";
+         if ($_GET['type'] == 'pengguna') {
+            echo '<script>berhasil("./pengguna.php?type=pengguna")</script>';
+            
+         } else {
+            echo '<script>berhasil("./pengguna.php")</script>';
+         }
          
       } else {
-         echo "<script>passwordGagal()</script>";
+         if ($_GET['type'] == 'pengguna') {
+            echo '<script>passwordGagal("./pengguna.php?type=pengguna")</script>';
+            
+         } else {
+            echo '<script>passwordGagal("./pengguna.php")</script>';
+         }
          echo mysqli_error($this->koneksi);
       }
 

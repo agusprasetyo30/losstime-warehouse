@@ -56,37 +56,50 @@
       include_once "./losstime/detail_bulanan.php";
    
    } else if ($_GET['type'] == 'edit-losstime-harian' || $_GET['type'] == 'edit-losstime-bulanan') {
-      include_once "./losstime/edit_losstime.php";
+      // Mengecek apakah yang masuk itu operator atau bukan
+      if ($_SESSION['akses'] == 'OPERATOR') {
+         echo '<script>
+            window.location.href = "./";
+         </script>';
+      } else {
+         include_once "./losstime/edit_losstime.php";
+      }
    
    } else if ($_GET['type'] == 'delete-losstime-harian' || $_GET['type'] == 'delete-losstime-bulanan') {
-      if ($_GET['type'] == 'delete-losstime-harian') {
-         if ($data->deleteLosstime($_GET['id']) > 0) {
-            echo '
-               <script>
-                  window.location.href = "losstime.php?type=harian";
-               </script>
-            ';
-   
-         } else {
-            echo("<br>");
-            echo mysqli_error($data->koneksi);
-         }   
+      // Mengecek apakah yang masuk itu operator atau bukan, jika operator maka tidak bisa masuk ke dalam halama tersebut
+      if ($_SESSION['akses'] == 'OPERATOR') {
+         echo '<script>
+            window.location.href = "./";
+         </script>';
+      } else {
+
+         if ($_GET['type'] == 'delete-losstime-harian') {
+            if ($data->deleteLosstime($_GET['id']) > 0) {
+               echo '
+                  <script>
+                     window.location.href = "losstime.php?type=harian";
+                  </script>
+               ';
       
-      } else if ($_GET['type'] == 'delete-losstime-bulanan') {
-         if ($data->deleteLosstime($_GET['id']) > 0) {
-            echo '
-               <script>
-                  window.location.href = "losstime.php?type=bulanan";
-               </script>
-            ';
-   
-         } else {
-            echo("<br>");
-            echo mysqli_error($data->koneksi);
+            } else {
+               echo("<br>");
+               echo mysqli_error($data->koneksi);
+            }   
+         
+         } else if ($_GET['type'] == 'delete-losstime-bulanan') {
+            if ($data->deleteLosstime($_GET['id']) > 0) {
+               echo '
+                  <script>
+                     window.location.href = "losstime.php?type=bulanan";
+                  </script>
+               ';
+      
+            } else {
+               echo("<br>");
+               echo mysqli_error($data->koneksi);
+            }
          }
       }
-      
-      
    }
 ?>
 
@@ -206,34 +219,32 @@
 
 <!-- Untuk menambahkan dan mengurangi jumlah losstime    -->
 <script>
-   $(function() {
-      var hitung = 0;
-      
-      // Tombol tambah
-      $('#btn-tambah').click(function() {
-         var jumlah = document.getElementById('jumlah-losstime').value
+   var hitung = 0;
+   
+   // Tombol tambah
+   $('#btn-tambah').click(function() {
+      var jumlah = document.getElementById('jumlah-losstime').value
 
-         if (parseInt(jumlah) >= 0) {
-            hitung = parseInt(jumlah) + 1
-         }
+      if (parseInt(jumlah) >= 0) {
+         hitung = parseInt(jumlah) + 1
+      }
 
-         document.getElementById('jumlah-losstime').value = hitung
-      });
-
-      // Tombol kurang
-      $('#btn-kurang').click(function() {
-         var jumlah = document.getElementById('jumlah-losstime').value
-
-         if (parseInt(jumlah) > 0) {
-            hitung = parseInt(jumlah) - 1
-         }
-
-         document.getElementById('jumlah-losstime').value = hitung
-      })
-
-      // Untuk menginisialisasi select2
-      $('.select2').select2()
+      document.getElementById('jumlah-losstime').value = hitung
    });
+
+   // Tombol kurang
+   $('#btn-kurang').click(function() {
+      var jumlah = document.getElementById('jumlah-losstime').value
+
+      if (parseInt(jumlah) > 0) {
+         hitung = parseInt(jumlah) - 1
+      }
+
+      document.getElementById('jumlah-losstime').value = hitung
+   })
+
+   // Untuk menginisialisasi select2
+   $('.select2').select2();
 </script>
 
 <!-- Untuk sweetalert edit dan hapus data -->
@@ -281,6 +292,7 @@
    };
 </script>
 
+<!-- PHP LOGIC -->
 <?php
    if (isset($_POST['simpan'])) {
       if ($data->updateLosstime($_POST, $_GET['id']) > 0) { // mengambil inputan dan GET ID

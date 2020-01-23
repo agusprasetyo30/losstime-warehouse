@@ -3,7 +3,6 @@
    $menu = "Tambah Pengguna";
    $link_menu = "Tambah_Pengguna.php";
    $location = "Index";
-   $status_nav_pengguna = 'active';
 
    include_once "../class/dataDB.php";
    $data = new dataDB();
@@ -16,13 +15,8 @@
       </script>';
    }
 ?>
-<!-- CSS Sweetalert2 -->
-<link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
-
-<hr>
-
-<div class="container-fluid">
-   <div class="row justify-content-center">
+<div class="container-fluid" style="border-top: 1px solid lightgrey">
+   <div class="row justify-content-center mt-3">
       <div class="col-md-8">
          <div class="card card-default">
             <div class="card-header">
@@ -31,7 +25,7 @@
                   Tambah Pengguna
                </h3>
 
-               <a href="./pengguna.php" class="btn btn-warning float-right">
+               <a href="./manajemen_pengguna.php?type=man-pengguna" class="btn btn-warning float-right">
                   <i class="nav-icon fas fa-undo"></i>
                   Kembali
                </a>
@@ -47,6 +41,14 @@
                         <div class="form-group mr-2">
                            <label for="id_kar">ID Karyawan</label>
                            <input name="id_karyawan" type="text" name="id_karyawan" class="form-control" maxlength="6" id="id_kar" autofocus=on placeholder="Masukan ID Karyawan" autocomplete="off" required>
+                        </div>
+                        <div class="form-group mr-2">
+                           <label for="akses">Akses</label>
+                           <select name="akses" id="akses" class="form-control" style="cursor: pointer">
+                              <option value="" selected disabled>Pilih Akses</option>
+                              <option value="ADMIN">ADMIN</option>
+                              <option value="OPERATOR">OPERATOR</option>
+                           </select>
                         </div>
                      </div>
                      <div class="col-md-6">
@@ -81,12 +83,11 @@
    $inputNama = $_POST["nama"];
 ?>
 
-
 <script>
    function berhasil() {
       Swal.fire({
          type: 'success',
-         html: 'Pengguna <b> <?= $inputNama ?> </b> berhasil ditambahkan',
+         html: 'Pengguna <b> <?php echo($inputNama) ?> </b> berhasil ditambahkan',
          allowOutsideClick: false,
          allowEscapeKey: false,
          focusConfirm: true,
