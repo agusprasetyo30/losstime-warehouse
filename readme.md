@@ -7,7 +7,7 @@
 - Versi Server: 5.7.28-0ubuntu0.18.04.4 - (Ubuntu)
 
 ## Package
-- Boostrap 4
+- Bootstrap 4
 - ChartJS
 - Select2
 - DataTables
