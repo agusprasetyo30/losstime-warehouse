@@ -4,7 +4,7 @@
        * Github Link   : https://github.com/agusprasetyo30
        * Email        : agusprasetyo1889@gmail.com
     */
-
+   session_start();
    // ini_set("display_errors", 1);
 
    include_once "./data/class/dataDB.php";
@@ -40,12 +40,14 @@
       <link rel="stylesheet" href="./plugins/ion-icon/css/ionicons.min.css">
       <!-- Custom CSS -->
       <link rel="stylesheet" href="./dist/css/app.css">
+      <!-- Sweetalert2 -->
+      <link rel="stylesheet" href="./plugins/sweetalert2/sweetalert2.min.css">
    </head>
 
    <body class="main-content-dashboard" style="height: 100%; max-height: 100%">
    <!-- Navbar atas -->
    <nav class="navbar navbar-expand bg-navbar-dashboard">
-      <div class="container mt-3 mb-3">
+      <div class="container-fluid mt-3 mb-3 ml-3 mr-3">
          <ul class="nav navbar-nav" style="width: 100%">
             <li class="nav-item" style="width: 50%">
                <div class="d-inline">
@@ -53,11 +55,25 @@
                </div>
             </li>
             <li class="nav-item" style="width: 50%; text-align: right">
-               <a href="./login.php" class="btn btn-success btn-lg">
-                  <i class="nav-icon fas fa-sign-in-alt mr-2"></i>
-                  Login
-               </a>
+               <?php if ($_SESSION['id_karyawan'] == NULL) { ?>
+                  <a href="./login.php" class="btn btn-success btn-lg">
+                     <i class="nav-icon fas fa-sign-in-alt mr-2"></i>
+                     Login
+                  </a>
+               <?php } else { ?>
+                  <form action="" method="post">
+                     <a href="./data/warehouse/" class="btn btn-primary btn-lg mr-2">
+                        <i class="nav-icon fa fa-arrow-right mr-2" aria-hidden="true"></i>
+                        Panel Admin
+                     </a>
+                     <button type="submit" class="btn btn-danger btn-lg" name="logout">
+                        <i class="nav-icon fas fas fa-door-open mr-2"></i>
+                        Logout
+                     </button>
+                  </form>
+               <?php } ?>
             </li>
+               
          </ul>
       </div>
    </nav>
@@ -151,16 +167,19 @@
    <script src="./plugins/jquery/jquery.min.js"></script>
    <!-- ChartJS -->
    <script src="./plugins/chart.js/Chart.min.js"></script>
-
+   <!-- Sweetalert2 -->
+   <script src="./plugins/sweetalert2/sweetalert2.min.js"></script>
+   
+   <!-- Bar chart -->
    <script>
       var ctx = document.getElementById("barChart");
       var myChart = new Chart(ctx, {
          type: 'bar',
          data: {
-            labels: <?=$bulan?>,
+            labels: <?=$bulan?>, // daftar Bulan
             datasets: [{
                label: 'Losstime',
-               data: <?=$lossTime?>,
+               data: <?=$lossTime?>, // data yang ditampilkan
                backgroundColor: '#3498DB',
                borderColor: '#e3e5ea',
                borderWidth: 1
@@ -191,7 +210,7 @@
             legend: {
                display: false
             },
-            layout: {
+            layout: { // layout desain
                padding: {
                   left: 0,
                   right: 0,
@@ -225,5 +244,33 @@
       });
    </script>
    
+   <script>
+      // Sweetalert untuk logout
+      function logout() {
+         Swal.fire({
+               type: 'success',
+               html: 'Logout Sukses!',
+               allowOutsideClick: false,
+               allowEscapeKey: false,
+               focusConfirm: true,
+               showConfirmButton: true
+               
+         }).then(function() {
+               window.location.href = "./",
+               console.log("The OK Button was clicked");
+         })
+      }
+   </script>
+
+   <?php
+      if (isset($_POST['logout'])) {
+         if ($data->logout($_SESSION['id_karyawan'])) {
+            echo "<script>logout()</script>";
+         } else {
+            echo '<script>alert("gagal")</script>';
+         }
+      }
+   ?>
+
    </body>
 </html>

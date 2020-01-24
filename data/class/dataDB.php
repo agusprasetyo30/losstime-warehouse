@@ -1,37 +1,17 @@
 <?php
-   include "dataArray.php";
+   include "dataStatis.php";
 
-   class dataDB extends dataArray {
+   class dataDB extends dataStatis {
 
-      // Constructor koneksi
-      function __construct()
-      {
-         $hostname = "localhost";
-         $username = "root";
-         $password = "gokpras123";
-         $database = "warehouse";
-
-         $this->koneksi = mysqli_connect($hostname, $username, $password, $database) or trigger_error(mysqli_error($this->koneksi), E_USER_NOTICE);
-      }
-
-      // fungsi untuk menampilkan data select dengan cara memasukan query ke dalam parameter
-      private function query($query)
-      {
-         $result = mysqli_query($this->koneksi, $query);
-         $rows = [];
-         while ($data = mysqli_fetch_assoc($result)) {
-            $rows[] = $data;
-         }
-         return $rows;
-      }
+      //  <-- PENGGUNA -->
 
       /**
-       * Pengguna
-       * 
+       * Login pengguna
+       *
+       * @param [array] $post
+       * @return string
        */
-
-      // Login pengguna
-      function login($post)
+      function login($post) : string
       {
          $id_karyawan = htmlspecialchars($post['id_anggota']);
          $password = mysqli_real_escape_string($this->koneksi, $post['password']);
@@ -57,7 +37,7 @@
                   $_SESSION['password'] = $data['password'];
                   $_SESSION['akses'] = $data['akses'];
                
-                  return "success"; // jika benar maka akan mereturn nilai true
+                  return "success"; // jika benar maka akan mereturn string success
 
                } else { // jika statusnya TIDAK AKTIF
                   return "non";
@@ -72,8 +52,14 @@
          }
       }
 
-      // logout pengguna
-      function logout($session)
+
+      /**
+       * logout pengguna
+       *
+       * @param [type] $session
+       * @return bool
+       */
+      function logout($session) : bool
       {
          if ($session != NULL) {
             session_start();
@@ -87,8 +73,15 @@
          }
       }
       
-      // ubah password pengguna berdasakan inputan dan + ID Peggunaa
-      function changePassword($post, $id)
+
+      /**
+       * ubah password pengguna berdasakan inputan dan + ID Pegnguna
+       *
+       * @param [array] $post
+       * @param [int] $id
+       * @return boolean
+       */
+      function changePassword($post, $id) : bool
       {
          $password_lama = $post['password_lama'];
          $password_baru = $post['password_baru'];
@@ -124,8 +117,14 @@
          }
       }
       
-      // fungsi untuk menambahkan pengguna
-      function addUser($post) 
+      
+      /**
+       * fungsi untuk menambahkan pengguna
+       *
+       * @param [array] $post
+       * @return string
+       */
+      function addUser($post) : string
       {
          $nama = htmlspecialchars($post['nama']);
          $id_karyawan = htmlspecialchars($post['id_karyawan']);
@@ -160,8 +159,14 @@
          return mysqli_affected_rows($this->koneksi);
       }
 
-      // menampilkan data pada tabel users
-      function getUsersData($akses = null)
+
+      /**
+       * menampilkan data pada tabel users
+       *
+       * @param [int] $akses
+       * @return array
+       */
+      function getUsersData($akses = null) : array
       {
          // query untuk menampilkan data keseluruhan
          $query = "SELECT * FROM users ORDER BY status ASC";
@@ -169,24 +174,37 @@
          // query untuk menampilkan data sesuai dengan akses
          $query_akses = "SELECT * FROM users WHERE akses = '$akses' ORDER BY status ASC";
          
-         if ($akses == null) {
+         if ($akses == null) { // jika tidak memilih akses maka ditampilkan semuanya
             return $this->query($query);
          
-         } else {
+         } else { // ditampilkan sesuai akses yg dipilih
             return $this->query($query_akses);
          }
       }
 
-      // menampilkan data user sesuai dengan ID
-      function getUsersDataByID($id)
+      
+      /**
+       * menampilkan data user sesuai dengan ID
+       *
+       * @param [int] $id
+       * @return array
+       */
+      function getUsersDataByID($id) : array
       {
          $query = "SELECT * FROM users WHERE id = '$id'";
 
          return $this->query($query)[0];
       }
 
-      // fungsi untuk mengubah data pengguna
-      function updateUsers($post, $id)
+
+      /**
+       * fungsi untuk mengubah data pengguna
+       *
+       * @param [array] $post
+       * @param [int] $id
+       * @return boolean
+       */
+      function updateUsers($post, $id) : bool
       {
          $nama = $post['nama'];
          $id_karyawan = $post['id_karyawan'];
@@ -223,13 +241,18 @@
          
       }
 
-      /**
-       * Losstime
-       * 
-       */
+      //  <-- PENGGUNA -->
 
-      // Menambahkan data losstime
-      function addLosstime($post)
+
+      //  <-- LOSSTIME -->
+
+      /**
+       * Menambahkan data losstime
+       *
+       * @param [type] $post
+       * @return int
+       */
+      function addLosstime($post) : int
       {
          $line = $post['line'];
          $shift = $post['shift'];
@@ -248,16 +271,29 @@
          return mysqli_affected_rows($this->koneksi);
       }
 
-      // menampilkan losstime berdasarkan ID
-      function getLosstimeByID($id)
+
+      /**
+       * menampilkan losstime berdasarkan ID
+       *
+       * @param [type] $id
+       * @return array
+       */
+      function getLosstimeByID($id) : array
       {
          $query = "SELECT l.*, u.nama, u.id_karyawan FROM losstime l INNER JOIN users u ON l.created_by = u.id WHERE l.id = '$id'";
 
          return $this->query($query)[0];
       }
 
-      // mengedit data losstime
-      function updateLosstime($post ,$id)
+
+      /**
+       * mengedit data losstime
+       *
+       * @param [type] $post
+       * @param [type] $id
+       * @return int
+       */
+      function updateLosstime($post ,$id) : int
       {
          $line = $post['line'];
          $shift = $post['shift'];
@@ -279,14 +315,19 @@
 
          // echo $query;
 
-         // return 1;
          mysqli_query($this->koneksi, $query);
 
          return mysqli_affected_rows($this->koneksi);
       }
 
-      // Menghapus data losstime
-      function deleteLosstime($id)
+
+      /**
+       * Menghapus data losstime
+       *
+       * @param [int] $id
+       * @return integer
+       */
+      function deleteLosstime($id) : int
       {
          $query = "DELETE from losstime WHERE id = '$id'";
 
@@ -295,8 +336,14 @@
          return mysqli_affected_rows($this->koneksi);
       }
 
-      // menampilkan losstime berdasarkan tanggal hari ini
-      function showLosstimeByDay($dayDate) 
+
+      /**
+       * menampilkan losstime berdasarkan tanggal hari ini
+       *
+       * @param [date] $dayDate
+       * @return array
+       */
+      function showLosstimeByDay($dayDate) : array
       {
          $query = "SELECT l.*, u.nama, u.id_karyawan FROM losstime l INNER JOIN users u ON l.created_by = u.id 
             WHERE DATE(l.created_at) = '$dayDate' 
@@ -305,8 +352,14 @@
          return $this->query($query);
       }
 
-      // menghitung total losstime berdasarkan tanggal hari ini
-      function countLosstimeByDay($dayDate) 
+
+      /**
+       * menghitung total losstime berdasarkan tanggal hari ini
+       *
+       * @param [type] $dayDate
+       * @return integer
+       */
+      function countLosstimeByDay($dayDate) : int
       {
          $query = "SELECT sum(jml_losstime) as jumlah FROM losstime WHERE DATE(created_at) = '$dayDate' GROUP BY DATE(created_at) ";
          
@@ -314,8 +367,13 @@
          return $this->query($query)[0]['jumlah'] == NULL ? 0 : $this->query($query)[0]['jumlah'];
       }
       
-      // menampilkan losstime berdasarkan bulan
-      function showLosstimeByMonth() 
+
+      /**
+       * menampilkan losstime berdasarkan bulan
+       *
+       * @return array
+       */
+      function showLosstimeByMonth() : array
       {
          $query = "SELECT count(line) as jumlah_line, sum(jml_losstime) AS jumlah_menit, MONTH(created_at) as month, YEAR(created_at) as year FROM losstime 
             GROUP BY MONTH(created_at), YEAR(created_at) ORDER BY created_at DESC";
@@ -323,8 +381,15 @@
          return $this->query($query);
       }
 
-      // menampilkan dan sorting losstime berdasarkan bulan dan tahun
-      function showLosstimeByMonthYear($month, $year)
+
+      /**
+       * menampilkan dan sorting losstime berdasarkan bulan dan tahun
+       *
+       * @param [int] $month
+       * @param [int] $year
+       * @return array
+       */
+      function showLosstimeByMonthYear($month, $year) : array
       {
          $query = "SELECT count(line) as jumlah_line, sum(jml_losstime) AS jumlah_menit, MONTH(created_at) as month, YEAR(created_at) as year FROM losstime 
             WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' GROUP BY MONTH(created_at), YEAR(created_at)";
@@ -332,8 +397,15 @@
          return $this->query($query)[0];
       }
 
-      // menampilkan seua losstime dalam bulan dan tahun tertentu
-      function showAllLostimeByMonthYear($month, $year)
+
+      /**
+       * menampilkan seua losstime dalam bulan dan tahun tertentu
+       *
+       * @param [type] $month
+       * @param [type] $year
+       * @return array
+       */
+      function showAllLostimeByMonthYear($month, $year) : array
       {
          $query = "SELECT l.*, u.nama, u.id_karyawan FROM losstime l INNER JOIN users u ON l.created_by = u.id 
             WHERE MONTH(l.created_at) = '$month' AND YEAR(l.created_at) = '$year' 
@@ -342,8 +414,14 @@
          return $this->query($query);
       }
 
-      // Menghitung jumlah losstime pada tahun tertentu
-      function countLosstimeByYear($year)
+
+      /**
+       * Menghitung jumlah losstime pada tahun tertentu
+       *
+       * @param [type] $year
+       * @return int
+       */
+      function countLosstimeByYear($year) : int
       {
          $query = "SELECT sum(jml_losstime) as jumlah_menit FROM losstime WHERE YEAR(created_at) = '$year' GROUP BY YEAR(created_at) ";
 
@@ -351,16 +429,28 @@
          return $this->query($query)[0]['jumlah_menit'] == NULL ? 0 : $this->query($query)[0]['jumlah_menit'];
       }
 
-      // menampilkan jumlah menit berdasarkan tahun
-      function showLosstimeCountByYear($year)
+
+      /**
+       * menampilkan jumlah menit berdasarkan tahun
+       *
+       * @param [type] $year
+       * @return array
+       */
+      function showLosstimeCountByYear($year) : array
       {
          $query = "SELECT sum(jml_losstime) as jumlah_menit, MONTH(created_at) as month, YEAR(created_at) as year FROM losstime WHERE YEAR(created_at) = '$year' GROUP BY MONTH(created_at) ";
 
          return $this->query($query);
       }
 
-      // data array losstime yang terdapat pada grafik dimana ditampilkan berdasarkan tahun sekarang
-      function getDataGrafikLosstime($year)
+
+      /**
+       * data array losstime yang terdapat pada grafik dimana ditampilkan berdasarkan tahun sekarang
+       *
+       * @param [type] $year
+       * @return array
+       */
+      function getDataGrafikLosstime($year) : array
       {
          $data_arr = [];
          $bulan = 1;
@@ -391,8 +481,15 @@
          return $data_arr;
       }
 
-      // menghitung dan menampilkan jumlah losstime per minggu dalam periode bulan tertentu
-      function showLosstimeByWeek($month, $year)
+
+      /**
+       * menghitung dan menampilkan jumlah losstime per minggu dalam periode bulan tertentu
+       *
+       * @param [type] $month
+       * @param [type] $year
+       * @return array
+       */
+      function showLosstimeByWeek($month, $year) : array
       {
          $query = "SELECT WEEK(created_at, 1) - WEEK(created_at - INTERVAL DAY(created_at) - 1 DAY, 1) + 1 as week, sum(jml_losstime) as jumlah_menit FROM losstime 
             WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' 
@@ -402,7 +499,13 @@
          return $this->query($query);
       }
 
-      // mengambil data minggu pada data query yang akan digunakan pada grafik
+      /**
+       * mengambil data minggu pada data query yang akan digunakan pada grafik
+       *
+       * @param [type] $month
+       * @param [type] $year
+       * @return void
+       */
       function getWeekLosstimeByMonthYear($month, $year)
       {
          $data_minggu = [];
@@ -416,7 +519,14 @@
          return json_encode($data_minggu, JSON_NUMERIC_CHECK);
       }
       
-      // mengambil data jumlah losstime minggu pada data query yang akan digunakan pada grafik
+
+      /**
+       * mengambil data jumlah losstime minggu pada data query yang akan digunakan pada grafik
+       *
+       * @param [type] $month
+       * @param [type] $year
+       * @return void
+       */
       function getJumlahLosstimeByMonthYear($month, $year)
       {
          $data_losstime = [];
@@ -430,13 +540,17 @@
          return json_encode($data_losstime, JSON_NUMERIC_CHECK);
       }
 
-      /**
-       * Running Text
-       * 
-       */
+      //  <-- LOSSTIME -->
 
-      // menginputkan running text
-      function addRunningText($post) 
+      //  <-- RUNNING TEXT -->
+
+      /**
+       * menginputkan running text
+       *
+       * @param [type] $post
+       * @return int
+       */
+      function addRunningText($post) : int
       {
          $text = $post['input_running'];
 
@@ -447,22 +561,40 @@
          return mysqli_affected_rows($this->koneksi);
       }
 
-      // menampilkan data running text kedalam tabel
-      function showListRunningText()
+
+      /**
+       * menampilkan data running text kedalam tabel
+       *
+       * @return array
+       */
+      function showListRunningText() : array
       {
          $query = "SELECT * FROM running_text";
          return $this->query($query);
       }
 
-      // menampilkan data running text berdasarkan ID
-      function showListRunningTextByID($id)
+
+      /**
+       * menampilkan data running text berdasarkan ID
+       *
+       * @param [type] $id
+       * @return array
+       */
+      function showListRunningTextByID($id) : array
       {
          $query = "SELECT * FROM running_text WHERE id = '$id'";
          return $this->query($query)[0];
       }
 
-      // mengupdate data running text dengan mengambil inputan dan ID
-      function updateRunningText($post , $id) 
+
+      /**
+       * mengupdate data running text dengan mengambil inputan dan ID
+       *
+       * @param [type] $post
+       * @param [type] $id
+       * @return int
+       */
+      function updateRunningText($post , $id) : int
       {
          $text = $post['input_running'];
 
@@ -472,13 +604,22 @@
          return mysqli_affected_rows($this->koneksi);
       }
 
-      // menghapus data running text
-      function deleteRunningText($id){
+
+      /**
+       * menghapus data running text
+       *
+       * @param [type] $id
+       * @return int
+       */
+      function deleteRunningText($id) : int
+      {
          $query = "DELETE FROM running_text WHERE id = '$id'";
 
          mysqli_query($this->koneksi, $query);
 
          return mysqli_affected_rows($this->koneksi);
       }
+
+      //  <-- RUNNING TEXT -->
    }
 ?>

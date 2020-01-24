@@ -3,6 +3,14 @@
    include "../../class/dataDB.php";
 
    $data = new dataDB();
+
+   if (!isset($_SESSION['id'])) {
+      echo '
+         <script>
+         window.location.href = "../../login.php";
+         </script>
+      ';
+   }
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,10 +54,14 @@
       <li class="nav-item" style="width: 100%;">
          <div class="dashboard-nav-link">WAREHOUSE SECTION PT. SURABAYA AUTOCOMP INDONESIA</div>
       </li>
-      <li class="nav-item" style="text-align: right; width: 300px;">
+      <li class="nav-item" style="text-align: right; width: 100%">
          <form action="" method="post">
+            <a href="../../" class="btn btn-primary" target="_blank">
+               <i class="fas fa-chart-bar mr-2"></i>
+               Dashboard
+            </a>
             <button type="submit" class="btn btn-danger" name="logout">
-               <i class="nav-icon fas fa-door-open"></i>
+               <i class="nav-icon fas fa-door-open mr-2"></i>
                Logout
             </button>
          </form>
