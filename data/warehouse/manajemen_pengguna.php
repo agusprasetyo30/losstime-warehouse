@@ -49,6 +49,7 @@
                            <li class="nav-item"><a class="nav-link <?= $_GET['akses'] == null ? 'active' : '' ?>" href="manajemen_pengguna.php?type=man-pengguna">ALL</a></li>
                            <li class="nav-item"><a class="nav-link <?= $_GET['akses'] == 'ADMIN' ? 'active' : '' ?>" href="manajemen_pengguna.php?type=man-pengguna&akses=ADMIN">ADMIN</a></li>
                            <li class="nav-item"><a class="nav-link <?= $_GET['akses'] == 'OPERATOR' ? 'active' : '' ?>" href="manajemen_pengguna.php?type=man-pengguna&akses=OPERATOR">OPERATOR</a></li>
+                           <li class="nav-item"><a class="nav-link <?= $_GET['akses'] == 'NONAKTIF' ? 'active' : '' ?>" href="manajemen_pengguna.php?type=man-pengguna&akses=NONAKTIF">NON AKTIF</a></li>
                         </ul>
                      </div>
                   </div>

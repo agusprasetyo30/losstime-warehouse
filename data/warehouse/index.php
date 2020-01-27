@@ -83,7 +83,7 @@
                <div class="col-md-12">
                   <div class="card card-primary" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
                      <div class="card-header">
-                        <h3 class="card-title" >Grafik Loss Time (2020)</h3>
+                        <h3 class="card-title" >Grafik Loss Time (<?= date("Y") ?>)</h3>
 
                         <div class="card-tools">
                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus "></i></button>
@@ -104,7 +104,7 @@
                               </td>
                               <tr>
                                  <th style="width: 10px">#</th>
-                                 <th>Loss Time</th>
+                                 <th>Losstime (Menit)</th>
                                  <th>Bulan</th>
                               </tr>
                            </thead>

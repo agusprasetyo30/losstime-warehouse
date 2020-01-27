@@ -169,16 +169,25 @@
       function getUsersData($akses = null) : array
       {
          // query untuk menampilkan data keseluruhan
-         $query = "SELECT * FROM users ORDER BY status ASC";
+         $query = "SELECT * FROM users WHERE status = 'AKTIF' ORDER BY id ASC";
 
          // query untuk menampilkan data sesuai dengan akses
-         $query_akses = "SELECT * FROM users WHERE akses = '$akses' ORDER BY status ASC";
+         $query_akses = "SELECT * FROM users WHERE akses = '$akses' AND status = 'AKTIF' ORDER BY id ASC";
          
+         // query untuk menampilkan data non aktif
+         $query_status = "SELECT * FROM users WHERE status = 'NON AKTIF' ORDER BY id ASC";
+
+
          if ($akses == null) { // jika tidak memilih akses maka ditampilkan semuanya
             return $this->query($query);
          
          } else { // ditampilkan sesuai akses yg dipilih
-            return $this->query($query_akses);
+            if ($akses == 'NONAKTIF') {
+               return $this->query($query_status);
+
+            } else {
+               return $this->query($query_akses);
+            }
          }
       }
 

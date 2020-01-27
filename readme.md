@@ -6,12 +6,15 @@
 - Apache/2.4.29 (Ubuntu)
 - Versi Server: 5.7.28-0ubuntu0.18.04.4 - (Ubuntu)
 
+## Template
+- adminLTE  
+
 ## Package
-- Bootstrap 4
-- ChartJS
-- Select2
-- DataTables
-- Sweetalert2
+- Bootstrap 4 []
+- ChartJS []
+- Select2 []
+- DataTables []
+- Sweetalert2 []
 
 ## Screenshot
 
