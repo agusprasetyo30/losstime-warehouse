@@ -7,14 +7,14 @@
 - Versi Server: 5.7.28-0ubuntu0.18.04.4 - (Ubuntu)
 
 ## Template
-- adminLTE  
+- adminLTE [ <a href="https://adminlte.io">https://adminlte.io/</a> ] 
 
 ## Package
-- Bootstrap 4 []
-- ChartJS []
-- Select2 []
-- DataTables []
-- Sweetalert2 []
+- Bootstrap 4 [ <a href="https://getbootstrap.com">https://getbootstrap.com</a> ]
+- ChartJS [ <a href="https://www.chartjs.org/">https://www.chartjs.org</a> ]
+- Select2 [ <a href="https://select2.org">https://select2.org</a> ]
+- DataTables [ <a href="https://datatables.net">https://datatables.net</a> ]
+- Sweetalert2 [ <a href="https://sweetalert2.github.io">https://sweetalert2.github.io/</a> ]
 
 ## Screenshot
 
