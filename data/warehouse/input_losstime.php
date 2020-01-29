@@ -98,7 +98,7 @@
                                     </button>
                                  </div>
 
-                                 <input type="number" name="jumlah_losstime" onkeypress="return isNumberKey(event)" placeholder="Tambahkan jumlah losstime" required
+                                 <input type="number" name="jumlah_losstime" placeholder="Tambahkan jumlah losstime" required
                                     id="jumlah-losstime" class="form-control jumlah-input-losstime" min="0" maxlength="3">
                                  
                                  <div class="input-group-prevend">
@@ -193,18 +193,5 @@ $(function() {
       // Untuk menginisialisasi select2
       $('.select2').select2()
    });
-
-   // Inputan hanya angka
-   function isNumberKey(evt)
-   {
-      var charCode = (evt.which) ? evt.which : evt.keyCode
-      if (charCode > 31 && (charCode < 48 || charCode > 57))
-      {
-         return false;
-
-      } else {
-         return true;
-      }
-   }
 </script>
 

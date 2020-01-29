@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group mr-2">
                            <label for="id_kar">ID Karyawan</label>
-                           <input name="id_karyawan" type="text" name="id_karyawan" class="form-control" maxlength="6" id="id_kar" autofocus=on placeholder="Masukan ID Karyawan" autocomplete="off" required>
+                           <input name="id_karyawan" type="text" name="id_karyawan" onkeypress="return isNumberKey(event)" class="form-control" maxlength="6" id="id_kar" autofocus=on placeholder="Masukan ID Karyawan" autocomplete="off" required>
                         </div>
                         <div class="form-group mr-2">
                            <label for="akses">Akses</label>
@@ -94,7 +94,7 @@
          showConfirmButton: true
          
       }).then(function() {
-         window.location.href = "pengguna.php"
+         window.location.href = "manajemen_pengguna.php?type=man-pengguna"
          console.log("The OK Button was clicked");
       })
    }
@@ -127,6 +127,19 @@
       }).then(function() {
          window.location.href = "tambah_pengguna.php"
       })
+   }
+
+   // Inputan hanya angka
+   function isNumberKey(evt)
+   {
+      var charCode = (evt.which) ? evt.which : evt.keyCode
+      if (charCode > 31 && (charCode < 48 || charCode > 57))
+      {
+         return false;
+
+      } else {
+         return true;
+      }
    }
 </script>
 
