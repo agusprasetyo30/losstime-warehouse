@@ -402,8 +402,13 @@
       {
          $query = "SELECT count(line) as jumlah_line, sum(jml_losstime) AS jumlah_menit, MONTH(created_at) as month, YEAR(created_at) as year FROM losstime 
             WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' GROUP BY MONTH(created_at), YEAR(created_at)";
-      
-         return $this->query($query)[0];
+
+         if ($this->query($query)[0] == null) {
+            return [];
+         } else {
+            return $this->query($query)[0];
+         }
+
       }
 
 

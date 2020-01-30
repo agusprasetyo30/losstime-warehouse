@@ -1,4 +1,6 @@
-
+<?php
+   // ini_set("display_errors", 1);
+?>
 <div class="container-fluid" style="border-top: 1px solid lightgrey">
    <div class="row mt-2">
       <div class="col-md-12">
@@ -95,7 +97,7 @@
                         
                         $file = $data->showLosstimeByMonthYear($_GET['bulan'], $_GET['tahun']);
 
-                           if ($file != null) {
+                        if ($file != null) {
                      ?>
 
                      <tr>
@@ -110,8 +112,11 @@
                            </a>
                         </td>
                      </tr>
+                        <?php } else { ?>
+                           <tr>
+                              <td colspan="5">Data bulan <?= '<b>' .$data->getBulan($_GET['bulan']) .' '. $_GET['tahun']. '</b>' ?> tidak ditemukan</td>
+                           </tr>
                         <?php } ?>
-
                      <?php } else { ?>
 
                      <?php
