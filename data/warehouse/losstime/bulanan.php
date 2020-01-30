@@ -90,6 +90,7 @@
                   </thead>
                   <tbody>
                      <?php
+                        // 
                         if ($_GET['bulan'] != null && $_GET['tahun'] != null) {
                         
                         $file = $data->showLosstimeByMonthYear($_GET['bulan'], $_GET['tahun']);

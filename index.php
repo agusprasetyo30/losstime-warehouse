@@ -51,7 +51,7 @@
          <ul class="nav navbar-nav" style="width: 100%">
             <li class="nav-item" style="width: 50%">
                <div class="d-inline">
-                  <img src="./dist/img/logo/logo-yazaki.png" class="img-fluid img-responsive" width="250px" height="100%">   
+                  <img src="./dist/img/logo/logo-sai.png" class="img-fluid img-responsive" width="320px" height="100%">   
                </div>
             </li>
             <li class="nav-item" style="width: 50%; text-align: right">
@@ -154,7 +154,7 @@
                      <?php
                         for ($i=0; $i < count($running_text); $i++) {
                      ?> 
-                        <img src="./dist/img/logo/logo-title.png" width=50>
+                        <img src="./dist/img/logo/logo-sai-running.png" style="padding: 5px; background: white" width=50>
                         <span style='margin-right:30px'><?= $running_text[$i]['text'] ?></span>
                                                    
                      <?php } ?>

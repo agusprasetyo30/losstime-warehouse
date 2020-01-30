@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
    <!-- Brand Logo -->
    <a href="./" class="brand-link">
-      <img src="../../dist/img/logo/logo-yazaki.png" alt="AdminLTE Logo" width="100%"
+      <img src="../../dist/img/logo/logo-sai.png" alt="AdminLTE Logo" width="100%"
             style="opacity: .8;">
       <!-- <span class="brand-text font-weight-light">WAREHOUSE</span> -->
    </a>
