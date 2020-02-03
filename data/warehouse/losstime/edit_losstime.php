@@ -45,7 +45,6 @@
                               <select name="line" id="line" autofocus=on class="form-control select-input-losstime select2" style="width: 100%" required>
                                  <option value="" disabled>Pilih Line</option>
                                  <?php 
-                                    // for ($i=0; $i < count($data->getLine()); $i++) { 
                                     foreach ($data->getLineDB() as $file) {
                                  ?>
 

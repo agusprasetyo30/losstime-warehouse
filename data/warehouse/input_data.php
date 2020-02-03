@@ -108,7 +108,7 @@
          break;
       
       case 'masalah-line':
-         # code...
+         include_once "./tambah-data/masalah_line.php";
          break;
 
       case 'edit-masalah-line':
@@ -200,6 +200,19 @@
 
    $('#cari-line').keyup(function(){
       lineTable.search($(this).val()).draw() ;
+   });
+
+   masalahLineTable = $('#masalah_line_table').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": false,
+      "info": false,
+      "autoWidth": true,
+   });
+
+   $('#cari-masalah').keyup(function(){
+      masalahLineTable.search($(this).val()).draw() ;
    });
 
 

@@ -82,23 +82,6 @@
          return $bulan;
       }
 
-      /**
-       * Mengambil data line
-       *
-       * @return array
-       */
-      function getLine() : array
-      {
-         $line = [
-            "1C", "2A","2A (PRADO)", "TC", "JP 04", "2C", "TC SBS", "3B", "4A", "4B", 
-            "5B", "5C", "6C", "7C", "9A", "10A", "10C", "JP 03", "11C", "12B", 
-            "13C", "15A", "15C", "17C", "18B", "19A", "19C", "20B", "23B", "24B", 
-            "25B", "27B"
-         ];
-
-         return $line;
-      }
-
 
       /**
        * Mengambil data masalah
@@ -121,3 +104,15 @@
 
    }
 ?>
+
+<!-- 
+Daftar line fix
+
+$line = [
+   "1C", "2A","2A (PRADO)", "TC", "JP 04", "2C", "TC SBS", "3B", "4A", "4B", 
+   "5B", "5C", "6C", "7C", "9A", "10A", "10C", "JP 03", "11C", "12B", 
+   "13C", "15A", "15C", "17C", "18B", "19A", "19C", "20B", "23B", "24B", 
+   "25B", "27B"
+]; 
+
+-->
