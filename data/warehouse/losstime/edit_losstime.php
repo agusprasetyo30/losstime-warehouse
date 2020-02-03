@@ -1,4 +1,6 @@
+<!-- Mengambil data losstime berdasarkan ID -->
 <?php $losstime = $data->getLosstimeByID($_GET['id']); ?>
+
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-md-10">
@@ -10,7 +12,9 @@
                      <!-- Menampilkan status update atau tidak update -->
                      (<?= $losstime['updated_at'] != NUll ? 'Last Updated : '.date("d-M-Y", strtotime($losstime['updated_at'])).' [<b>'.$losstime['nama'].'</b>]' : 'Not edited yet' ?>)</i> 
                      <br>
-                  <?php                       
+                  <?php
+
+                     // Mengambil bulan dan tahun
                      $bulan =  date("m", strtotime($losstime['created_at']));
                      $tahun = date("Y", strtotime($losstime['created_at']));
                   ?>
@@ -21,6 +25,7 @@
                      <i class="fas fa-undo mr-2"></i>
                      Kembali
                   </a>
+
                <?php } else if ($_GET['type'] == 'edit-losstime-bulanan') { ?>
                   <a href="./losstime.php?type=detail&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>" class="btn btn-warning float-right">
                      <i class="fas fa-undo mr-2"></i>
@@ -40,12 +45,13 @@
                               <select name="line" id="line" autofocus=on class="form-control select-input-losstime select2" style="width: 100%" required>
                                  <option value="" disabled>Pilih Line</option>
                                  <?php 
-                                    for ($i=0; $i < count($data->getLine()); $i++) { 
+                                    // for ($i=0; $i < count($data->getLine()); $i++) { 
+                                    foreach ($data->getLineDB() as $file) {
                                  ?>
 
-                                 <option value="<?= $data->getLine()[$i] ?>"  <?= $losstime['line'] == $data->getLine()[$i] ? ' selected' : '' ?> ><?= $data->getLine()[$i] ?></option>
+                                 <option value="<?= $file['nama_line'] ?>"  <?= $losstime['line'] == $file['nama_line'] ? ' selected' : '' ?> ><?= $file['nama_line'] ?></option>
 
-                                 <?php } ?>      
+                                 <?php } ?>
                               </select>
                            </div>
 

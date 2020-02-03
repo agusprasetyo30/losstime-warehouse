@@ -35,8 +35,8 @@
                               <select name="line" id="line" autofocus=on class="form-control select-input-losstime select2"  required>
                                  <option value="" selected disabled>Pilih Line</option>
                                  <?php 
-                                    for ($i=0; $i < count($data->getLine()); $i++) { 
-                                       echo "<option value='" . $data->getLine()[$i] . "' >" . $data->getLine()[$i] ."</option>";      
+                                    foreach ($data->getLineDB() as $list) {
+                                       echo "<option value='" . $list['nama_line'] . "' >" . $list['nama_line'] ."</option>";      
                                     }
                                  ?>      
                               </select>

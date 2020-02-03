@@ -695,7 +695,7 @@
       {
          $line = $post['input_line_edit'];
 
-         $query = "UPDATE line SET line_name = '$line' WHERE id = '$id' ";
+         $query = "UPDATE line SET nama_line = '$line' WHERE id = '$id' ";
 
          mysqli_query($this->koneksi, $query);
 

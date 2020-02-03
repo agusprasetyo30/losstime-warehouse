@@ -10,28 +10,27 @@
             </div>
             <div class="container-fluid">
                <div class="card-body">
-                  <form action="" method="post">
-                     <div class="row justify-content-center mt-2">
-                        <div class="col-md-5" style="border-right: 1px solid lightgrey">
+                  <div class="row justify-content-center mt-2">
+                     <div class="col-md-5" style="border-right: 1px solid lightgrey">
+                        <form action="" method="post">
                            <!-- DAFTAR LINE -->
-
                            <div class="form-group" style="margin-right: 20px;">
                               <label for="line" class="label-input-losstime mb-3">Input Line</label>
-                              <input type="text" name="line" id="line" placeholder="Masukan Line" class="form-control" autofocus=on required>
+                              <input type="text" name="line" id="line" placeholder="Masukan Line" class="form-control" autofocus=on autocomplete="off" required>
                               <button type="submit" name="simpan-line" class="btn btn-success float-right mt-2">
                                  <i class="fas fa-save mr-2"></i>
                                  Simpan
                               </button>
                            </div>
-                        </div>
-                  </form>
+                        </form>
+                     </div>
                      <div class="col-md-7">
                         <div class="form-group" style="margin-left: 20px">
                            <div class="row">
-                              <div class="col-md-8">
+                              <div class="col-md-6">
                                  <label for="running" class="label-input-losstime">Tabel data Line</label>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-6">
                                  <input type="text" name="cari-line" id="cari-line" class="form-control" placeholder="Cari line . . .">
                               </div>
                            </div>
@@ -51,7 +50,7 @@
                                  ?>
                                  <tr class="text-center">
                                     <td class="align-middle"><?= $nomer++ ?>. </td>
-                                    <td class="align-middle"><?= $list['line_name'] ?></td>
+                                    <td class="align-middle"><?= $list['nama_line'] ?></td>
                                     <td>
                                        <div class="btn-group">
                                           <a href="./input_data.php?id=<?=$list['id']?>&type=edit-line" class="btn btn-warning btn-sm">

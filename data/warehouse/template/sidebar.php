@@ -128,7 +128,7 @@
          <li class="nav-header">INPUT DATA</li>
 
          <li class="nav-item">
-            <a href="./input_data.php?type=line" class="nav-link <?=$_GET['type'] == 'line' ? 'active' : '' ?>">
+            <a href="./input_data.php?type=line" class="nav-link <?= $_GET['type'] == 'line' || $_GET['type'] == 'edit-line' ? 'active' : '' ?>">
                <i class="nav-icon fas fa-cogs"></i>
                <p>Line</p>
             </a>

@@ -22,7 +22,7 @@
                            <div class="form-group">
                               <label for="line" class="label-input-losstime">Update Line</label>
                               <input type="text" name="input_line_edit" id="line" placeholder="Masukan line" class="form-control"
-                                 value="<?= $data->showLineByID($_GET['id'])['line_name'] ?>" autofocus=on required>
+                                 value="<?= $data->showLineByID($_GET['id'])['nama_line'] ?>" autofocus=on required>
 
                               <button type="submit" name="ubah-line" class="btn btn-success float-right mt-2">
                                  <i class="fas fa-pencil-alt mr-2"></i>

@@ -17,7 +17,7 @@
       case 'edit-running-text':
          $title= "Edit Running Text";
          $menu = "Edit Running Text";
-         $link_menu = "input_data.php?type=edit-running-text";
+         $link_menu = "input_data.php?type=running-text";
          $location = "Index";
          break;
 
@@ -31,7 +31,7 @@
       case 'edit-line' :
          $title= "Edit Line";
          $menu = "Edit Line";
-         $link_menu = "input_data.php?type=edit-line";
+         $link_menu = "input_data.php?type=line";
          $location = "Index";
          break;
 
