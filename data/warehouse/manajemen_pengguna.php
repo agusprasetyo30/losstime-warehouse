@@ -21,6 +21,7 @@
       display: none;
    }
 </style>
+
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 
 <div class="container-fluid" style="border-top: 1px solid lightgrey">
@@ -104,7 +105,6 @@
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
 <script>
-   // oTable = $('#example1').DataTable();   //pay attention to capital D, which is mandatory to retrieve "api" datatables' object, as @Lionel said
    
    oTable = $('#example1').DataTable({
       "paging": true,

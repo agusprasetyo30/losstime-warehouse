@@ -126,11 +126,23 @@
    <div class="user-panel mt-3 pb-3 mb-3 ">
       <ul class="nav nav-pills nav-sidebar flex-column">
          <li class="nav-header">INPUT DATA</li>
+
          <li class="nav-item">
-            <!-- Sementara menggunakan input type running text -->
+            <a href="./input_data.php?type=line" class="nav-link <?=$_GET['type'] == 'line' ? 'active' : '' ?>">
+               <i class="nav-icon fas fa-cogs"></i>
+               <p>Line</p>
+            </a>
+         </li>
+         <li class="nav-item">
+            <a href="./input_data.php?type=masalah-line" class="nav-link <?=$_GET['type'] == 'masalah-line' ? 'active' : '' ?>">
+               <i class="nav-icon fas fa-unlink"></i>
+               <p>Masalah Line</p>
+            </a>
+         </li>
+         <li class="nav-item">
             <a href="./input_data.php?type=running-text" class="nav-link <?=$_GET['type'] == 'running-text' ? 'active' : '' ?>">
-               <i class="nav-icon fas fa-text-width"></i>
-               <p>Input Running Text</p>
+            <i class="nav-icon fas fa-text-width"></i>
+               <p>Running Text</p>
             </a>
          </li>
       </ul>

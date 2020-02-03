@@ -12,8 +12,12 @@
    // Membuat object baru
    $data = new dataDB();
 
+   $tahunSekarang = date("Y");
+   $bulanSekarang = date("m");
+   $tanggalSekarang = date("Y-m-d");
+
    // memasukan data ke dalam array
-   $data_lossTime = $data->getDataGrafikLosstime(date('Y'));
+   $data_lossTime = $data->getDataGrafikLosstime($tahunSekarang);
    $data_bulan = ['Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'];
 
    // merubah data array menjadi JSON
@@ -81,15 +85,12 @@
       <div class="container-fluid p-3 mt-2 mb-3">
          <div class="card" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
             <div class="card-body">
-            <h3 class="text-center m-3">Loss time Warehouse periode Januari - Desember <?= date('Y') ?></h3>
+            <h3 class="text-center m-3">Loss time Warehouse periode Januari - Desember <?= $tahunSekarang ?></h3>
                <div class="row">
                   <div class="col-md-12">
                      <div class="chart">
                         <canvas id="barChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
                      </div>
-                     <?php
-                           $ambilBulan = $data->getBulan(date("m"));
-                     ?>
                   </div>
                </div>
             </div>
@@ -99,10 +100,10 @@
                      <div class="col-4">
                         <div class="small-box red-flat">
                            <div class="inner description-text ml-3">
-                              <h3 style="margin-top: 0.5rem"><?= $data->countLosstimeByDay(date('Y-m-d')) ?>
+                              <h3 style="margin-top: 0.5rem"><?= $data->countLosstimeByDay($tanggalSekarang) ?>
                                  <sup style="font-size: 20px"> Menit</sup>
                               </h3>
-                              <p>Losstime Harian (<?= date("d/M/Y") ?>)</p>
+                              <p>Losstime Harian (<?= date("d/M/Y", strtotime($tanggalSekarang)) ?>)</p>
                            </div>
                            <div class="icon text-white">
                               <i class="fas fa-calendar-day mr-3"></i>
@@ -113,11 +114,11 @@
                         <div class="small-box orange-flat">
                            <div class="inner description-text ml-3">
                               <h3 style="margin-top: 0.5rem">
-                                 <?= $data->showLosstimeByMonthYear(date('m'), date('Y'))['jumlah_menit'] == NULL ? 0 : $data->showLosstimeByMonthYear(date('m'), date('Y'))['jumlah_menit'] ?>
+                                 <?= $data->showLosstimeByMonthYear($bulanSekarang, $tahunSekarang)['jumlah_menit'] == NULL ? 0 : $data->showLosstimeByMonthYear($bulanSekarang, $tahunSekarang)['jumlah_menit'] ?>
                                  <sup style="font-size: 20px"> Menit</sup>
                               </h3>
 
-                              <p>Losstime Bulan (<?= $data->getBulan(date("m")) ?>)</p>
+                              <p>Losstime Bulan (<?= $data->getBulan($bulanSekarang) ?>)</p>
                            </div>
                            <div class="icon text-white">
                               <i class="far fa-calendar-alt mr-3"></i>
@@ -128,11 +129,10 @@
                         <div class="small-box green-flat">
                            <div class="inner description-text ml-3">
                               <h3 style="margin-top: 0.5rem">
-                                 <?= $data->countLosstimeByYear(date('Y')) ?>
+                                 <?= $data->countLosstimeByYear($tahunSekarang) ?>
                                  <sup style="font-size: 20px"> Menit</sup>
                               </h3>
-
-                              <p>Losstime Tahun (<?= date("Y") ?>)</p>
+                              <p>Losstime Tahun (<?= $tahunSekarang ?>)</p>
                            </div>
                            <div class="icon text-white">
                               <i class="far fa-calendar-check mr-3"></i>
@@ -154,7 +154,7 @@
                      <?php
                         for ($i=0; $i < count($running_text); $i++) {
                      ?> 
-                        <img src="./dist/img/logo/logo-sai-running.png" style="padding: 5px; background: white" width=50>
+                        <img src="./dist/img/logo/logo-sai-running.png" style="padding: 5px; background: white; margin-right: 5px" width=50>
                         <span style='margin-right:30px'><?= $running_text[$i]['text'] ?></span>
                                                    
                      <?php } ?>

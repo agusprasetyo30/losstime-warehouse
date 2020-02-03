@@ -635,5 +635,87 @@
       }
 
       //  <-- RUNNING TEXT -->
+
+
+      // <-- LINE -->
+
+      /**
+       * Menambahkan data Line
+       *
+       * @param [type] $post
+       * @return integer
+       */
+      function addLine($post) : int
+      {
+         $line = strtoupper($post['line']);
+         
+         // Query tambah data
+         $query = "INSERT INTO line VALUES(NULL, '$line')";
+         mysqli_query($this->koneksi, $query);
+
+         return mysqli_affected_rows($this->koneksi);
+      }
+
+
+      /**
+       * Menampilkan data line
+       *
+       * @return array
+       */
+      function getLineDB() : array
+      {
+         $query = "SELECT * FROM line";
+
+         return $this->query($query);
+      }
+
+
+      /**
+       * menampilkan line berdasarkan ID
+       *
+       * @param [type] $id
+       * @return array
+       */
+      function showLineByID($id) : array
+      {
+         $query = "SELECT * FROM line WHERE id = '$id'";
+
+         return $this->query($query)[0];
+      }
+
+
+      /**
+       * Menghapus data line
+       *
+       * @param [array] $post
+       * @param [int] $id
+       * @return integer
+       */
+      function updateLine($post, $id) : int
+      {
+         $line = $post['input_line_edit'];
+
+         $query = "UPDATE line SET line_name = '$line' WHERE id = '$id' ";
+
+         mysqli_query($this->koneksi, $query);
+
+         return mysqli_affected_rows($this->koneksi);
+      }
+
+
+      /**
+       * Fungsi untuk menghapus data line
+       *
+       * @param [type] $id
+       * @return integer
+       */
+      function deleteLine($id) : int
+      {
+         $query = "DELETE FROM line WHERE id = '$id'";
+
+         mysqli_query($this->koneksi, $query);
+
+         return mysqli_affected_rows($this->koneksi);
+      }
    }
 ?>
