@@ -39,7 +39,7 @@
       6. Input Data Losstime
       7. Melihat report dan visualisasi losstime (Harian, Mingguan, Bulanan, Tahunan)
       8. Ubah Password Pengguna 
-   <br>
+
    - Operator
       1. Input Data Losstime
       2. Melihat report dan visualisasi losstime (Harian, Mingguan, Bulanan, Tahunan)
