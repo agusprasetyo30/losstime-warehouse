@@ -120,11 +120,21 @@
          break;
 
       case 'edit-masalah-line':
-         # code...
+         include_once "./tambah-data/edit_masalah_line.php";
          break;
 
       case 'delete-masalah-line':
-         # code...
+         if ($data->deleteMasalahLine($_GET['id']) > 0) {
+            echo '
+               <script>
+                  window.location.href = "input_data.php?type=masalah-line";
+               </script>
+            ';
+   
+         } else {
+            echo("<br>");
+            echo mysqli_error($data->koneksi);
+         }
          break;
    }
 
@@ -285,6 +295,40 @@
    {
       if ($data->updateLine($_POST, $_GET['id']) > 0) {
          echo "<script>berhasilUbah('line', 'Line')</script>";
+      
+      } else {
+         echo "
+            <script>
+               alert('Gagal');
+            </script>
+         ";
+         
+         echo("<br>");
+         echo mysqli_error($data->koneksi);
+      }
+   }
+
+   if (isset($_POST['simpan-masalah-line'])) 
+   {
+      if ($data->addMasalahLine($_POST) > 0) {
+         echo "<script>berhasilSimpan('masalah-line', 'Masalah Line')</script>";
+      
+      } else {
+         echo "
+            <script>
+               alert('Gagal');
+            </script>
+         ";
+         
+         echo("<br>");
+         echo mysqli_error($data->koneksi);
+      }
+   }
+
+   if (isset($_POST['ubah-masalah-line'])) 
+   {
+      if ($data->updateMasalahLine($_POST, $_GET['id'])) {
+         echo "<script>berhasilUbah('masalah-line', 'Masalah Line')</script>";
       
       } else {
          echo "

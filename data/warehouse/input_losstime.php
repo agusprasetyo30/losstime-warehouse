@@ -82,8 +82,8 @@
                                  
                                  <option value="" selected disabled>Pilih Masalah Kerja</option>
                                  <?php 
-                                    for ($i=0; $i < count($data->getMasalah()); $i++) { 
-                                       echo "<option value='" . $data->getMasalah()[$i] . "' >" . $data->getMasalah()[$i] ."</option>";      
+                                    foreach ($data->showMasalahLine() as $list) {
+                                       echo "<option value='[ " . $list['kode_masalah'] . " ] " .$list['masalah']. "' > [ " . $list['kode_masalah'] . " ] " .$list['masalah']. "</option>";  
                                     }
                                  ?>
                               </select>

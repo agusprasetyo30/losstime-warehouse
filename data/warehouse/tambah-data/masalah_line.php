@@ -23,7 +23,7 @@
                               <textarea name="masalah" id="masalah" cols="30" rows="4" placeholder="Masukan Line" 
                                  class="form-control" autofocus=on autocomplete="off" required></textarea>
                            </div>
-                           <button type="submit" name="simpan-line" style="margin-right: 20px;" class="btn btn-success float-right mt-2">
+                           <button type="submit" name="simpan-masalah-line" style="margin-right: 20px;" class="btn btn-success float-right mt-2">
                               <i class="fas fa-save mr-2"></i>
                               Simpan
                            </button>
@@ -44,69 +44,34 @@
                               <thead>
                                  <tr class="text-center">
                                     <th style="width: 30px" class="align-middle">#</th>
-                                    <th style="width: 100px" class="align-middle">Kode Masalah</th>
+                                    <th style="width: 50px" class="align-middle">Kode Masalah</th>
                                     <th style="width: 200px" class="align-middle">Masalah</th>
-                                    <th class="align-middle">Aksi</th>
+                                    <th style="width: 150px" class="align-middle">Aksi</th>
                                  </tr>
                               </thead>
                               <tbody>
-                                 <tr>
-                                    <td class="align-middle">1. </td>
-                                    <td class="align-middle text-center">[ 9A ]</td>
-                                    <td class="align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, quas?</td>
-                                    <td class="align-middle">
-                                       <div class="btn-group">
-                                          <a href="./input_data.php?id=<?=$list['id']?>&type=edit-line" class="btn btn-warning btn-sm">
-                                             <i class="fas fa-pen mr-2"></i>
-                                             Ubah
-                                          </a>
-                                          <a onclick="return hapusData(<?= $list['id'] ?>, 'input_data.php?id=<?=$list['id']?>&type=delete-line', 'Line')" href="#" class="btn btn-danger btn-sm" >
-                                             <i class="fas fa-trash mr-2"></i>
-                                             Hapus
-                                          </a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="align-middle">2. </td>
-                                    <td class="align-middle text-center">[ 9B ]</td>
-                                    <td class="align-middle">Lorem ipsum dolor sit amet.</td>
-                                    <td class="align-middle">
-                                       <div class="btn-group">
-                                          <a href="./input_data.php?id=<?=$list['id']?>&type=edit-line" class="btn btn-warning btn-sm">
-                                             <i class="fas fa-pen mr-2"></i>
-                                             Ubah
-                                          </a>
-                                          <a onclick="return hapusData(<?= $list['id'] ?>, 'input_data.php?id=<?=$list['id']?>&type=delete-line', 'Line')" href="#" class="btn btn-danger btn-sm" >
-                                             <i class="fas fa-trash mr-2"></i>
-                                             Hapus
-                                          </a>
-                                       </div>
-                                    </td>
-                                 </tr>
                                  <?php
-                                    // $nomer = 1;
-                                    // foreach ($data->getLineDB() as $list) {
+                                    $number = 1;
+                                    foreach ($data->showMasalahLine() as $list) {
                                  ?>
-                                 <!-- <tr class="text-center">
-                                    <td class="align-middle"><?= $nomer++ ?>. </td>
-                                    <td class="align-middle"><?= $list['nama_line'] ?></td>
-                                    <td>
+                                 <tr>
+                                    <td class="align-middle text-center"><?=$number++?>. </td>
+                                    <td class="align-middle text-center"><b>[ <?= $list['kode_masalah'] ?> ]</b></td>
+                                    <td class="align-middle"><?= $list['masalah'] ?></td>
+                                    <td class="align-middle text-center">
                                        <div class="btn-group">
-                                          <a href="./input_data.php?id=<?=$list['id']?>&type=edit-line" class="btn btn-warning btn-sm">
+                                          <a href="./input_data.php?id=<?= $list['id']?>&type=edit-masalah-line" class="btn btn-warning btn-sm">
                                              <i class="fas fa-pen mr-2"></i>
                                              Ubah
                                           </a>
-                                          <a onclick="return hapusData(<?= $list['id'] ?>, 'input_data.php?id=<?=$list['id']?>&type=delete-line', 'Line')" href="#" class="btn btn-danger btn-sm" >
+                                          <a onclick="return hapusData(<?= $list['id'] ?>, 'input_data.php?id=<?=$list['id']?>&type=delete-masalah-line', 'Masalah Line')" href="#" class="btn btn-danger btn-sm" >
                                              <i class="fas fa-trash mr-2"></i>
                                              Hapus
                                           </a>
                                        </div>
                                     </td>
-                                 </tr> -->
-                                 <?php 
-                              // } 
-                              ?>
+                                 </tr>
+                                 <?php } ?>
                               </tbody>
                            </table>
                         </div>

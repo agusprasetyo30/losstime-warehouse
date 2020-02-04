@@ -685,7 +685,7 @@
 
 
       /**
-       * Menghapus data line
+       * Fungsi untuk merubah data line
        *
        * @param [array] $post
        * @param [int] $id
@@ -723,11 +723,87 @@
 
       // <-- MASALAH LINE -->
 
-      // <-- MASALAH LINE -->
 
-      function getMasalahLine() : array
+      /**
+       * Menambahkan masalah line
+       *
+       * @param [type] $post
+       * @return integer
+       */
+      function addMasalahLine($post) : int
       {
-         // TODO : menampilkan
+         $kode_masalah = strtoupper($post['kode_masalah']);
+         $masalah      = strtoupper($post['masalah']);
+
+         $query = "INSERT INTO masalah_line VALUES(NULL, '$kode_masalah', '$masalah')";
+
+         mysqli_query($this->koneksi, $query);
+
+         return mysqli_affected_rows($this->koneksi);
       }
+
+      /**
+       * Menampilkan data masalah line
+       *
+       * @return array
+       */
+      function showMasalahLine() : array
+      {
+         $query = "SELECT * FROM masalah_line";
+
+         return $this->query($query);
+      }
+
+      /**
+       * Menampilkan masalah line berdasarkan ID
+       *
+       * @param [type] $id
+       * @return array
+       */
+      function showMasalahLineByID($id) : array
+      {
+         $query = "SELECT * FROM masalah_line WHERE id = '$id'";
+
+         return $this->query($query)[0];
+      }
+
+
+      /**
+       * Fungsi untuk merubah data masalah line
+       *
+       * @param [type] $post
+       * @param [type] $id
+       * @return integer
+       */
+      function updateMasalahLine($post, $id) : int
+      {
+         $kode_masalah = strtoupper($post['kode_masalah_edit']);
+         $masalah      = strtoupper($post['masalah_edit']);  
+         
+         $query = "UPDATE masalah_line SET kode_masalah = '$kode_masalah', masalah = '$masalah' 
+            WHERE id = '$id'";
+
+         mysqli_query($this->koneksi, $query);
+
+         return mysqli_affected_rows($this->koneksi);
+      }
+
+
+      /**
+       * Fungsi untuk menghapus data masalah line
+       *
+       * @param [type] $id
+       * @return integer
+       */
+      function deleteMasalahLine($id) : int
+      {
+         $query = "DELETE FROM masalah_line WHERE id = '$id'";
+
+         mysqli_query($this->koneksi, $query);
+
+         return mysqli_affected_rows($this->koneksi);
+      }
+
+      // <-- MASALAH LINE -->
    }
 ?>
