@@ -83,9 +83,10 @@
                                  <option value="" selected disabled>Pilih Masalah Kerja</option>
                                  <?php 
                                     foreach ($data->showMasalahLine() as $list) {
-                                       echo "<option value='[ " . $list['kode_masalah'] . " ] " .$list['masalah']. "' > [ " . $list['kode_masalah'] . " ] " .$list['masalah']. "</option>";  
-                                    }
+                                       $masalah = "[ " .$list['kode_masalah']. " ] " .$list['masalah']; // menggabungkan antara kode masalah dan masalah pada tabel masalah_line
                                  ?>
+                                    <option value="<?= $masalah ?>"><?= $masalah ?></option>
+                                 <?php } ?>
                               </select>
                            </div>
                            <!-- INPUT LOSSTIME -->

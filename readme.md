@@ -1,4 +1,4 @@
-# Warehouse Visualitation
+# Warehouse Losstime Visualitation
 
 
 ## Requirement
@@ -17,9 +17,30 @@
 - Sweetalert2 [ <a href="https://sweetalert2.github.io">https://sweetalert2.github.io/</a> ]
 
 ## Screenshot
-
 1. Dashboard Awal
 <img src="./ss.png" style="text-align: center; width: 100%">
 <br>
-2. Admin
+2. Dashboard Admin
 <img src="./ss2.png" style="text-align: center; width: 100%">
+
+## Documentation
+
+### Alur Kerja program
+1. Ketika pertama kali menjalankan program, halaman pertama yang muncul adalah halaman <b>DASHBOARD</b>, halaman dashboard ini menampilkan data losstime perbulan berupa grafik dan data-data seperti jumlah losstime harian, jumlah losstime bulanan, dan jumlah losstime tahunan
+2. Jika ingin mengisi data losstime maka yang harus dilakukan adalah login terlebih dahulu
+> untuk akun pengguna yang bisa mendaftarkan adalah admin/foreman dari warehouse
+3. Setelah berhasil login setelah itu adalah diarahkan sesuai dengan hak akses masing-masing, didalam program terdapat 2 hak akses yaitu : 
+   - Admin dan Foreman
+      1. Manajemen Pengguna (Tambah, Edit pengguna)
+      2. Manajemen Losstime (Edit, Hapus losstime)
+      3. Manajemen Line (Tambah, Edit, Hapus Line)
+      4. Manajemen Masalah Line (Tambah, Edit, Hapus Masalah Line)
+      5. Manajemen Running Text (Tambah, Edit, Hapus Running Text)
+      6. Input Data Losstime
+      7. Melihat report dan visualisasi losstime (Harian, Mingguan, Bulanan, Tahunan)
+      8. Ubah Password Pengguna 
+   <br>
+   - Operator
+      1. Input Data Losstime
+      2. Melihat report dan visualisasi losstime (Harian, Mingguan, Bulanan, Tahunan)
+      3. Ubah Password Pengguna

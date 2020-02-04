@@ -3,8 +3,10 @@
 </div>
 
 <footer class="main-footer">
-   <strong>Copyright &copy; 2019 <a href="#">AdminLTE.io</a>.</strong>
-   Mahasiswa Politeknik Negeri Malang
+   <strong>Copyright &copy; <?= date('Y') ?></strong>
+   <a href="https://github.com/agusprasetyo30">
+     Mahasiswa Politeknik Negeri Malang
+   </a>
    <div class="float-right d-none d-sm-inline-block">
    <b>Version</b> 1.0.0(Beta)
    </div>

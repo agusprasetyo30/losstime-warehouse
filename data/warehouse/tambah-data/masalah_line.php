@@ -33,7 +33,7 @@
                         <div class="form-group" style="margin-left: 20px">
                            <div class="row">
                               <div class="col-md-7">
-                                 <label for="running" class="label-input-losstime">Tabel data masalah line</label>
+                                 <label for="cari-masalah" class="label-input-losstime">Tabel data masalah line</label>
                               </div>
                               <div class="col-md-5">
                                  <input type="text" name="cari-masalah" id="cari-masalah" class="form-control" placeholder="Cari masalah . . .">

@@ -89,9 +89,10 @@
                                  autofocus=on required>
                                  
                                  <option value="" selected disabled>Pilih Masalah Kerja</option>
-                                 <?php for ($i=0; $i < count($data->getMasalah()); $i++) { ?>
-                                    <!-- echo "<option value='" . $data->getMasalah()[$i] . "' >" . $data->getMasalah()[$i] ."</option>";       -->
-                                    <option value="<?= $data->getMasalah()[$i] ?>" <?= $losstime['masalah'] == $data->getMasalah()[$i] ? ' selected' : '' ?> ><?= $data->getMasalah()[$i] ?></option>
+                                 <?php foreach ($data->showMasalahLine() as $list) { 
+                                    $masalah = "[ " .$list['kode_masalah']. " ] " .$list['masalah']; // menggabungkan antara kode masalah dan masalah pada tabel masalah_line
+                                 ?>
+                                    <option value="<?= $masalah ?>" <?= $losstime['masalah'] == $masalah ? ' selected' : '' ?> ><?= $masalah ?></option>                                 
                                  <?php } ?>
                               </select>
                            </div>

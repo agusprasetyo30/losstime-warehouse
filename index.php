@@ -1,5 +1,6 @@
 <?php
    /**
+       * Read The readme.md 
        * Github        : agusprasetyo30
        * Github Link   : https://github.com/agusprasetyo30
        * Email        : agusprasetyo1889@gmail.com
@@ -180,7 +181,7 @@
    <script src="./plugins/sweetalert2/sweetalert2.min.js"></script>
    
    <!-- Bar chart -->
-   <script>
+   <script type="text/javascript">
       var ctx = document.getElementById("barChart");
       var myChart = new Chart(ctx, {
          type: 'bar',

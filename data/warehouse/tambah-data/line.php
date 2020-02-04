@@ -28,7 +28,7 @@
                         <div class="form-group" style="margin-left: 20px">
                            <div class="row">
                               <div class="col-md-6">
-                                 <label for="running" class="label-input-losstime">Tabel data Line</label>
+                                 <label for="cari-line" class="label-input-losstime">Tabel data Line</label>
                               </div>
                               <div class="col-md-6">
                                  <input type="text" name="cari-line" id="cari-line" class="form-control" placeholder="Cari line . . .">
