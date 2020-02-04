@@ -50,6 +50,7 @@
          break;
    }
 
+
    include_once "./template/header.php";
 ?>
 
@@ -62,6 +63,13 @@
 </style>
 
 <?php
+   // Cek session, apakah yang login itu admin atau operator
+
+   if ($_SESSION['akses'] == 'OPERATOR') {
+      echo '<script>
+         window.location.href = "./";
+      </script>';
+   }
    switch ($_GET['type']) {
       case 'running-text':
          include_once "./tambah-data/running_text.php";
@@ -222,7 +230,8 @@
 <?php
 // Proses simpan dan ubah
 
-   if (isset($_POST['simpan-running'])) {
+   if (isset($_POST['simpan-running'])) 
+   {
       if ($data->addRunningText($_POST) > 0) {
          echo "<script>berhasilSimpan('running-text', 'Running Text')</script>";
       
@@ -238,7 +247,8 @@
       }
    }
 
-   if (isset($_POST['ubah-running'])) {
+   if (isset($_POST['ubah-running'])) 
+   {
       if ($data->updateRunningText($_POST, $_GET['id']) > 0) {
          echo "<script>berhasilUbah('running-text', 'Running Text')</script>";
       
@@ -254,7 +264,8 @@
       }
    }
 
-   if (isset($_POST['simpan-line'])) {
+   if (isset($_POST['simpan-line'])) 
+   {
       if ($data->addLine($_POST) > 0) {
          echo "<script>berhasilSimpan('line', 'Line')</script>";
       
@@ -270,7 +281,8 @@
       }
    }
 
-   if (isset($_POST['ubah-line'])) {
+   if (isset($_POST['ubah-line'])) 
+   {
       if ($data->updateLine($_POST, $_GET['id']) > 0) {
          echo "<script>berhasilUbah('line', 'Line')</script>";
       

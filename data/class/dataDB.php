@@ -717,5 +717,17 @@
 
          return mysqli_affected_rows($this->koneksi);
       }
+
+      // <-- LINE -->
+
+
+      // <-- MASALAH LINE -->
+
+      // <-- MASALAH LINE -->
+
+      function getMasalahLine() : array
+      {
+         // TODO : menampilkan
+      }
    }
 ?>

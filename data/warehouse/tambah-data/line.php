@@ -11,7 +11,7 @@
             <div class="container-fluid">
                <div class="card-body">
                   <div class="row justify-content-center mt-2">
-                     <div class="col-md-5" style="border-right: 1px solid lightgrey">
+                     <div class="col-md-4" style="border-right: 1px solid lightgrey">
                         <form action="" method="post">
                            <!-- DAFTAR LINE -->
                            <div class="form-group" style="margin-right: 20px;">
@@ -24,7 +24,7 @@
                            </div>
                         </form>
                      </div>
-                     <div class="col-md-7">
+                     <div class="col-md-8">
                         <div class="form-group" style="margin-left: 20px">
                            <div class="row">
                               <div class="col-md-6">

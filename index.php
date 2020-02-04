@@ -54,7 +54,7 @@
       <div class="container-fluid mt-3 mb-3 ml-3 mr-3">
          <ul class="nav navbar-nav" style="width: 100%">
             <li class="nav-item" style="width: 50%">
-               <div class="d-inline">
+               <div class="d-inline">i
                   <img src="./dist/img/logo/logo-sai.png" class="img-fluid img-responsive" width="320px" height="100%">   
                </div>
             </li>
@@ -66,10 +66,19 @@
                   </a>
                <?php } else { ?>
                   <form action="" method="post">
-                     <a href="./data/warehouse/" class="btn btn-primary btn-lg mr-2">
-                        <i class="nav-icon fa fa-arrow-right mr-2" aria-hidden="true"></i>
-                        Panel Admin
-                     </a>
+                     <!-- Mengecek session apakah yang masuk admin atau operator -->
+                     <?php if ($_SESSION['akses'] == 'ADMIN') { ?>
+                        <a href="./data/warehouse/" class="btn btn-primary btn-lg mr-2">
+                           <i class="nav-icon fa fa-arrow-right mr-2" aria-hidden="true"></i>
+                           Panel Admin
+                        </a>
+                     <?php } else { ?>
+                        <a href="./data/warehouse/" class="btn btn-primary btn-lg mr-2">
+                           <i class="nav-icon fa fa-arrow-right mr-2" aria-hidden="true"></i>
+                           Panel Operator
+                        </a>
+                     <?php } ?>
+
                      <button type="submit" class="btn btn-danger btn-lg" name="logout">
                         <i class="nav-icon fas fas fa-door-open mr-2"></i>
                         Logout
