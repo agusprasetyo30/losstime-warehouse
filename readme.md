@@ -46,9 +46,9 @@
       3. Ubah Password Pengguna
 
 ### Penataan Folder Project
-- `index.php`
+- `index.php` <br>
   Menampilkan dashboard awal yang terdiri dari grafik per bulan, jumlah losstime perhari, perbulan, dan pertahun sekarang. Serta menampilkan running-text.
-- `login.php`
+- `login.php` <br>
   Menampilkan form login
 - [ data ]
    - [ class ]
