@@ -14,7 +14,7 @@
 
          $this->koneksi = mysqli_connect($hostname, $username, $password, $database) or trigger_error(mysqli_error($this->koneksi), E_USER_NOTICE);
       }
- 
+
       /**
        * fungsi untuk menampilkan data select dengan cara memasukan query ke dalam parameter
        *
@@ -81,26 +81,5 @@
 
          return $bulan;
       }
-
-
-      /**
-       * Mengambil data masalah
-       *
-       * @return array
-       */
-      function getMasalah() : array
-      {
-         $masalah = [
-            "[9A] PART TERCAMPUR",
-            "[9B] SALAH SUPPLY DARI WAREHOUSE",
-            "[9C] TUNGGU MATERIAL DARI WAREHOUSE",
-            "[9D] TUNGGU TERMINAL",
-            "[9E] TUNGGU TUBE/COT/VO DARI WAREHOUSE",
-            "[9F] TUNGGU WIRE"
-         ];
-
-         return $masalah;
-      }
-
    }
 ?>

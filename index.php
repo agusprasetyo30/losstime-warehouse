@@ -55,7 +55,7 @@
       <div class="container-fluid mt-3 mb-3 ml-3 mr-3">
          <ul class="nav navbar-nav" style="width: 100%">
             <li class="nav-item" style="width: 50%">
-               <div class="d-inline">i
+               <div class="d-inline">
                   <img src="./dist/img/logo/logo-sai.png" class="img-fluid img-responsive" width="320px" height="100%">   
                </div>
             </li>

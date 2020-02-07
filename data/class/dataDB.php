@@ -507,8 +507,7 @@
       {
          $query = "SELECT WEEK(created_at, 1) - WEEK(created_at - INTERVAL DAY(created_at) - 1 DAY, 1) + 1 as week, sum(jml_losstime) as jumlah_menit FROM losstime 
             WHERE MONTH(created_at) = '$month' AND YEAR(created_at) = '$year' 
-            GROUP BY WEEK(created_at, 1) - WEEK(created_at - INTERVAL DAY(created_at) - 1 DAY, 1) + 1
-            ORDER BY jumlah_menit DESC";
+            GROUP BY WEEK(created_at, 1) - WEEK(created_at - INTERVAL DAY(created_at) - 1 DAY, 1) + 1";
          
          return $this->query($query);
       }

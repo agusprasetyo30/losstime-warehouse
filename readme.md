@@ -38,9 +38,23 @@
       5. Manajemen Running Text (Tambah, Edit, Hapus Running Text)
       6. Input Data Losstime
       7. Melihat report dan visualisasi losstime (Harian, Mingguan, Bulanan, Tahunan)
-      8. Ubah Password Pengguna 
+      8. Ubah Password Pengguna
 
    - Operator
       1. Input Data Losstime
       2. Melihat report dan visualisasi losstime (Harian, Mingguan, Bulanan, Tahunan)
       3. Ubah Password Pengguna
+
+### Penataan Folder Project
+- data
+   - class
+      - `dataStatis.php`
+         file ini berisi konstruktor yang berisi script yang berfungsi untuk menghubungkan data ke dalam database, selain itu juga terdapat fungsi
+         ```php
+            // Untuk memproses data query 'select' yang dimasukan ke dalam parameter
+            function query($query) : array {}
+
+            // mengkonversi bulan menjadi bentuk indonesia
+            function getBulan($data_bulan) : string {}
+         ``` 
+      - `dataDB.php`
