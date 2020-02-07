@@ -109,3 +109,6 @@
 
 - [ plugins ] <br>
    library yang digunakan untuk membangun project
+
+---
+<p style="text-align:center">Good Luck :D</p>
