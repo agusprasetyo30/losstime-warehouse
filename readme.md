@@ -52,7 +52,7 @@
   Menampilkan form login
 - [ data ]
    - [ class ]
-      - `dataStatis.php`
+      - `dataStatis.php` <br>
          File ini berisi konstruktor yang berisi script yang berfungsi untuk menghubungkan data ke dalam database, selain itu juga terdapat fungsi sebagai berikut :
          ```php
             // Untuk memproses data query 'select' yang dimasukan ke dalam parameter
@@ -61,7 +61,7 @@
             // mengkonversi bulan menjadi bentuk indonesia
             function getBulan($data_bulan) : string {}
          ``` 
-      - `dataDB.php`
+      - `dataDB.php` <br>
          Berisi fungsi-fungsi yang digunakan untuk membangun project, dimana file tersebut adalah turunan dari class `dataStatis.php`, contoh : 
          ```php
          // fungsi login
@@ -79,33 +79,33 @@
          // dan lain lain
          ```
    - [ warehouse ]
-      - `index.php`
+      - `index.php` <br>
          menampilkan data tampilan dashboard admin
-      - `edit_pengguna.php`
+      - `edit_pengguna.php` <br>
          menampilkan form edit pengguna
-      - `input_losstime`
+      - `input_losstime` <br>
          menampilkan form/tampilan untuk menginputkan data losstime
-      - `manajemen_pengguna.php`
+      - `manajemen_pengguna.php` <br>
          halaman untuk manajemen pengguna
-      - `pengguna.php`
+      - `pengguna.php` <br>
          menampilkan profil pengguna yang masuk/login sistem serta dapat mengganti password pada halaman tersebut
-      - `tambah_pengguna.php`
+      - `tambah_pengguna.php` <br>
          Halaman yang berfungsi untuk menambahkan data pengguna
-      - `losstime.php`
+      - `losstime.php` <br>
          Sebuah file yang menampung data-data form untuk menampilkan <b>losstime harian</b>, <b>bulanan</b>, <b>menampilkan detail losstime bulanan</b> dan <b>form edit losstime</b>
          > Nantinya file tersebut akan memanggil/include file untuk menampilkan form data
-      - `input_data.php`
+      - `input_data.php` <br>
          Adalah sebuah file yang menampung data-data form untuk manajemen <b>line</b>, <b>Masalah line</b>, dan <b>Running Text</b>
          > Nantinya file tersebut akan memanggil/include file untuk menampilkan form data
 
-- [ dist ]
+- [ dist ] <br>
    Berisi file custom seperti css, image, dan js yang berfungsi untuk mempercantik tampilan program
-  - [ css ]
+  - [ css ] <br>
       berisi file CSS custom dan bawaan template 
-  - [ img ] / [ logo ]
+  - [ img ] / [ logo ] <br>
       berisi file logo yang digunakan pada project
-  - [ js ]
+  - [ js ] <br>
       berisi file JS custom dan bawaan template 
 
-- [ plugins ]
+- [ plugins ] <br>
    library yang digunakan untuk membangun project
