@@ -8,7 +8,14 @@
    include_once "../class/dataDB.php";
    $data = new DataDB();
 
+   
    include_once "./template/header.php";
+   
+      if ($_SESSION['akses'] == 'OPERATOR') {
+         echo '<script>
+            window.location.href = "./";
+         </script>';
+      }
 
 ?>
 

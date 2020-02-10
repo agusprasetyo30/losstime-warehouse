@@ -110,7 +110,9 @@
          <!-- ADMIN -->
          <?php } ?>
       </ul>
-      <div class="user-panel mt-3 pb-3 mb-3 ">
+   <!-- dicek apakah user miliki akses ADMIN atau bukan -->
+   <?php if ($_SESSION['akses'] == "ADMIN") { ?>
+   <div class="user-panel mt-3 pb-3 mb-3 ">
       <ul class="nav nav-pills nav-sidebar flex-column">
          <li class="nav-header">INPUT DATA LOSS TIME</li>
          <li class="nav-item">
@@ -121,8 +123,6 @@
          </li>
       </ul>
    </div>
-   <!-- dicek apakah user miliki akses ADMIN atau bukan -->
-   <?php if ($_SESSION['akses'] == "ADMIN") { ?>
    <div class="user-panel mt-3 pb-3 mb-3 ">
       <ul class="nav nav-pills nav-sidebar flex-column">
          <li class="nav-header">INPUT DATA</li>
