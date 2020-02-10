@@ -1,6 +1,8 @@
 <?php
    /**
-       * Read The readme.md 
+       * Harap di baca readme di github sebelum di update ya . .
+       * Salam Agus Prasetyo, MI-3B Angkatan 2017
+       * 
        * Github        : agusprasetyo30
        * Github Link   : https://github.com/agusprasetyo30
        * Email        : agusprasetyo1889@gmail.com
@@ -92,7 +94,7 @@
       </div>
    </nav>
    <div id="container">
-      <div class="container-fluid p-3 mt-2 mb-3">
+      <div class="container-fluid p-3 ">
          <div class="card" style="transition: all 0.15s ease 0s; height: inherit; width: inherit;">
             <div class="card-body">
             <h3 class="text-center m-3">Loss time Warehouse periode Januari - Desember <?= $tahunSekarang ?></h3>
@@ -154,24 +156,6 @@
             </div>
          </div>
       </div>
-         <footer class="footer bg-navbar-dashboard">
-            <div class="container">
-               <div class="row">
-
-                  <?php $running_text = $data->showListRunningText(); ?>
-                  
-                  <marquee scrolldelay=60 onmouseover="this.stop()" onmouseout="this.start()">
-                     <?php
-                        for ($i=0; $i < count($running_text); $i++) {
-                     ?> 
-                        <img src="./dist/img/logo/logo-sai-running.png" style="padding: 5px; background: white; margin-right: 5px" width=50>
-                        <span style='margin-right:30px'><?= $running_text[$i]['text'] ?></span>
-                                                   
-                     <?php } ?>
-               </marquee>
-            </div>
-         </div>   
-      </footer>
    </div>
    <!-- jQuery -->
    <script src="./plugins/jquery/jquery.min.js"></script>
@@ -283,4 +267,23 @@
    ?>
 
    </body>
+
+   <footer class="footer bg-navbar-dashboard">
+            <div class="container">
+               <div class="row">
+
+                  <?php $running_text = $data->showListRunningText(); ?>
+                  
+                  <marquee scrolldelay=60 onmouseover="this.stop()" onmouseout="this.start()">
+                     <?php
+                        for ($i=0; $i < count($running_text); $i++) {
+                     ?> 
+                        <img src="./dist/img/logo/logo-sai-running.png" style="padding: 5px; background: white; margin-right: 5px" width=50>
+                        <span style='margin-right:30px'><?= $running_text[$i]['text'] ?></span>
+                                                   
+                     <?php } ?>
+               </marquee>
+            </div>
+         </div>   
+      </footer>
 </html>

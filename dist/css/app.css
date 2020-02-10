@@ -159,13 +159,10 @@ html, body {
 /* Footer */
 
 .footer {
-   bottom: 0;
-   width: 100%;
-   position: fixed;
    height:40px;
    line-height:40px;
    color:#fff;
-   padding-left: 5px;
+   /* padding-left: 5px; */
 }
 
 /* Dashboard awal */
