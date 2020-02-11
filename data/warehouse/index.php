@@ -1,5 +1,7 @@
 <?php
+
    // Memanggil class dan membuat object baru berdasarkan class yang dibuat pada folder class
+ini_set("display_errors", 0);
    include_once "../class/dataDB.php";
    $data = new DataDB();
 

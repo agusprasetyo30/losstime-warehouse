@@ -271,7 +271,10 @@
          $id_user = $post['id_user'];
 
          // waktu dan tanggal hari ini
-         $waktu_buat = $post['waktu'];
+         $tanggal = $post['tanggal'];
+         $bulan = $post['bulan'];
+         $tahun = $post['tahun'];
+         $waktu_buat = $tahun.'-'.$bulan.'-'.$tanggal;
 
          // Query tambah data
          $query = "INSERT INTO losstime VALUES(NULL, '$line', '$shift', '$jam_kerja', '$masalah', '$jml_losstime', '$id_user', NULL, '$waktu_buat', NULL)";
@@ -311,6 +314,7 @@
          $jml_losstime = $post['jumlah_losstime'];
          $updated_by = $post['updated_by'];
          $updated_at = $post['updated_at'];
+         $created_at = $post['tahun'].'-'.$post['bulan'].'-'.$post['tanggal'];
 
          $query = "UPDATE losstime SET 
             line         = '$line',
@@ -319,7 +323,8 @@
             masalah      = '$masalah',
             jml_losstime = '$jml_losstime',
             updated_by   = '$updated_by',
-            updated_at   = '$updated_at'
+            updated_at   = '$updated_at',
+            created_at   = '$created_at'
          WHERE id = '$id'";
 
          // echo $query;

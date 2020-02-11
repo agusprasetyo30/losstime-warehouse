@@ -1,4 +1,5 @@
 <?php
+ini_set("display_errors", 0);
    $title= "Tambah Pengguna";
    $menu = "Tambah Pengguna";
    $link_menu = "Tambah_Pengguna.php";
