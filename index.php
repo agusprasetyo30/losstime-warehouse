@@ -2,6 +2,7 @@
    /**
        * Harap di baca readme di github sebelum di update ya . .
        * Salam Agus Prasetyo, MI-3B Angkatan 2017
+       * Finish project 11 Pebruari 2020
        * 
        * Github        : agusprasetyo30
        * Github Link   : https://github.com/agusprasetyo30
