@@ -108,7 +108,7 @@
                                  </div>
 
                                  <input type="number" name="jumlah_losstime" placeholder="Tambahkan jumlah losstime" required
-                                    id="jumlah-losstime" class="form-control jumlah-input-losstime" min="0" maxlength="3">
+                                    id="jumlah-losstime" class="form-control jumlah-input-losstime" min="0" maxlength="3" autocomplete="off">
                                  
                                  <div class="input-group-prevend">
                                     <button type="button" class="btn btn-success" id="btn-tambah">
@@ -125,21 +125,21 @@
                                     <div class="col-md-3">
                                        <select name="tanggal" class="form-control" style="cursor: pointer">
                                           <?php for ($i=1; $i <= 31; $i++) { ?> 
-                                             <option value="<?= $i ?>"> <?= $i ?> </option>
+                                             <option value="<?= $i ?>" <?= date('d') == $i ? ' selected' : '' ?>> <?= $i ?> </option>
                                           <?php } ?>
                                        </select>
                                     </div>
                                     <div class="col-md-5">
                                        <select name="bulan" class="form-control" style="cursor: pointer">
                                           <?php for ($i=1; $i <= 12; $i++) { ?> 
-                                             <option value="<?= $i ?>"> <?= $data->getBulan($i) ?> </option>
+                                             <option value="<?= $i ?>" <?= date('m') == $i ? ' selected' : '' ?>> <?= $data->getBulan($i) ?> </option>
                                           <?php } ?>
                                        </select>
                                     </div>
                                     <div class="col-md-4">
                                        <select name="tahun" class="form-control" style="cursor: pointer">
                                           <?php for ($i=2020; $i <= 2030; $i++) { ?> 
-                                             <option value="<?= $i ?>"> <?= $i ?> </option>
+                                             <option value="<?= $i ?>" <?= date('Y') == $i ? ' selected' : '' ?>> <?= $i ?> </option>
                                           <?php } ?>
                                        </select>
                                     </div>
