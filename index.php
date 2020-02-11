@@ -8,7 +8,7 @@
        * Email        : agusprasetyo1889@gmail.com
     */
    session_start();
-   // ini_set("display_errors", 1);
+   ini_set("display_errors",0);
 
    include_once "./data/class/dataDB.php";
 

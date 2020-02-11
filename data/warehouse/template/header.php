@@ -1,5 +1,7 @@
 <?php
+
    session_start();
+   
    include "../../class/dataDB.php";
 
    $data = new dataDB();

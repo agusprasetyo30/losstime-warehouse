@@ -1,4 +1,5 @@
 <?php
+   // ini_set("display_errors", 0);
    $title= "Input Losstime";
    $menu = "Input Losstime";
    $link_menu = "input_losstime.php";
@@ -98,7 +99,7 @@
                            </div>
                            <!-- INPUT LOSSTIME -->
                            <div class="form-group mt-4" style="margin-left: 30px">
-                              <label for="jumlah_losstime" class="label-input-losstime">Jumlah Losstime (Dalam Menit)</label>
+                              <label for="jumlah_losstime" class="label-input-losstime">Jumlah Losstime <small>(Dalam Menit)</small></label>
                               <div class="input-group">
                                  <div class="input-group-prevend">
                                     <button type="button" class="btn btn-danger" id="btn-kurang">
@@ -115,11 +116,40 @@
                                     </button>
                                  </div>
                               </div>
+                              <!-- DAFTAR SHIFT -->
                            </div>
-                           <input type="hidden" name="waktu" value="<?= date('Y-m-d H:i:s'); ?>">
+                              <div class="form-group mt-4" style="margin-left: 30px">
+                                 <label for="waktu" class="label-input-losstime">Waktu <small>(Format Tanggal-Bulan-Tahun)</small></label>
+                                 
+                                 <div class="row">
+                                    <div class="col-md-3">
+                                       <select name="tanggal" class="form-control" style="cursor: pointer">
+                                          <?php for ($i=1; $i <= 31; $i++) { ?> 
+                                             <option value="<?= $i ?>"> <?= $i ?> </option>
+                                          <?php } ?>
+                                       </select>
+                                    </div>
+                                    <div class="col-md-5">
+                                       <select name="bulan" class="form-control" style="cursor: pointer">
+                                          <?php for ($i=1; $i <= 12; $i++) { ?> 
+                                             <option value="<?= $i ?>"> <?= $data->getBulan($i) ?> </option>
+                                          <?php } ?>
+                                       </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                       <select name="tahun" class="form-control" style="cursor: pointer">
+                                          <?php for ($i=2020; $i <= 2030; $i++) { ?> 
+                                             <option value="<?= $i ?>"> <?= $i ?> </option>
+                                          <?php } ?>
+                                       </select>
+                                    </div>
+                                    
+                                 </div>
+                              </div>
+                           
                            <input type="hidden" name="id_user" value="<?= $_SESSION['id'] ?>">
                            <div class="form-group mt-4" style="margin-left: 30px;">
-                              <button type="submit" name="simpan" class="btn btn-success btn-block" style="height: 75px; font-size: 20px">
+                              <button type="submit" name="simpan" class="btn btn-success btn-block" style="height: 70px; font-size: 20px">
                                  <i class="nav-icon fas fa-save"></i>
                                  Simpan
                               </button>

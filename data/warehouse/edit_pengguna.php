@@ -1,4 +1,5 @@
 <?php
+ini_set("display_errors", 0);
    $title= "Edit Pengguna";
    $menu = "Edit Pengguna";
    $link_menu = "manajemen_pengguna.php?type=man-pengguna";

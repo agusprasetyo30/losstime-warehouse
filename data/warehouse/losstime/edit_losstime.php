@@ -116,8 +116,36 @@
                                  </div>
                               </div>
                            </div>
-                           <input type="hidden" name="bulan" value="<?= $bulan ?>">
-                           <input type="hidden" name="tahun" value="<?= $tahun ?>">
+                           <div class="form-group mt-4" style="margin-left: 30px">
+                              <label for="waktu" class="label-input-losstime">Waktu <small>(Format Tanggal-Bulan-Tahun)</small></label>
+                              
+                              <div class="row">
+                                 <div class="col-md-3">
+                                    <select name="tanggal" class="form-control" style="cursor: pointer">
+                                       <?php for ($i=1; $i <= 31; $i++) { ?> 
+                                          <option value="<?= $i ?>" <?= date('d', strtotime($losstime['created_at'])) == $i ? ' selected' : '' ?> > <?= $i ?> </option>
+                                       <?php } ?>
+                                    </select>
+                                 </div>
+                                 <div class="col-md-5">
+                                    <select name="bulan" class="form-control" style="cursor: pointer">
+                                       <?php for ($i=1; $i <= 12; $i++) { ?> 
+                                          <option value="<?= $i ?>" <?= date('m', strtotime($losstime['created_at'])) == $i ? ' selected' : '' ?>> <?= $data->getBulan($i) ?> </option>
+                                       <?php } ?>
+                                    </select>
+                                 </div>
+                                 <div class="col-md-4">
+                                    <select name="tahun" class="form-control" style="cursor: pointer">
+                                       <?php for ($i=2020; $i <= 2030; $i++) { ?> 
+                                          <option value="<?= $i ?>" <?= date('Y', strtotime($losstime['created_at'])) == $i ? ' selected' : '' ?>> <?= $i ?> </option>
+                                       <?php } ?>
+                                    </select>
+                                 </div>
+                                 
+                              </div>
+                           </div>
+                           <!-- <input type="hidden" name="bulan" value="<?= $bulan ?>">
+                           <input type="hidden" name="tahun" value="<?= $tahun ?>"> -->
                            <input type="hidden" name="updated_at" value="<?= date('Y-m-d H:i:s'); ?>">
                            <input type="hidden" name="updated_by" value="<?= $_SESSION['id'] ?>">
                            <div class="form-group mt-4" style="margin-left: 30px;">
