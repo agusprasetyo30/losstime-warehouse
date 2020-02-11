@@ -157,6 +157,26 @@
          </div>
       </div>
    </div>
+   </body>
+
+   <footer class="footer bg-navbar-dashboard">
+      <div class="container">
+         <div class="row">
+            <!-- Text Berjalan -->
+            <?php $running_text = $data->showListRunningText(); ?>
+            
+            <marquee scrolldelay=60 onmouseover="this.stop()" onmouseout="this.start()">
+               <?php
+                  for ($i=0; $i < count($running_text); $i++) {
+               ?> 
+                  <img src="./dist/img/logo/logo-sai-running.png" style="padding: 5px; background: white; margin-right: 5px" width=50>
+                  <span style='margin-right:30px'><?= $running_text[$i]['text'] ?></span>
+               <?php } ?>
+            </marquee>
+         </div>
+      </div>   
+   </footer>
+
    <!-- jQuery -->
    <script src="./plugins/jquery/jquery.min.js"></script>
    <!-- ChartJS -->
@@ -265,25 +285,4 @@
          }
       }
    ?>
-
-   </body>
-
-   <footer class="footer bg-navbar-dashboard">
-            <div class="container">
-               <div class="row">
-
-                  <?php $running_text = $data->showListRunningText(); ?>
-                  
-                  <marquee scrolldelay=60 onmouseover="this.stop()" onmouseout="this.start()">
-                     <?php
-                        for ($i=0; $i < count($running_text); $i++) {
-                     ?> 
-                        <img src="./dist/img/logo/logo-sai-running.png" style="padding: 5px; background: white; margin-right: 5px" width=50>
-                        <span style='margin-right:30px'><?= $running_text[$i]['text'] ?></span>
-                                                   
-                     <?php } ?>
-               </marquee>
-            </div>
-         </div>   
-      </footer>
 </html>
