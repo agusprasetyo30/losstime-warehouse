@@ -134,13 +134,13 @@
             </a>
          </li>
          <li class="nav-item">
-            <a href="./input_data.php?type=masalah-line" class="nav-link <?=$_GET['type'] == 'masalah-line' ? 'active' : '' ?>">
+            <a href="./input_data.php?type=masalah-line" class="nav-link <?= $_GET['type'] == 'masalah-line' || $_GET['type'] == 'edit-masalah-line' ? 'active' : '' ?>">
                <i class="nav-icon fas fa-unlink"></i>
                <p>Masalah Line</p>
             </a>
          </li>
          <li class="nav-item">
-            <a href="./input_data.php?type=running-text" class="nav-link <?=$_GET['type'] == 'running-text' ? 'active' : '' ?>">
+            <a href="./input_data.php?type=running-text" class="nav-link <?= $_GET['type'] == 'running-text' || $_GET['type'] == 'edit-running-text' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-text-width"></i>
                <p>Running Text</p>
             </a>
