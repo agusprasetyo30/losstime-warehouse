@@ -25,7 +25,33 @@
 
 ## Documentation
 
-### Alur Kerja program
+### Cara install program
+1. Import database `warehouse.sql`  
+2. Ubah data `$hostname`, `$username`, `$password`, dan `$database` pada file `data/class/dataStatis.php` sesuai dengan keinginan
+```php
+   function __construct() {
+      $hostname = ???;
+      $username = ???;
+      $password = ???;
+      $database = ???;
+
+      ...
+   }   
+```
+3. Copy file, dan letakkan pada :  
+    - pada windows ``/xampp/htdocs`` 
+    - pada linux ``/var/www/html``
+4. Data dashboard awal akan muncul jika tidak terjadi kesalahan dalan mengcopy
+5. Untuk dummy user dapat menggunakan : 
+   - Admin <br>
+     ID Karyawan : 800123<br>
+     Password    : admin<br>
+     
+   - Operator <br>
+     ID Karyawan : 800000 <br>
+     Password    : operator <br>
+
+### Alur kerja program
 1. Ketika pertama kali menjalankan program, halaman pertama yang muncul adalah halaman <b>DASHBOARD</b>, halaman dashboard ini menampilkan data losstime perbulan berupa grafik dan data-data seperti jumlah losstime harian, jumlah losstime bulanan, dan jumlah losstime tahunan
 2. Jika ingin mengisi data losstime maka yang harus dilakukan adalah login terlebih dahulu
 > untuk akun pengguna yang bisa mendaftarkan adalah admin/foreman dari warehouse
@@ -55,6 +81,9 @@
       - `dataStatis.php` <br>
          File ini berisi konstruktor yang berisi script yang berfungsi untuk menghubungkan data ke dalam database, selain itu juga terdapat fungsi sebagai berikut :
          ```php
+            // Berisi koneksi database
+            function __construct() {}
+
             // Untuk memproses data query 'select' yang dimasukan ke dalam parameter
             function query($query) : array {}
 

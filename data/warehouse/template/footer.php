@@ -4,7 +4,7 @@
 
 <footer class="main-footer">
    <strong>Copyright &copy; <?= date('Y') ?></strong>
-   <a href="https://github.com/agusprasetyo30">
+   <a href="https://github.com/agusprasetyo30" target="_blank">
      Mahasiswa Politeknik Negeri Malang
    </a>
    <div class="float-right d-none d-sm-inline-block">

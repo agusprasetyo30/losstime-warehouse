@@ -153,8 +153,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `nama`, `id_karyawan`, `password`, `status`, `akses`, `created_at`) VALUES
 (1, 'Agus Prasetyo', '800832', '$2y$10$KSi1gb5OtBJI5hABpMjleeAAkUTUActBioTamJfDp1pHIH.rEWKt6', 'AKTIF', 'ADMIN', '2020-01-15 03:25:49'),
 (2, 'OPERATOR', '800000', '$2y$10$/Dd3kJ0pLT6HWSKV38yGDuFdOZDKSXeVbFmR7rimuc3HNF0aDWgjm', 'AKTIF', 'OPERATOR', '2020-01-29 01:05:43'),
-(3, 'ADMIN 1', '800123', '$2y$10$fpKEBBw5SCCeOKhr/TpOeunSK2xGGMohU0ENAzbWXanG0BeSsGZbW', 'AKTIF', 'ADMIN', '2020-01-29 01:09:58'),
-(4, 'User Nonaktif', '878787', '$2y$10$eRC1OVD9ipRN5E3UDgxfteqYz8LAOjW6xEAYa.gwa6rfYFM29ftna', 'NON AKTIF', 'ADMIN', '2020-01-29 01:10:37');
+(3, 'ADMIN 1', '800123', '$2y$10$fpKEBBw5SCCeOKhr/TpOeunSK2xGGMohU0ENAzbWXanG0BeSsGZbW', 'AKTIF', 'ADMIN', '2020-01-29 01:09:58');
 
 --
 -- Indexes for dumped tables
