@@ -67,9 +67,8 @@
       8. Ubah Password Pengguna
 
    - Operator
-      1. Input Data Losstime
-      2. Melihat report dan visualisasi losstime (Harian, Mingguan, Bulanan, Tahunan)
-      3. Ubah Password Pengguna
+      1. Melihat report dan visualisasi losstime (Harian, Mingguan, Bulanan, Tahunan)
+      2. Ubah Password Pengguna
 
 ### Penataan Folder Project
 - `index.php` <br>
