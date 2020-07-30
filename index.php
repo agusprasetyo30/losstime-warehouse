@@ -50,6 +50,10 @@
       <link rel="stylesheet" href="./dist/css/app.css">
       <!-- Sweetalert2 -->
       <link rel="stylesheet" href="./plugins/sweetalert2/sweetalert2.min.css">
+
+      <style>
+      
+      </style>
    </head>
 
    <body class="main-content-dashboard" style="height: 100%; max-height: 100%">
